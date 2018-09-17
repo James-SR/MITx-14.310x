@@ -1,0 +1,24 @@
+--- 
+title: "Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)"
+author: "James Solomon-Rounce"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: James-SR/MITx-14.310x
+url: 'http\://github.com/James-SR/MITx-14.310x/'
+description: "Study notes taken from the courses for personal reference."
+---
+
+# Preface {-}
+
+The following notes were taken by me for educational, non-commercial, purposes. If you find the information useful, buy the material/take the course.
+
+Thank you to the original content providers.  Additional ramblings are my own.  
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/standing.jpg")
+```
+
