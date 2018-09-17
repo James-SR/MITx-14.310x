@@ -16,10 +16,64 @@ Module Content:
 * [Homework 1 Background Paper -  The Persistent Effects Of Peru’s Mining Mita](./files/M1/M1Paper.pdf) 
 * [R Instructions](./files/M1/R_Instructions.pdf)  
 * [Intro to R Zip File](./files/M1/14_310x_Intro_to_R_.zip.pdf)  
+* [Citations Data for Homework 1]("./files/CitesforSara.csv")
 
 
-## Main heading
+## Introduction to R
 
-Text
+First we setup the environment and install the course files
 
-### Sub-Heading
+```{r, eval = FALSE}
+library(swirl)
+install_course_zip("./files/M1/14_310x_Intro_to_R_.zip",multi=FALSE)
+swirl()
+```
+
+### Module 1 Homework
+
+This is a sample of some of the homework answers. Some questions were observational or required interpretation of maps for example, as such these are not inluded here.
+
+```{r}
+library(tidyverse)
+papers <- as_tibble(read_csv("./files/M1/CitesforSara.csv"))
+
+```
+
+Q. 19 Let's take a look at some of the most popular papers. 
+Using the filter() method, how many records exist where there are greater than or equal to 100 citations?
+
+```{r}
+
+#First lets look at our data
+head(papers)
+arrange(papers,desc(cites), title)
+
+papers %>%
+  filter(cites >= 100) 
+```
+
+Q.20 Use the group_by() function to group papers by journal. How many total citations exist for the journal "Econometrica"?
+
+```{r}
+papers %>%
+  group_by(journal) %>%
+  summarise(sum(cites))
+
+#or
+
+summarize(group_by
+          (papers, journal), 
+          SumOfCites = sum(cites))
+```
+
+Q.21 How many distinct primary authors (au1) exist in this dataset?
+  
+```{r}
+papers %>%
+  summarise(n_distinct(au1))
+
+#or
+
+n_distinct(papers$au1)
+```
+  
