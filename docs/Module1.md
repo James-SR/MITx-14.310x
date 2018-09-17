@@ -2,17 +2,20 @@
 ***
 
 
-Course sections:
+**Module Sections:**
 
 * Welcome to the Course
 * Introduction to R
-* Introductory Lecture
+* Introductory Lecture - Data is Beautiful
 * Finger Exercises 
 * Module 1: Homework
 
-Course Content:
+Module Content:
 
-
+* [Module 1 Slides](./files/M1/Lecture_Slides_01.pdf)
+* [Homework 1 Background Paper -  The Persistent Effects Of Peru’s Mining Mita](./files/M1/M1Paper.pdf) 
+* [R Instructions](./files/M1/R_Instructions.pdf)  
+* [Intro to R Zip File](./files/M1/14_310x_Intro_to_R_.zip.pdf)  
 
 
 ## Main heading
