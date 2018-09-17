@@ -2,14 +2,14 @@
 title: "Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)"
 author: "James Solomon-Rounce"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
+bibliography: book.bib
+description: Study notes taken from the courses for personal reference.
 documentclass: book
-bibliography: [book.bib]
-biblio-style: apalike
-link-citations: yes
 github-repo: James-SR/MITx-14.310x
-url: 'http\://github.com/James-SR/MITx-14.310x/'
-description: "Study notes taken from the courses for personal reference."
+link-citations: yes
+site: bookdown::bookdown_site
+biblio-style: apalike
+url: http\://github.com/James-SR/MITx-14.310x/
 ---
 
 # Preface {-}
@@ -22,3 +22,6 @@ Thank you to the original content providers.  Additional ramblings are my own.
 knitr::include_graphics("images/standing.jpg")
 ```
 
+## Core Resources
+
+* [Schedule](\files\14.310x_3T2018_Schedule.pdf)
