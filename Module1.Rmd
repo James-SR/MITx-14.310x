@@ -29,6 +29,47 @@ install_course_zip("./files/M1/14_310x_Intro_to_R_.zip",multi=FALSE)
 swirl()
 ```
 
+IF z is a three number vector e.g.
+
+```{r}
+z <- c(1.1, 9, 3.14)
+```
+
+If we take the square root of z - 1 and assign it to a new variable called my_sqrt e.g.
+
+```{r}
+my_sqrt <- sqrt(z - 1)
+```
+
+The result is a vector of length three e.g.
+
+```{r}
+my_sqrt
+```
+
+Next, if we create a new variable called my_div that gets the value of z divided by my_sqrt.
+
+
+```{r}
+my_div <- z / my_sqrt
+```
+
+The first element of my_div is equal to the first element of z divided by the first element of my_sqrt, and so on...
+
+```{r}
+my_div
+```
+
+When given two vectors of the same length, R simply performs the specified arithmetic operation (`+`, `-`, `*`, etc.) element-by-element. If the vectors are of different lengths, R 'recycles' the shorter vector until it is the same length as the longer vector.
+
+If the length of the shorter vector does not divide evenly into the length of the longer vector, R will still apply the 'recycling' method, but will
+throw a warning.
+
+```{r}
+c(1, 2, 3, 4) + c(0, 10, 100)
+```
+
+
 ### Module 1 Homework
 
 This is a sample of some of the homework answers. Some questions were observational or required interpretation of maps for example, as such these are not inluded here.

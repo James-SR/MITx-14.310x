@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-17">
+<meta name="date" content="2018-09-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="index.html">
-
+<link rel="next" href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -109,6 +109,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#module-1-homework"><i class="fa fa-check"></i><b>1.1.1</b> Module 1 Homework</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><i class="fa fa-check"></i><b>2</b> Module 2: Fundamentals of Probability, Random Variables, Joint Distributions + Collecting Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#fundamentals-of-probability"><i class="fa fa-check"></i><b>2.1</b> Fundamentals of Probability</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#set-theory"><i class="fa fa-check"></i><b>2.1.1</b> Set Theory</a></li>
+<li class="chapter" data-level="2.1.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#defining-probability"><i class="fa fa-check"></i><b>2.1.2</b> Defining Probability</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -156,6 +162,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(swirl)
 <span class="kw">install_course_zip</span>(<span class="st">&quot;./files/M1/14_310x_Intro_to_R_.zip&quot;</span>,<span class="dt">multi=</span><span class="ot">FALSE</span>)
 <span class="kw">swirl</span>()</code></pre></div>
+<p>IF z is a three number vector e.g.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">9</span>, <span class="fl">3.14</span>)</code></pre></div>
+<p>If we take the square root of z - 1 and assign it to a new variable called my_sqrt e.g.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_sqrt &lt;-<span class="st"> </span><span class="kw">sqrt</span>(z <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<p>The result is a vector of length three e.g.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_sqrt</code></pre></div>
+<pre><code>## [1] 0.3162278 2.8284271 1.4628739</code></pre>
+<p>Next, if we create a new variable called my_div that gets the value of z divided by my_sqrt.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_div &lt;-<span class="st"> </span>z <span class="op">/</span><span class="st"> </span>my_sqrt</code></pre></div>
+<p>The first element of my_div is equal to the first element of z divided by the first element of my_sqrt, and so on…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_div</code></pre></div>
+<pre><code>## [1] 3.478505 3.181981 2.146460</code></pre>
+<p>When given two vectors of the same length, R simply performs the specified arithmetic operation (<code>+</code>, <code>-</code>, <code>*</code>, etc.) element-by-element. If the vectors are of different lengths, R ‘recycles’ the shorter vector until it is the same length as the longer vector.</p>
+<p>If the length of the shorter vector does not divide evenly into the length of the longer vector, R will still apply the ‘recycling’ method, but will throw a warning.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</code></pre></div>
+<pre><code>## Warning in c(1, 2, 3, 4) + c(0, 10, 100): longer object length is not a
+## multiple of shorter object length</code></pre>
+<pre><code>## [1]   1  12 103   4</code></pre>
 <div id="module-1-homework" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Module 1 Homework</h3>
 <p>This is a sample of some of the homework answers. Some questions were observational or required interpretation of maps for example, as such these are not inluded here.</p>
@@ -286,8 +310,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -328,6 +352,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
