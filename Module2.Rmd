@@ -93,7 +93,7 @@ n(S) = 36 (26 + 10) possibilities for each of 6 characters = 36^6^ = 2.176b
 n(A) = 10 possibilities (for digits only) for each of 6 characters = 10^6^ = 1m
 so P(A) = .0005
 
-This is called _sampling with replacement_
+This is _sampling with replacement_
 
 *What if Massachusetts does not reuse a letter or digit?*
 
@@ -107,5 +107,20 @@ n(A) = 10x9x8x7x6x5 = 10!/4! = 151k
 
 so P(A) = 1.402b / 151k = .0001
 
-This is called _sampling without replacement_
+This is _sampling without replacement_
 
+### Ordered and Unordered Arrangements
+
+In the examples so far, we have used a series of counting rules - combinatorics i.e. combinations of objects belonging to a finite set in accordance with certain constraints.
+
+1. If an experiment has two parts, first one having m possibilities and, regardless of the outcome in the first part, the second one having n possibilities, then the experiment has m * n possible outcomes - this is what we do intuitively
+
+2. Any ordered arrangement of objects is called a *permutation*. The number of different permutations of N objects is N! The number of different permutations of n objects taken from N objects is N!/(N-n)! This is the case in the license plate example previously given
+
+3. Any unordered arrangement of objects is called a *combination*. The number of different combinations of n objects taken from N objects is N!/{(N-n)!n!}. We typically denote this $$$\binom{N}{n}$$$ - N (big objects) choose n (combinations). This is where the order of objects doesn't matter i.e. different orderings don't matter - we take out the ordering
+
+So if we had 9 people who each wanted to shake hands, if order doesn't matter then it is a combination and we take 9 and choose 2 so it becomes:
+
+9! / {(9-2)! * 2!} = 9! / {7! * 2!} = 362,880 / {5,040 * 2} = 362,880 / 10,080 = 36 combinations 
+
+Note, if order did matter and we used the permutations formula the total would be twice as many!
