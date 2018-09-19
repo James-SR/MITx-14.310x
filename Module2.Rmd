@@ -31,7 +31,7 @@ Module Content:
 * Event B is said to be _contained_ by A, if all outcomes in B also are in A
 
 * This is the basis of set theory and used widely in probability, although there are some differences between set and probability theory
-* If there is no symbol, then this usually means intersection AB in probability - in set theory we would write an inverted U e.g. A $A \cap B$
+* If there is no symbol, then this usually means intersection AB in probability - in set theory we would write an inverted U e.g. $A \cap B$
 * A and B are mutually exclusive (disjoint in set theory) if they have no outcomes in common
 * A and B are  exhaustive (complimentary in set theory) if their union is S (the entire sample space)
 * A and B are both mutually exclusive and exhaustive, their union is equal to the sample space but they have no events in common - they are a partition of the sample space
@@ -71,4 +71,41 @@ Probability of A union B is just equal to the sum of the probabilities of those 
 The probability of A times B complement is equal to the probability of A minus the probability of the intersection.
 
 
+### An example
+
+Suppose you have a finite sample space. Let the function n(.) give the number of elements in a set. 
+
+Then define P(A) = n(A)/n(S). This is called a simple sample space, and it is a probability - we count the number of outcomes and divide by the number of possible outcomes in the sample space.
+
+We can check that it satisfies the three axioms to ensure it is a probability:
+
+1. P(A) will always be non-negative because it’s a count
+2. P(S) will equal 1, by definition
+3. P(AUB) = n(AUB)/n(S) = n(A)/n(S) + n(B)/n(S) = P(A) +P(B).
+
+If you can put your experiment in to this sample space where each outcome is equally likely, we just need to count to calculate probabilities of events.  So for example, if you want to know how likely it is you will roll a specific number, say 6, on two dice, we calculate all the different ways that six occurs then divide this by all possible outcomes (sample space) - = 5 / 36 = or 13.9%  
+
+### Another example
+
+If the state of Massachusetts issues 6-character license plates, using one of 26 letters and 10 digits randomly for each character, what is the probability that I will receive an all digit license plate?
+
+n(S) = 36 (26 + 10) possibilities for each of 6 characters = 36^6^ = 2.176b
+n(A) = 10 possibilities (for digits only) for each of 6 characters = 10^6^ = 1m
+so P(A) = .0005
+
+This is called _sampling with replacement_
+
+*What if Massachusetts does not reuse a letter or digit?*
+
+Now, in the sample space, there are 36 possibilities (26 + 10) for the 1st character, 35 left for the 2nd, and so on. 
+
+n(S) = 36x35x34x33x32x31 = 36!/30! = 1.402b
+
+Similarly, in the event, there are 10 possibilities for the 1st character, 9 left for the 2nd, and so on. 
+
+n(A) = 10x9x8x7x6x5 = 10!/4! = 151k
+
+so P(A) = 1.402b / 151k = .0001
+
+This is called _sampling without replacement_
 

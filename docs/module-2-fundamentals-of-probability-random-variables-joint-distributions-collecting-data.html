@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-18">
+<meta name="date" content="2018-09-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -113,6 +113,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#fundamentals-of-probability"><i class="fa fa-check"></i><b>2.1</b> Fundamentals of Probability</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#set-theory"><i class="fa fa-check"></i><b>2.1.1</b> Set Theory</a></li>
 <li class="chapter" data-level="2.1.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#defining-probability"><i class="fa fa-check"></i><b>2.1.2</b> Defining Probability</a></li>
+<li class="chapter" data-level="2.1.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#an-example"><i class="fa fa-check"></i><b>2.1.3</b> An example</a></li>
+<li class="chapter" data-level="2.1.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#another-example"><i class="fa fa-check"></i><b>2.1.4</b> Another example</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -159,7 +161,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>If the outcome is a member of an event, the event is said to have <em>occured</em></li>
 <li><p>Event B is said to be <em>contained</em> by A, if all outcomes in B also are in A</p></li>
 <li>This is the basis of set theory and used widely in probability, although there are some differences between set and probability theory</li>
-<li>If there is no symbol, then this usually means intersection AB in probability - in set theory we would write an inverted U e.g. A <span class="math inline">\(A \cap B\)</span></li>
+<li>If there is no symbol, then this usually means intersection AB in probability - in set theory we would write an inverted U e.g. <span class="math inline">\(A \cap B\)</span></li>
 <li>A and B are mutually exclusive (disjoint in set theory) if they have no outcomes in common</li>
 <li>A and B are exhaustive (complimentary in set theory) if their union is S (the entire sample space)</li>
 <li><p>A and B are both mutually exclusive and exhaustive, their union is equal to the sample space but they have no events in common - they are a partition of the sample space</p></li>
@@ -194,6 +196,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>P(AB<sup>c</sup>) = P (A) - P(AB) =</li>
 </ul>
 <p>The probability of A times B complement is equal to the probability of A minus the probability of the intersection.</p>
+</div>
+<div id="an-example" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> An example</h3>
+<p>Suppose you have a finite sample space. Let the function n(.) give the number of elements in a set.</p>
+<p>Then define P(A) = n(A)/n(S). This is called a simple sample space, and it is a probability - we count the number of outcomes and divide by the number of possible outcomes in the sample space.</p>
+<p>We can check that it satisfies the three axioms to ensure it is a probability:</p>
+<ol style="list-style-type: decimal">
+<li>P(A) will always be non-negative because it’s a count</li>
+<li>P(S) will equal 1, by definition</li>
+<li>P(AUB) = n(AUB)/n(S) = n(A)/n(S) + n(B)/n(S) = P(A) +P(B).</li>
+</ol>
+<p>If you can put your experiment in to this sample space where each outcome is equally likely, we just need to count to calculate probabilities of events. So for example, if you want to know how likely it is you will roll a specific number, say 6, on two dice, we calculate all the different ways that six occurs then divide this by all possible outcomes (sample space) - = 5 / 36 = or 13.9%</p>
+</div>
+<div id="another-example" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Another example</h3>
+<p>If the state of Massachusetts issues 6-character license plates, using one of 26 letters and 10 digits randomly for each character, what is the probability that I will receive an all digit license plate?</p>
+<p>n(S) = 36 (26 + 10) possibilities for each of 6 characters = 36<sup>6</sup> = 2.176b n(A) = 10 possibilities (for digits only) for each of 6 characters = 10<sup>6</sup> = 1m so P(A) = .0005</p>
+<p>This is called <em>sampling with replacement</em></p>
+<p>What if Massachusetts does not reuse a letter or digit?</p>
+<p>Now, in the sample space, there are 36 possibilities (26 + 10) for the 1st character, 35 left for the 2nd, and so on.</p>
+<p>n(S) = 36x35x34x33x32x31 = 36!/30! = 1.402b</p>
+<p>Similarly, in the event, there are 10 possibilities for the 1st character, 9 left for the 2nd, and so on.</p>
+<p>n(A) = 10x9x8x7x6x5 = 10!/4! = 151k</p>
+<p>so P(A) = 1.402b / 151k = .0001</p>
+<p>This is called <em>sampling without replacement</em></p>
 
 </div>
 </div>
