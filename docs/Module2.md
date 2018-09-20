@@ -93,9 +93,9 @@ n(S) = 36 (26 + 10) possibilities for each of 6 characters = 36^6^ = 2.176b
 n(A) = 10 possibilities (for digits only) for each of 6 characters = 10^6^ = 1m
 so P(A) = .0005
 
-This is called _sampling with replacement_
+This is _sampling with replacement_
 
-What if Massachusetts does not reuse a letter or digit?
+*What if Massachusetts does not reuse a letter or digit?*
 
 Now, in the sample space, there are 36 possibilities (26 + 10) for the 1st character, 35 left for the 2nd, and so on. 
 
@@ -107,5 +107,43 @@ n(A) = 10x9x8x7x6x5 = 10!/4! = 151k
 
 so P(A) = 1.402b / 151k = .0001
 
-This is called _sampling without replacement_
+This is _sampling without replacement_
+
+### Ordered and Unordered Arrangements
+
+In the examples so far, we have used a series of counting rules - combinatorics i.e. combinations of objects belonging to a finite set in accordance with certain constraints.
+
+1. If an experiment has two parts, first one having m possibilities and, regardless of the outcome in the first part, the second one having n possibilities, then the experiment has m * n possible outcomes - this is what we do intuitively
+
+2. Any ordered arrangement of objects is called a *permutation*. The number of different permutations of N objects is N! The number of different permutations of n objects taken from N objects is N!/(N-n)! This is the case in the license plate example previously given
+
+3. Any unordered arrangement of objects is called a *combination*. The number of different combinations of n objects taken from N objects is N!/{(N-n)!n!}. We typically denote this $\binom{N}{n}$ - N (big objects) choose n (combinations). This is where the order of objects doesn't matter i.e. different orderings don't matter - we take out the ordering
+
+So if we had 9 people who each wanted to shake hands, if order doesn't matter then it is a combination and we take 9 and choose 2 so it becomes:
+
+9! / {(9-2)! * 2!} = 9! / {7! * 2!} = 362,880 / {5,040 * 2} = 362,880 / 10,080 = 36 combinations 
+
+Note, if order did matter and we used the permutations formula the total would be twice as many
+
+### Office Arrangements and Pizza Toppings
+
+Q: If there are six vegetarian pizza toppings and five non-veg, if I randomly choose two from a hat containing all items, what is the probability that I end up with a pizza that has one veg and one non-veg topping?
+
+A: 
+
+First we need to count the number of possabilities in the sample space e.g.
+{(V1, V2), (V1, V3), (V1, V4), (V1, N1) ...} n(S) = $\binom{11}{2}$ = 55 - All outcomes are equally likely
+
+Now we need to define our outcome n(A) = there are 
+A = {(V1, N1), (V1, N2), (V2, N1) ... } n(A) = 6 * 5 = 30
+
+So the probability is N(A) / n(S) = 30 / 55 = 0.55
+
+In general, I could have chose n toppings and asked what is the probability that my pizza had n1 vegetarian toppings and n2 non-vegetarian toppings. There would, then, be $\binom{6}{n_1}$ possibilities for the veg toppings and $\binom{5}{n_2}$for the non-veg toppings. In other words,
+
+$$P(n_1 veg, n_2 non-veg)=  \binom{6}{n_1} \binom{5}{n_2} \\ \binom{11}{n}$$
+This is the basis of the hypergeometric distribution.
+
+
+
 

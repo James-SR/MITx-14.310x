@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-19">
+<meta name="date" content="2018-09-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -115,6 +115,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#defining-probability"><i class="fa fa-check"></i><b>2.1.2</b> Defining Probability</a></li>
 <li class="chapter" data-level="2.1.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#an-example"><i class="fa fa-check"></i><b>2.1.3</b> An example</a></li>
 <li class="chapter" data-level="2.1.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#another-example"><i class="fa fa-check"></i><b>2.1.4</b> Another example</a></li>
+<li class="chapter" data-level="2.1.5" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#ordered-and-unordered-arrangements"><i class="fa fa-check"></i><b>2.1.5</b> Ordered and Unordered Arrangements</a></li>
+<li class="chapter" data-level="2.1.6" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#office-arrangements-and-pizza-toppings"><i class="fa fa-check"></i><b>2.1.6</b> Office Arrangements and Pizza Toppings</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -213,14 +215,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">2.1.4</span> Another example</h3>
 <p>If the state of Massachusetts issues 6-character license plates, using one of 26 letters and 10 digits randomly for each character, what is the probability that I will receive an all digit license plate?</p>
 <p>n(S) = 36 (26 + 10) possibilities for each of 6 characters = 36<sup>6</sup> = 2.176b n(A) = 10 possibilities (for digits only) for each of 6 characters = 10<sup>6</sup> = 1m so P(A) = .0005</p>
-<p>This is called <em>sampling with replacement</em></p>
-<p>What if Massachusetts does not reuse a letter or digit?</p>
+<p>This is <em>sampling with replacement</em></p>
+<p><em>What if Massachusetts does not reuse a letter or digit?</em></p>
 <p>Now, in the sample space, there are 36 possibilities (26 + 10) for the 1st character, 35 left for the 2nd, and so on.</p>
 <p>n(S) = 36x35x34x33x32x31 = 36!/30! = 1.402b</p>
 <p>Similarly, in the event, there are 10 possibilities for the 1st character, 9 left for the 2nd, and so on.</p>
 <p>n(A) = 10x9x8x7x6x5 = 10!/4! = 151k</p>
 <p>so P(A) = 1.402b / 151k = .0001</p>
-<p>This is called <em>sampling without replacement</em></p>
+<p>This is <em>sampling without replacement</em></p>
+</div>
+<div id="ordered-and-unordered-arrangements" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Ordered and Unordered Arrangements</h3>
+<p>In the examples so far, we have used a series of counting rules - combinatorics i.e. combinations of objects belonging to a finite set in accordance with certain constraints.</p>
+<ol style="list-style-type: decimal">
+<li><p>If an experiment has two parts, first one having m possibilities and, regardless of the outcome in the first part, the second one having n possibilities, then the experiment has m * n possible outcomes - this is what we do intuitively</p></li>
+<li><p>Any ordered arrangement of objects is called a <em>permutation</em>. The number of different permutations of N objects is N! The number of different permutations of n objects taken from N objects is N!/(N-n)! This is the case in the license plate example previously given</p></li>
+<li><p>Any unordered arrangement of objects is called a <em>combination</em>. The number of different combinations of n objects taken from N objects is N!/{(N-n)!n!}. We typically denote this <span class="math inline">\(\binom{N}{n}\)</span> - N (big objects) choose n (combinations). This is where the order of objects doesn’t matter i.e. different orderings don’t matter - we take out the ordering</p></li>
+</ol>
+<p>So if we had 9 people who each wanted to shake hands, if order doesn’t matter then it is a combination and we take 9 and choose 2 so it becomes:</p>
+<p>9! / {(9-2)! * 2!} = 9! / {7! * 2!} = 362,880 / {5,040 * 2} = 362,880 / 10,080 = 36 combinations</p>
+<p>Note, if order did matter and we used the permutations formula the total would be twice as many</p>
+</div>
+<div id="office-arrangements-and-pizza-toppings" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> Office Arrangements and Pizza Toppings</h3>
+<p>Q: If there are six vegetarian pizza toppings and five non-veg, if I randomly choose two from a hat containing all items, what is the probability that I end up with a pizza that has one veg and one non-veg topping?</p>
+<p>A:</p>
+<p>First we need to count the number of possabilities in the sample space e.g. {(V1, V2), (V1, V3), (V1, V4), (V1, N1) …} n(S) = <span class="math inline">\(\binom{11}{2}\)</span> = 55 - All outcomes are equally likely</p>
+<p>Now we need to define our outcome n(A) = there are A = {(V1, N1), (V1, N2), (V2, N1) … } n(A) = 6 * 5 = 30</p>
+<p>So the probability is N(A) / n(S) = 30 / 55 = 0.55</p>
+<p>In general, I could have chose n toppings and asked what is the probability that my pizza had n1 vegetarian toppings and n2 non-vegetarian toppings. There would, then, be <span class="math inline">\(\binom{6}{n_1}\)</span> possibilities for the veg toppings and <span class="math inline">\(\binom{5}{n_2}\)</span>for the non-veg toppings. In other words,</p>
+<p><span class="math display">\[P(n_1 veg, n_2 non-veg)=  \binom{6}{n_1} \binom{5}{n_2} \\ \binom{11}{n}\]</span> This is the basis of the hypergeometric distribution.</p>
 
 </div>
 </div>
