@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-20">
+<meta name="date" content="2018-09-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -117,6 +117,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#another-example"><i class="fa fa-check"></i><b>2.1.4</b> Another example</a></li>
 <li class="chapter" data-level="2.1.5" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#ordered-and-unordered-arrangements"><i class="fa fa-check"></i><b>2.1.5</b> Ordered and Unordered Arrangements</a></li>
 <li class="chapter" data-level="2.1.6" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#office-arrangements-and-pizza-toppings"><i class="fa fa-check"></i><b>2.1.6</b> Office Arrangements and Pizza Toppings</a></li>
+<li class="chapter" data-level="2.1.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#independence-and-basketball-example"><i class="fa fa-check"></i><b>2.1.7</b> Independence and Basketball Example</a></li>
+<li class="chapter" data-level="2.1.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability"><i class="fa fa-check"></i><b>2.1.8</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.1.9" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability-in-american-presidential-politics"><i class="fa fa-check"></i><b>2.1.9</b> Conditional Probability in American Presidential Politics</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -244,7 +247,80 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Now we need to define our outcome n(A) = there are A = {(V1, N1), (V1, N2), (V2, N1) … } n(A) = 6 * 5 = 30</p>
 <p>So the probability is N(A) / n(S) = 30 / 55 = 0.55</p>
 <p>In general, I could have chose n toppings and asked what is the probability that my pizza had n1 vegetarian toppings and n2 non-vegetarian toppings. There would, then, be <span class="math inline">\(\binom{6}{n_1}\)</span> possibilities for the veg toppings and <span class="math inline">\(\binom{5}{n_2}\)</span>for the non-veg toppings. In other words,</p>
-<p><span class="math display">\[P(n_1 veg, n_2 non-veg)=  \binom{6}{n_1} \binom{5}{n_2} \\ \binom{11}{n}\]</span> This is the basis of the hypergeometric distribution.</p>
+<p><span class="math display">\[P(n_1 veg, n_2  non-veg)=  \binom{6}{n_1} \binom{5}{n_2} \\ \binom{11}{n}\]</span> This is the basis of the hypergeometric distribution.</p>
+</div>
+<div id="independence-and-basketball-example" class="section level3">
+<h3><span class="header-section-number">2.1.7</span> Independence and Basketball Example</h3>
+<p>We call probabilistic events stochastic events. One of the most fundamental relationships between stochastic events is independence.</p>
+<ul>
+<li>Events A and B are independent if P(AB) = P(A) P(B)</li>
+</ul>
+<p>That is to say, events A and B are independent if the probability of their intersection is equal to the product of their probabilities.</p>
+<ul>
+<li>independent events is that knowing one event occurred doesn’t give you any information about whether the other occurred.</li>
+</ul>
+<p>This is best represented with an example. If you toss one die, once. Consider the event, A, that you roll a number less than 5, and the event, B, that you roll an even number. Are these events independent?</p>
+<p>You might consider how could they be, as they rely on the same roll of a die?</p>
+<p>If we use the previous example for independence, we check:</p>
+<ol style="list-style-type: decimal">
+<li><p>Probability of event A is P(A) = 2/3</p></li>
+<li><p>Probability of event B is P(B) = 1/2</p></li>
+<li><p>Probability of their intersection is P(AB) = 1/3 which is the same as P(A) P(B)</p></li>
+</ol>
+<p>So yes, it does satisfy the definition of independence. AB is rolling an even number less than 5 (e.g. 2 or 4) and P(A)P(B) = P(AB)</p>
+<p><strong>So knowing one event occurred doesn’t give you any information about whether an other occured</strong></p>
+<p>In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - <span class="math inline">\(\color{red}{\text{Red(1,2,3,4,5)}}\)</span>, <span class="math inline">\(\color{red}{\text{Blue(6,7)}}\)</span> or <span class="math inline">\(\color{green}{\text{Green(8,9,10)}}\)</span></p>
+<p>If choosing a poker chip, A that it is blue, and B that it is even, independent?</p>
+<ol style="list-style-type: decimal">
+<li><p>Probability of event A is P(A) = 2/10 (.2)</p></li>
+<li><p>Probability of event B is P(B) = 5/10 (.5)</p></li>
+<li><p>Probability of their intersection is P(AB) = 1/10 (or .1) which is the same as P(A) P(B)</p></li>
+</ol>
+<p>So yes they are independent, knowing one (that it is blue) does not give you any information about an other event (it is even).</p>
+<p>Note that mutually exclusivity (disjoint events) and independence are not the same. Mutually exclusive events are not independent, and independent events cannot be mutually exclusive. Events are mutually exclusive if P (A and B) = 0.</p>
+<p>So our independent events - blue and even - are not mutually exclusive, they can occur at the same time. Put another way, because events can’t happen at the same time (disjoint or mutually exclusive), they can’t be independent.</p>
+<p>So if we take two mutually exclusive events - say the probability of a poker chip being both green (A) and blue (B) - we can check for the three parts of independence as:</p>
+<ol style="list-style-type: decimal">
+<li><p>Probability of event A is P(A) = 3/10 (.3)</p></li>
+<li><p>Probability of event B is P(B) = 2/10 (.2)</p></li>
+<li><p>Probability of their intersection is P(AB) = 0 which is not the same as P(A) P(B) (which is 0.06)</p></li>
+</ol>
+<p>As P (AB) = 0 i.e. they are mutually exclusive they are dependent - knowing one i.e. the chip blue DOES give you information about whether the other event occured - you know it is not green, so the probability of being green goes from 30% before being told, to 0% after being told it is blue.</p>
+<p><strong>When events are mutually exclusive, when you know one thing is true the likelihood of the otehr being true becomes zero</strong></p>
+<p>For more than two events, we define independence the same way - the events are independent if the probability of their intersection is equal to the product of their probabilities.</p>
+</div>
+<div id="conditional-probability" class="section level3">
+<h3><span class="header-section-number">2.1.8</span> Conditional Probability</h3>
+<p>What if knowing one event has occured tells us something about the probability that another event occured? How can we ‘update’ our knowledge in the event that the first event has occured?</p>
+<p>The probability of A conditional on B is denoted as P(A|B). So the probability of A conditional on B, P(A|B), is P(AB)/ P(B), assuming P(B) &gt; 0. We don’t condition on an event if the probability of an event is 0%.</p>
+<p>So in effect, by knowing one event has occured, it changes or re-defines our numerator for event B AND it is changing or re-defining our denominator - the part of the sample space which is now relevant - of event B.</p>
+<p>There is a relationship between indepdence and conditional probability. Suppose A and B are independent and P(B) &gt; 0. Then,</p>
+<p>P(A|B) = P(AB)/P(B) = P(A)P(B) (as they are indepdent this is the same as P(AB)) / P(B) = P(A) (we cancel out P(B) from the previous)</p>
+<p>or simply</p>
+<p>P(A|B) = P(AB)/P(B) = P(A)P(B)/P(B) = P(A)</p>
+</div>
+<div id="conditional-probability-in-american-presidential-politics" class="section level3">
+<h3><span class="header-section-number">2.1.9</span> Conditional Probability in American Presidential Politics</h3>
+<p>If candidates for Republican nomination had the following probabilities - these might be obtained from looking at betting markets</p>
+<p>Trump P(A<sub>1</sub>) = .4<br />
+Cruz P(A<sub>2</sub>) = .3<br />
+Rubio P(A<sub>3</sub>) = .2<br />
+Carson P(A<sub>4</sub>) = .1</p>
+<p>How can we compute the probability of a Republican win for the presidency or P(W) i.e. the general election?</p>
+<p>Conditional on winning the nomination, the candidates have following probabilities of winning the general election:</p>
+<p>Trump P(W|A<sub>1</sub>) = .25<br />
+Cruz P(W|A<sub>2</sub>) = .2<br />
+Rubio P(W|A<sub>3</sub>) = .6<br />
+Carson P(W|A<sub>4</sub>) = .4</p>
+<p>The probability of a Republic win is equal to the probability of the intersection between a Republican win and the sample space.</p>
+<p>The sample space is the union between the four events A1 through A4. A1 through A4 are mutually exclusive and exhaustive events and therefore form a partition.</p>
+<p>In terms of notation, we therefore have:</p>
+<p>P(W) = P(WS)</p>
+<p>= P(W(A1 U A2 U A3 U A4)) because A1-A4 are mutually exclusive and exhaustive sets, a partition<br />
+= P(WA 1 U WA2 U WA3 U WA4)<br />
+= P(WA<sub>1</sub>) + P(WA<sub>2</sub>) + P(WA<sub>3</sub>) + P(WA<sub>4</sub>)<br />
+= P(W|A<sub>1</sub>)P(A<sub>1</sub>) + P(W|A<sub>2</sub>)P(A<sub>2</sub>) + P(W|A<sub>3</sub>)P(A<sub>3</sub>) + P(W|A<sub>4</sub>)P(A<sub>4</sub>)</p>
+<p>So P(W) = .4x.25 + .3x.2 + .2x.6 + .1x.4 = .32</p>
 
 </div>
 </div>

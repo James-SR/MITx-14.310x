@@ -141,9 +141,110 @@ So the probability is N(A) / n(S) = 30 / 55 = 0.55
 
 In general, I could have chose n toppings and asked what is the probability that my pizza had n1 vegetarian toppings and n2 non-vegetarian toppings. There would, then, be $\binom{6}{n_1}$ possibilities for the veg toppings and $\binom{5}{n_2}$for the non-veg toppings. In other words,
 
-$$P(n_1 veg, n_2 non-veg)=  \binom{6}{n_1} \binom{5}{n_2} \\ \binom{11}{n}$$
+$$P(n_1 veg, n_2  non-veg)=  \binom{6}{n_1} \binom{5}{n_2} \\ \binom{11}{n}$$
 This is the basis of the hypergeometric distribution.
 
+### Independence and Basketball Example
 
+We call probabilistic events stochastic events.  One of the most fundamental relationships between stochastic events is independence.   
 
+* Events A and B are independent if P(AB) = P(A) P(B)
 
+That is to say,  events A and B are independent if the probability of their intersection is equal to the product of their probabilities.
+
+* independent events is that knowing one event occurred doesn’t give you any information about whether the other occurred.
+
+This is best represented with an example.  If you toss one die, once. Consider the event, A, that you roll a number less than 5, and the event, B, that you roll an even number. Are these events independent? 
+
+You might consider how could they be, as they rely on the same roll of a die?
+
+If we use the previous example for independence, we check: 
+
+1. Probability of event A is P(A) = 2/3 
+
+2. Probability of event B is P(B) = 1/2
+
+3. Probability of their intersection is P(AB) = 1/3  which is the same as P(A) P(B) 
+
+So yes, it does satisfy the definition of independence.  AB is rolling an even number less than 5 (e.g. 2 or 4) and P(A)P(B) = P(AB)
+
+**So knowing one event occurred doesn’t give you any information about whether an other occured**
+
+In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - $\color{red}{\text{Red(1,2,3,4,5)}}$, $\color{red}{\text{Blue(6,7)}}$ or $\color{green}{\text{Green(8,9,10)}}$
+
+If choosing a poker chip, A that it is blue, and B that it is even, independent?
+
+1. Probability of event A is P(A) = 2/10 (.2)
+
+2. Probability of event B is P(B) = 5/10 (.5)
+
+3. Probability of their intersection is P(AB) = 1/10 (or .1) which is the same as P(A) P(B)
+
+So yes they are independent, knowing one (that it is blue) does not give you any information about an other event (it is even).
+
+Note that mutually exclusivity (disjoint events) and independence are not the same.  Mutually exclusive events are not independent, and independent events cannot be mutually exclusive.  Events are mutually exclusive if P (A and B) = 0.  
+
+So our independent events - blue and even - are not mutually exclusive, they can occur at the same time.  Put another way, because events can't happen at the same time (disjoint or mutually exclusive), they can't be independent. 
+
+So if we take two mutually exclusive events - say the probability of a poker chip being both green (A) and blue (B) - we can check for the three parts of independence as:
+
+1. Probability of event A is P(A) = 3/10 (.3)
+
+2. Probability of event B is P(B) = 2/10 (.2)
+
+3. Probability of their intersection is P(AB) = 0 which is not the same as P(A) P(B) (which is 0.06)
+
+As P (AB) = 0 i.e. they are mutually exclusive they are dependent - knowing one i.e. the chip blue DOES give you information about whether the other event occured - you know it is not green, so the probability of being green goes from 30% before being told, to 0% after being told it is blue. 
+
+**When events are mutually exclusive, when you know one thing is true the likelihood of the otehr being true becomes zero**
+
+For more than two events, we define independence the same way - the events are independent if the probability of their intersection is equal to the product of their probabilities.
+
+### Conditional Probability
+
+What if knowing one event has occured tells us something about the probability that another event occured?  How can we 'update' our knowledge in the event that the first event has occured?
+
+The probability of A conditional on B is denoted as P(A|B).  So the probability of A conditional on B, P(A|B), is P(AB)/ P(B), assuming P(B) > 0.  We don't condition on an event if the probability of an event is 0%.  
+
+So in effect, by knowing one event has occured, it changes or re-defines our numerator for event B AND it is changing or re-defining our denominator - the part of the sample space which is now relevant - of event B.
+
+There is a relationship between indepdence and conditional probability.  Suppose A and B are independent and P(B) > 0. Then, 
+
+P(A|B) = P(AB)/P(B) = P(A)P(B) (as they are indepdent this is the same as P(AB)) / P(B) = P(A) (we cancel out P(B) from the previous)
+
+or simply
+
+P(A|B) = P(AB)/P(B) = P(A)P(B)/P(B) = P(A)
+
+### Conditional Probability in American Presidential Politics
+
+If candidates for Republican nomination had the following probabilities - these might be obtained from looking at betting markets
+
+Trump P(A~1~) = .4  
+Cruz P(A~2~) = .3  
+Rubio P(A~3~) = .2  
+Carson P(A~4~) = .1  
+
+How can we compute the probability of a Republican win for the presidency or P(W) i.e. the general election?
+
+Conditional on winning the nomination, the candidates have following probabilities of winning the general election:
+
+Trump P(W|A~1~) = .25   
+Cruz P(W|A~2~) = .2  
+Rubio P(W|A~3~) = .6  
+Carson P(W|A~4~) = .4  
+
+The probability of a Republic win is equal to the probability of the intersection between a Republican win and the sample space.
+
+The sample space is the union between the four events A1 through A4. A1 through A4 are mutually exclusive and exhaustive events and therefore form a partition.  
+
+In terms of notation, we therefore have:
+
+P(W) = P(WS)  
+
+= P(W(A1 U A2 U A3 U A4)) because A1-A4 are mutually exclusive and exhaustive sets, a partition  
+= P(WA 1 U WA2 U WA3 U WA4)  
+= P(WA~1~) + P(WA~2~) + P(WA~3~) + P(WA~4~)  
+= P(W|A~1~)P(A~1~) + P(W|A~2~)P(A~2~) + P(W|A~3~)P(A~3~) + P(W|A~4~)P(A~4~)  
+
+So P(W) = .4x.25 + .3x.2 + .2x.6 + .1x.4 = .32
