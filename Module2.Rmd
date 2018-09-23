@@ -170,7 +170,7 @@ So yes, it does satisfy the definition of independence.  AB is rolling an even n
 
 **So knowing one event occurred doesn’t give you any information about whether an other occured**
 
-In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - $\color{red}{\text{Red(1,2,3,4,5)}}$, $\color{red}{\text{Blue(6,7)}}$ or $\color{green}{\text{Green(8,9,10)}}$
+In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - $\color{red}{\text{Red(1,2,3,4,5)}}$, $\color{blue}{\text{Blue(6,7)}}$ or $\color{green}{\text{Green(8,9,10)}}$
 
 If choosing a poker chip, A that it is blue, and B that it is even, independent?
 
@@ -242,9 +242,86 @@ In terms of notation, we therefore have:
 
 P(W) = P(WS)  
 
-= P(W(A1 U A2 U A3 U A4)) because A1-A4 are mutually exclusive and exhaustive sets, a partition  
-= P(WA 1 U WA2 U WA3 U WA4)  
+= P(W(A~1~ U A~2~ U A~3~ U A~4~)) because A1-A4 are mutually exclusive and exhaustive sets, a partition  
+= P(WA~1~ U WA~2~ U WA~3~ U WA~4~)  
 = P(WA~1~) + P(WA~2~) + P(WA~3~) + P(WA~4~)  
 = P(W|A~1~)P(A~1~) + P(W|A~2~)P(A~2~) + P(W|A~3~)P(A~3~) + P(W|A~4~)P(A~4~)  
 
 So P(W) = .4x.25 + .3x.2 + .2x.6 + .1x.4 = .32
+
+
+### Bayes' Theorem
+
+So far, we have seen that the probability of the intersection between A and B is equal to the Probability of B conditional on A times the probability of A:
+
+* P(AB) = P(B|A)P(A) = P(A|B)P(B) 
+* provided P(A) > 0 and P(B) > 0 i.e. both A and B have positive probabilities
+* so we can write P(A|B) = P(B|A)P(A)/P(B)
+
+We also saw a slightly more complicated version of this, where the probability of B is the probability of B conditional on A times the probability of A, plus the probability of B conditional on A complement times the probability of A complement (note we saw this, albeit with more compliments, when looking at the Conditional Probability in American Presidential Politics section)
+
+* P(B) = P(B|A)P(A) + P(B|Ac)P(Ac)
+* P(A|B) = P(B|A)P(A)/{P(B|A)P(A) + P(B|Ac)P(Ac)}
+
+C is compliment, and we can do this since A and Ac are partitions of the sample space S.
+
+A pregnant woman lives in an area where the Zika virus is fairly rare - 1 in 1000 people have it. Still, she’s concerned, so she gets tested. There is a good but not perfect test for the virus---it gives a positive reading with probability .99 if the person has the virus and a positive
+reading with probability .05 if the person does not. Her reading is positive.  How concerned should we be?
+
+P(Z) = .001 (unconditional probability of having Zika)
+P(Zc) = .999 (999 people don't have it)
+P(+|Z) = .99 (probability of having a positive test result, conditional on having the zika virus - there is a 1% change of a false negative)
+P(+|Zc) = .05 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
+P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem
+= .019 - less than 2% probability
+
+So the introduction of our new data results in us updating our probability based on the imperfect test, but it doesn't get updated by much as it still possible it's wrong and the prevelance rate of the zika virus is rare.
+
+*Example 2*
+
+Assume that the probability of having a rare condition is 1%. It is possible to test for the condition, but the test is imperfect. If you have the condition, there is an 85% chance that you will test positive. If you do not have the condition, there is a 5% chance that you will test positive. Call the condition C, so that P(C) = 0.01, and call a positive test t+, so that p(t+|C) = 0.85.
+
+What is the probability p(t+) that you test positive for the condition?
+
+So the Probability of having the condition is P(C) 0.01 *  P(t+|C) = .85 which is the probability at a test you will test positive = 0.0085 
++
+P(Cc) * P(t+|Cc) = 0.99 * 0.05 = 0.0495
+= 0.058
+
+Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?
+
+P(C) = .01 (unconditional probability of having condition)
+P(Cc) = .99 (99 people don't have it)
+P(t+|C) = .85 (probability of having a positive test result, conditional on having the condition)
+P(t+|Cc) = .05 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
+P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem
+= 0.0085 / {0.0085 + 0.0495}
+= .15 - around than 15% probability 
+
+Suppose that a new test is developed that is more accurate. Now, the probability of testing positive if you have the condition is 94%, and the chance of testing positive if you do not have the condition is only 4%. Now, what is the probability p(t+) that you test positive for the condition? 
+
+So the Probability of having the condition is P(C) 0.01 *  P(t+|C) = .94 which is the probability at a test you will test positive = 0.0094 
++
+P(Cc) * P(t+|Cc) = 0.99 * 0.04 = 0.0396
+= 0.049
+
+Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?
+
+P(C) = .01 (unconditional probability of having condition)
+P(Cc) = .99 (99 people don't have it)
+P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition)
+P(t+|Cc) = .04 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
+P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem
+= 0.0094 / {0.0094 + 0.0396}
+= .19 - around than 15% probability 
+
+Suppose that there is an 80% chance you will be invited to a dinner party on a Friday or Saturday evening. In contrast, there is only a 50% chance that you will be invited to a dinner party on one of the other nights of the week. Suppose that you know that you’ve been invited to a dinner party tonight, but have forgotten which day of the week it is. Once you know that you’ve been invited to a dinner party, what is the chance that it is either Friday or Saturday? (Please round your answer to 2 decimal places. For example, if the correct answer is 0.6724, please input 0.67.)
+
+Hint: Using the notation of Zika question, Let Z:= { Fri, Sat} and Z^c = { M,T,W,Th,Sun}. Let "+" denote invitation. You are given Pr("+"| Z) = 0.8 and Pr("+"| Z^c) = 0.5. We want to compute Pr( Z | "+")
+
+P(Z) = .286 (unconditional probability of it being Friday or Saturday)
+P(Zc) = .714 (the other 5 days of the week)
+P(+|Z) = .8 
+P(+|Zc) = .5 
+P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem
+= .389 - around 40% probability
