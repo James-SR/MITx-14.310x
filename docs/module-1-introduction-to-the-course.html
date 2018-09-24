@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-21">
+<meta name="date" content="2018-09-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,6 +120,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#independence-and-basketball-example"><i class="fa fa-check"></i><b>2.1.7</b> Independence and Basketball Example</a></li>
 <li class="chapter" data-level="2.1.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability"><i class="fa fa-check"></i><b>2.1.8</b> Conditional Probability</a></li>
 <li class="chapter" data-level="2.1.9" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability-in-american-presidential-politics"><i class="fa fa-check"></i><b>2.1.9</b> Conditional Probability in American Presidential Politics</a></li>
+<li class="chapter" data-level="2.1.10" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#bayes-theorem"><i class="fa fa-check"></i><b>2.1.10</b> Bayes’ Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#random-variables-distributions-and-joint-distributions"><i class="fa fa-check"></i><b>2.2</b> Random Variables, Distributions and Joint Distributions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-functions-of-random-variables"><i class="fa fa-check"></i><b>2.2.1</b> Probability Functions of Random Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#the-hypergeometric-distribution"><i class="fa fa-check"></i><b>2.2.2</b> The Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="2.2.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#steph-curry-shooting-example"><i class="fa fa-check"></i><b>2.2.3</b> Steph Curry Shooting example</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -191,12 +197,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">1.1.1</span> Module 1 Homework</h3>
 <p>This is a sample of some of the homework answers. Some questions were observational or required interpretation of maps for example, as such these are not inluded here.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
-<pre><code>## -- Attaching packages ------------------------ tidyverse 1.2.1 --</code></pre>
+<pre><code>## -- Attaching packages ------------------ tidyverse 1.2.1 --</code></pre>
 <pre><code>## v ggplot2 3.0.0     v purrr   0.2.5
 ## v tibble  1.4.2     v dplyr   0.7.6
 ## v tidyr   0.8.1     v stringr 1.3.1
 ## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## -- Conflicts --------------------------- tidyverse_conflicts() --
+<pre><code>## -- Conflicts --------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">papers &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">read_csv</span>(<span class="st">&quot;./files/M1/CitesforSara.csv&quot;</span>))</code></pre></div>

@@ -17,8 +17,8 @@ output:
 
 Module Content:
 
-* [Module 2 Slides](./files/M1/Lecture_Slides_02.pdf)
-
+* [Module 2 Slides - Fundamentals of Probability](./files/M1/Lecture_Slides_02.pdf)
+* [Module 3 Slides - Random Variables, Distributions and Joint Distributions](./files/M1/Lecture_Slides_03.pdf)
 
 
 ## Fundamentals of Probability
@@ -170,7 +170,7 @@ So yes, it does satisfy the definition of independence.  AB is rolling an even n
 
 **So knowing one event occurred doesn’t give you any information about whether an other occured**
 
-In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - $\color{red}{\text{Red(1,2,3,4,5)}}$, $\color{red}{\text{Blue(6,7)}}$ or $\color{green}{\text{Green(8,9,10)}}$
+In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - $\color{red}{\text{Red(1,2,3,4,5)}}$, $\color{blue}{\text{Blue(6,7)}}$ or $\color{green}{\text{Green(8,9,10)}}$
 
 If choosing a poker chip, A that it is blue, and B that it is even, independent?
 
@@ -242,9 +242,224 @@ In terms of notation, we therefore have:
 
 P(W) = P(WS)  
 
-= P(W(A1 U A2 U A3 U A4)) because A1-A4 are mutually exclusive and exhaustive sets, a partition  
-= P(WA 1 U WA2 U WA3 U WA4)  
+= P(W(A~1~ U A~2~ U A~3~ U A~4~)) because A1-A4 are mutually exclusive and exhaustive sets, a partition  
+= P(WA~1~ U WA~2~ U WA~3~ U WA~4~)  
 = P(WA~1~) + P(WA~2~) + P(WA~3~) + P(WA~4~)  
 = P(W|A~1~)P(A~1~) + P(W|A~2~)P(A~2~) + P(W|A~3~)P(A~3~) + P(W|A~4~)P(A~4~)  
 
 So P(W) = .4x.25 + .3x.2 + .2x.6 + .1x.4 = .32
+
+
+### Bayes' Theorem
+
+So far, we have seen that the probability of the intersection between A and B is equal to the Probability of B conditional on A times the probability of A:
+
+* P(AB) = P(B|A)P(A) = P(A|B)P(B) 
+* provided P(A) > 0 and P(B) > 0 i.e. both A and B have positive probabilities
+* so we can write P(A|B) = P(B|A)P(A)/P(B)
+
+We also saw a slightly more complicated version of this, where the probability of B is the probability of B conditional on A times the probability of A, plus the probability of B conditional on A complement times the probability of A complement (note we saw this, albeit with more compliments, when looking at the Conditional Probability in American Presidential Politics section)
+
+* P(B) = P(B|A)P(A) + P(B|Ac)P(Ac)
+* P(A|B) = P(B|A)P(A)/{P(B|A)P(A) + P(B|Ac)P(Ac)}
+
+C is compliment, and we can do this since A and Ac are partitions of the sample space S.
+
+A pregnant woman lives in an area where the Zika virus is fairly rare - 1 in 1000 people have it. Still, she’s concerned, so she gets tested. There is a good but not perfect test for the virus---it gives a positive reading with probability .99 if the person has the virus and a positive
+reading with probability .05 if the person does not. Her reading is positive.  How concerned should we be?
+
+P(Z) = .001 (unconditional probability of having Zika)
+P(Zc) = .999 (999 people don't have it)
+P(+|Z) = .99 (probability of having a positive test result, conditional on having the zika virus - there is a 1% change of a false negative)
+P(+|Zc) = .05 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
+P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem
+= .019 - less than 2% probability
+
+So the introduction of our new data results in us updating our probability based on the imperfect test, but it doesn't get updated by much as it still possible it's wrong and the prevelance rate of the zika virus is rare.
+
+*Example 2*
+
+Assume that the probability of having a rare condition is 1%. It is possible to test for the condition, but the test is imperfect. If you have the condition, there is an 85% chance that you will test positive. If you do not have the condition, there is a 5% chance that you will test positive. Call the condition C, so that P(C) = 0.01, and call a positive test t+, so that p(t+|C) = 0.85.
+
+What is the probability p(t+) that you test positive for the condition?
+
+So the Probability of having the condition is P(C) 0.01 *  P(t+|C) = .85 which is the probability at a test you will test positive = 0.0085 
++
+P(Cc) * P(t+|Cc) = 0.99 * 0.05 = 0.0495
+= 0.058
+
+Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?
+
+P(C) = .01 (unconditional probability of having condition)
+P(Cc) = .99 (99 people don't have it)
+P(t+|C) = .85 (probability of having a positive test result, conditional on having the condition)
+P(t+|Cc) = .05 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
+P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem
+= 0.0085 / {0.0085 + 0.0495}
+= .15 - around than 15% probability 
+
+Suppose that a new test is developed that is more accurate. Now, the probability of testing positive if you have the condition is 94%, and the chance of testing positive if you do not have the condition is only 4%. Now, what is the probability p(t+) that you test positive for the condition? 
+
+So the Probability of having the condition is P(C) 0.01 *  P(t+|C) = .94 which is the probability at a test you will test positive = 0.0094 
++
+P(Cc) * P(t+|Cc) = 0.99 * 0.04 = 0.0396
+= 0.049
+
+Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?
+
+P(C) = .01 (unconditional probability of having condition)
+P(Cc) = .99 (99 people don't have it)
+P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition)
+P(t+|Cc) = .04 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
+P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem
+= 0.0094 / {0.0094 + 0.0396}
+= .19 - around than 15% probability 
+
+Suppose that there is an 80% chance you will be invited to a dinner party on a Friday or Saturday evening. In contrast, there is only a 50% chance that you will be invited to a dinner party on one of the other nights of the week. Suppose that you know that you’ve been invited to a dinner party tonight, but have forgotten which day of the week it is. Once you know that you’ve been invited to a dinner party, what is the chance that it is either Friday or Saturday? (Please round your answer to 2 decimal places. For example, if the correct answer is 0.6724, please input 0.67.)
+
+Hint: Using the notation of Zika question, Let Z:= { Fri, Sat} and Z^c = { M,T,W,Th,Sun}. Let "+" denote invitation. You are given Pr("+"| Z) = 0.8 and Pr("+"| Z^c) = 0.5. We want to compute Pr( Z | "+")
+
+P(Z) = .286 (unconditional probability of it being Friday or Saturday)
+P(Zc) = .714 (the other 5 days of the week)
+P(+|Z) = .8 
+P(+|Zc) = .5 
+P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem
+= .389 - around 40% probability
+
+## Random Variables, Distributions and Joint Distributions
+
+A *random variable* is a real-valued function whose domain is the sample space - it goes from the sample space to the real line.
+
+A probability goes from the set of all subsets of the sample space in to the unit interval e.g. [0,1] between zero and 1
+
+A random variable goes from the sample space to the real line and it has some numerial charecteristics of the sample space we are interested in.
+
+The probability that something exists induces a distribution of the random variable, they are not the same.
+
+There are two types of random variable:
+
+* Discrete - one that can take on only a - finite or infinite - countably number of values 
+* Continous - a random variable that can take on any value in some interval, bounded or unbounded, of the real line
+
+Discrete random variables can be approximated using a continous random variable, so we typically just use continous.  Most of the example we have seen so far in this section have dealt with discreet random variables.
+
+### Probability Functions of Random Variables
+
+For discrete random variables, we often start with a verbal description, calculate probabilities for each value of the random variable, and then write down a function or draw a graph describing those probabilities for different values of the random variable. This is called a probability
+function (PF).  We saw one of these before in the hypogeometric and binomial, when looking at the pizza toppings. 
+
+Note that:
+
+* The term probability density function is used to draw attention to the fact that we are discussing a continuous random variable.
+* The term probability mass function is used to draw attention to the fact that we are discussing a discrete random variable.
+* The term probability function is used when we are speaking in more general terms, when we're discussing both "flavors" of probability function or the distinction between the two types of probability functions(/random variables) doesn't matter.
+
+Hypergeometric (pizza topping) random variable:
+
+1 Verbal description - Let X be the number of vegetarian toppings I get on my pizza if I draw the Area Four toppings randomly (without replacement)  
+
+2 Calculation - We can calculate the probability that X = 0, 1, 2, and so forth, up to the maximum of 6 or n, whichever is smaller, using the formula from last time. Six is the maximum number of veg toppings available, n is the number of toppings chosen at random.  If there are 0 toppings of a particular type, the result will be undefined, so we adjust 0! to be defined as just 1.  Also, to be consistent with notation for the random variable, n1 from before now becomes x and since we only have two options, n2 now becomes n - x    
+
+$$P(x  veg, n - x  non-veg)=  \binom{6}{x} \binom{5}{n - x} \\ \binom{11}{n}$$
+
+3 If we then take an example, such as 3 veg toppings - n = 3 - we can calculate the probabilities for each n 
+
+P(X=0) = 6/99
+P(X=1) = 36/99
+P(X=2) = 45/99
+P(X=3) = 12/99
+
+And we can represent the probability function graphically, with points (aka point mass) then add vertical lines under each point to the axis to make it easier to read e.g.
+
+
+```r
+library(ggplot2)
+
+veggie_choices = 6
+meat_choices = 5
+num_toppings = 3
+veggie_received = 0:num_toppings
+v = dhyper(x = veggie_received, 
+           m = veggie_choices, 
+           n = meat_choices, 
+           k = num_toppings)
+
+for (i in 1:length(v)) {
+  print(paste0("Probability of ", 
+               i-1,
+               " veggie toppings is: ",
+               round(v[i], 3)))
+}
+```
+
+```
+## [1] "Probability of 0 veggie toppings is: 0.061"
+## [1] "Probability of 1 veggie toppings is: 0.364"
+## [1] "Probability of 2 veggie toppings is: 0.455"
+## [1] "Probability of 3 veggie toppings is: 0.121"
+```
+
+```r
+ggplot(mapping = aes(x = 0:3, y = v)) + 
+      geom_point(color = 'red') + 
+      labs(x = 'Num Veggies', y = 'Probability') + 
+      geom_segment(xend = 0:3, yend=0)
+```
+
+![](Module2_files/figure-epub3/unnamed-chunk-1-1.png)<!-- -->
+
+### The Hypergeometric Distribution
+
+We can represent this in a more general way using notation.  We say that X has a “hypergeometric distribution with parameters N, K, & n,” denoted X ~ H(N,K,n). Where
+
+* N = Total number of toppings
+* K = Total number of veg toppings
+* n = The number we choose
+
+Its Probability Function (PF) is defined similar to before, however we add a note for which values of x that there is positive probability.  We should, if being fully formal, also add a final part which states it is 0 otherwise.  If this is not explicit, as shown below, in terms of the zero otherwise, we can assume this to be the case.
+
+$$fx(x)=  \binom{K}{x} \binom{N-K}{n - x} \\\binom{N}{n}$$
+$$ where \; x = max(0, n + K-N),...,min(n,K) $$
+
+The hypergeometric distribution describes the number of number of "realized successes" (in a given sample - represented as x) in n trials where you’re sampling without replacement from a sample of size N, whose initial probability of success was K/N.
+
+The function provides the probability of X (number of successful outcomes / number of possible outcomes in the sample space). 
+
+### Steph Curry Shooting example
+
+If Steph has a probability of making 44% of any shot taken and therefore 56% chance of missing, we can use the binomial formula to calculate the probability of making n shots out of 6 possible shots as follows.
+
+*[For more information see the Binomial Coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient)
+
+X has a “binomial distribution with parameters n & p,” denoted $X \sim B(n,p)$. Its PF is
+
+$$fx(x)=  \binom{n}{x} p^x (1-p)^{n-x} \; \; \; where \; x= 0,1,...n$$
+
+
+The binomial distribution describes the number of “successes” in n trials where the trials are independent and the probability of success in each is p.
+
+So plugging in our example we get
+
+$$fx(x)=  \binom{6}{x} .44^x (.56)^{6-x}$$
+
+Which yields:
+
+P(X=0) = .03
+P(X=1) = .15
+P(X=2) = .29
+P(X=3) = .30
+P(X=4) = .18
+P(X=5) = .06
+P(X=6) = .01
+
+As the number of n increases, if p = 50% (a symetric distribution), the distribution would begin to look like a normal distribution.
+
+<img src="images/binomial.png" width="100%" />
+
+In another example, suppose that you will take 3 penalty kicks in a row. The likelihood of making each penalty kick is ¾ or 75%. What is the probability that you will score 2 (and only 2) of the 3 penalty kicks?
+
+$$fx(x)=  \binom{3}{x} .75^x (.25)^{3-x}$$
+P(X=0) = .02
+P(X=1) = .14
+P(X=2) = .42 <- this is the answer
+P(X=3) = .42

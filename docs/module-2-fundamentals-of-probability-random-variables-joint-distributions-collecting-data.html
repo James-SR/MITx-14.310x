@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-21">
+<meta name="date" content="2018-09-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,6 +120,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#independence-and-basketball-example"><i class="fa fa-check"></i><b>2.1.7</b> Independence and Basketball Example</a></li>
 <li class="chapter" data-level="2.1.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability"><i class="fa fa-check"></i><b>2.1.8</b> Conditional Probability</a></li>
 <li class="chapter" data-level="2.1.9" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability-in-american-presidential-politics"><i class="fa fa-check"></i><b>2.1.9</b> Conditional Probability in American Presidential Politics</a></li>
+<li class="chapter" data-level="2.1.10" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#bayes-theorem"><i class="fa fa-check"></i><b>2.1.10</b> Bayes’ Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#random-variables-distributions-and-joint-distributions"><i class="fa fa-check"></i><b>2.2</b> Random Variables, Distributions and Joint Distributions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-functions-of-random-variables"><i class="fa fa-check"></i><b>2.2.1</b> Probability Functions of Random Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#the-hypergeometric-distribution"><i class="fa fa-check"></i><b>2.2.2</b> The Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="2.2.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#steph-curry-shooting-example"><i class="fa fa-check"></i><b>2.2.3</b> Steph Curry Shooting example</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -154,7 +160,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Module Content:</p>
 <ul>
-<li><a href="./files/M1/Lecture_Slides_02.pdf">Module 2 Slides</a></li>
+<li><a href="./files/M1/Lecture_Slides_02.pdf">Module 2 Slides - Fundamentals of Probability</a></li>
+<li><a href="./files/M1/Lecture_Slides_03.pdf">Module 3 Slides - Random Variables, Distributions and Joint Distributions</a></li>
 </ul>
 <div id="fundamentals-of-probability" class="section level2">
 <h2><span class="header-section-number">2.1</span> Fundamentals of Probability</h2>
@@ -269,7 +276,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ol>
 <p>So yes, it does satisfy the definition of independence. AB is rolling an even number less than 5 (e.g. 2 or 4) and P(A)P(B) = P(AB)</p>
 <p><strong>So knowing one event occurred doesn’t give you any information about whether an other occured</strong></p>
-<p>In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - <span class="math inline">\(\color{red}{\text{Red(1,2,3,4,5)}}\)</span>, <span class="math inline">\(\color{red}{\text{Blue(6,7)}}\)</span> or <span class="math inline">\(\color{green}{\text{Green(8,9,10)}}\)</span></p>
+<p>In another example, if we had a bag of ten poker chips numbered 1 to 10, with 3 different colours - <span class="math inline">\(\color{red}{\text{Red(1,2,3,4,5)}}\)</span>, <span class="math inline">\(\color{blue}{\text{Blue(6,7)}}\)</span> or <span class="math inline">\(\color{green}{\text{Green(8,9,10)}}\)</span></p>
 <p>If choosing a poker chip, A that it is blue, and B that it is even, independent?</p>
 <ol style="list-style-type: decimal">
 <li><p>Probability of event A is P(A) = 2/10 (.2)</p></li>
@@ -316,11 +323,127 @@ Carson P(W|A<sub>4</sub>) = .4</p>
 <p>The sample space is the union between the four events A1 through A4. A1 through A4 are mutually exclusive and exhaustive events and therefore form a partition.</p>
 <p>In terms of notation, we therefore have:</p>
 <p>P(W) = P(WS)</p>
-<p>= P(W(A1 U A2 U A3 U A4)) because A1-A4 are mutually exclusive and exhaustive sets, a partition<br />
-= P(WA 1 U WA2 U WA3 U WA4)<br />
+<p>= P(W(A<sub>1</sub> U A<sub>2</sub> U A<sub>3</sub> U A<sub>4</sub>)) because A1-A4 are mutually exclusive and exhaustive sets, a partition<br />
+= P(WA<sub>1</sub> U WA<sub>2</sub> U WA<sub>3</sub> U WA<sub>4</sub>)<br />
 = P(WA<sub>1</sub>) + P(WA<sub>2</sub>) + P(WA<sub>3</sub>) + P(WA<sub>4</sub>)<br />
 = P(W|A<sub>1</sub>)P(A<sub>1</sub>) + P(W|A<sub>2</sub>)P(A<sub>2</sub>) + P(W|A<sub>3</sub>)P(A<sub>3</sub>) + P(W|A<sub>4</sub>)P(A<sub>4</sub>)</p>
 <p>So P(W) = .4x.25 + .3x.2 + .2x.6 + .1x.4 = .32</p>
+</div>
+<div id="bayes-theorem" class="section level3">
+<h3><span class="header-section-number">2.1.10</span> Bayes’ Theorem</h3>
+<p>So far, we have seen that the probability of the intersection between A and B is equal to the Probability of B conditional on A times the probability of A:</p>
+<ul>
+<li>P(AB) = P(B|A)P(A) = P(A|B)P(B)</li>
+<li>provided P(A) &gt; 0 and P(B) &gt; 0 i.e. both A and B have positive probabilities</li>
+<li>so we can write P(A|B) = P(B|A)P(A)/P(B)</li>
+</ul>
+<p>We also saw a slightly more complicated version of this, where the probability of B is the probability of B conditional on A times the probability of A, plus the probability of B conditional on A complement times the probability of A complement (note we saw this, albeit with more compliments, when looking at the Conditional Probability in American Presidential Politics section)</p>
+<ul>
+<li>P(B) = P(B|A)P(A) + P(B|Ac)P(Ac)</li>
+<li>P(A|B) = P(B|A)P(A)/{P(B|A)P(A) + P(B|Ac)P(Ac)}</li>
+</ul>
+<p>C is compliment, and we can do this since A and Ac are partitions of the sample space S.</p>
+<p>A pregnant woman lives in an area where the Zika virus is fairly rare - 1 in 1000 people have it. Still, she’s concerned, so she gets tested. There is a good but not perfect test for the virus—it gives a positive reading with probability .99 if the person has the virus and a positive reading with probability .05 if the person does not. Her reading is positive. How concerned should we be?</p>
+<p>P(Z) = .001 (unconditional probability of having Zika) P(Zc) = .999 (999 people don’t have it) P(+|Z) = .99 (probability of having a positive test result, conditional on having the zika virus - there is a 1% change of a false negative) P(+|Zc) = .05 (probability of having a positive result if you don’t have the virus is 5% - false positive rate) P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem = .019 - less than 2% probability</p>
+<p>So the introduction of our new data results in us updating our probability based on the imperfect test, but it doesn’t get updated by much as it still possible it’s wrong and the prevelance rate of the zika virus is rare.</p>
+<p><em>Example 2</em></p>
+<p>Assume that the probability of having a rare condition is 1%. It is possible to test for the condition, but the test is imperfect. If you have the condition, there is an 85% chance that you will test positive. If you do not have the condition, there is a 5% chance that you will test positive. Call the condition C, so that P(C) = 0.01, and call a positive test t+, so that p(t+|C) = 0.85.</p>
+<p>What is the probability p(t+) that you test positive for the condition?</p>
+<p>So the Probability of having the condition is P(C) 0.01 * P(t+|C) = .85 which is the probability at a test you will test positive = 0.0085 + P(Cc) * P(t+|Cc) = 0.99 * 0.05 = 0.0495 = 0.058</p>
+<p>Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?</p>
+<p>P(C) = .01 (unconditional probability of having condition) P(Cc) = .99 (99 people don’t have it) P(t+|C) = .85 (probability of having a positive test result, conditional on having the condition) P(t+|Cc) = .05 (probability of having a positive result if you don’t have the virus is 5% - false positive rate) P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem = 0.0085 / {0.0085 + 0.0495} = .15 - around than 15% probability</p>
+<p>Suppose that a new test is developed that is more accurate. Now, the probability of testing positive if you have the condition is 94%, and the chance of testing positive if you do not have the condition is only 4%. Now, what is the probability p(t+) that you test positive for the condition?</p>
+<p>So the Probability of having the condition is P(C) 0.01 * P(t+|C) = .94 which is the probability at a test you will test positive = 0.0094 + P(Cc) * P(t+|Cc) = 0.99 * 0.04 = 0.0396 = 0.049</p>
+<p>Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?</p>
+<p>P(C) = .01 (unconditional probability of having condition) P(Cc) = .99 (99 people don’t have it) P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition) P(t+|Cc) = .04 (probability of having a positive result if you don’t have the virus is 5% - false positive rate) P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem = 0.0094 / {0.0094 + 0.0396} = .19 - around than 15% probability</p>
+<p>Suppose that there is an 80% chance you will be invited to a dinner party on a Friday or Saturday evening. In contrast, there is only a 50% chance that you will be invited to a dinner party on one of the other nights of the week. Suppose that you know that you’ve been invited to a dinner party tonight, but have forgotten which day of the week it is. Once you know that you’ve been invited to a dinner party, what is the chance that it is either Friday or Saturday? (Please round your answer to 2 decimal places. For example, if the correct answer is 0.6724, please input 0.67.)</p>
+<p>Hint: Using the notation of Zika question, Let Z:= { Fri, Sat} and Z^c = { M,T,W,Th,Sun}. Let “+” denote invitation. You are given Pr(“+”| Z) = 0.8 and Pr(“+”| Z^c) = 0.5. We want to compute Pr( Z | “+”)</p>
+<p>P(Z) = .286 (unconditional probability of it being Friday or Saturday) P(Zc) = .714 (the other 5 days of the week) P(+|Z) = .8 P(+|Zc) = .5 P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem = .389 - around 40% probability</p>
+</div>
+</div>
+<div id="random-variables-distributions-and-joint-distributions" class="section level2">
+<h2><span class="header-section-number">2.2</span> Random Variables, Distributions and Joint Distributions</h2>
+<p>A <em>random variable</em> is a real-valued function whose domain is the sample space - it goes from the sample space to the real line.</p>
+<p>A probability goes from the set of all subsets of the sample space in to the unit interval e.g. [0,1] between zero and 1</p>
+<p>A random variable goes from the sample space to the real line and it has some numerial charecteristics of the sample space we are interested in.</p>
+<p>The probability that something exists induces a distribution of the random variable, they are not the same.</p>
+<p>There are two types of random variable:</p>
+<ul>
+<li>Discrete - one that can take on only a - finite or infinite - countably number of values</li>
+<li>Continous - a random variable that can take on any value in some interval, bounded or unbounded, of the real line</li>
+</ul>
+<p>Discrete random variables can be approximated using a continous random variable, so we typically just use continous. Most of the example we have seen so far in this section have dealt with discreet random variables.</p>
+<div id="probability-functions-of-random-variables" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Probability Functions of Random Variables</h3>
+<p>For discrete random variables, we often start with a verbal description, calculate probabilities for each value of the random variable, and then write down a function or draw a graph describing those probabilities for different values of the random variable. This is called a probability function (PF). We saw one of these before in the hypogeometric and binomial, when looking at the pizza toppings.</p>
+<p>Note that:</p>
+<ul>
+<li>The term probability density function is used to draw attention to the fact that we are discussing a continuous random variable.</li>
+<li>The term probability mass function is used to draw attention to the fact that we are discussing a discrete random variable.</li>
+<li>The term probability function is used when we are speaking in more general terms, when we’re discussing both “flavors” of probability function or the distinction between the two types of probability functions(/random variables) doesn’t matter.</li>
+</ul>
+<p>Hypergeometric (pizza topping) random variable:</p>
+<p>1 Verbal description - Let X be the number of vegetarian toppings I get on my pizza if I draw the Area Four toppings randomly (without replacement)</p>
+<p>2 Calculation - We can calculate the probability that X = 0, 1, 2, and so forth, up to the maximum of 6 or n, whichever is smaller, using the formula from last time. Six is the maximum number of veg toppings available, n is the number of toppings chosen at random. If there are 0 toppings of a particular type, the result will be undefined, so we adjust 0! to be defined as just 1. Also, to be consistent with notation for the random variable, n1 from before now becomes x and since we only have two options, n2 now becomes n - x</p>
+<p><span class="math display">\[P(x  veg, n - x  non-veg)=  \binom{6}{x} \binom{5}{n - x} \\ \binom{11}{n}\]</span></p>
+<p>3 If we then take an example, such as 3 veg toppings - n = 3 - we can calculate the probabilities for each n</p>
+<p>P(X=0) = 6/99 P(X=1) = 36/99 P(X=2) = 45/99 P(X=3) = 12/99</p>
+<p>And we can represent the probability function graphically, with points (aka point mass) then add vertical lines under each point to the axis to make it easier to read e.g.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+veggie_choices =<span class="st"> </span><span class="dv">6</span>
+meat_choices =<span class="st"> </span><span class="dv">5</span>
+num_toppings =<span class="st"> </span><span class="dv">3</span>
+veggie_received =<span class="st"> </span><span class="dv">0</span><span class="op">:</span>num_toppings
+v =<span class="st"> </span><span class="kw">dhyper</span>(<span class="dt">x =</span> veggie_received, 
+           <span class="dt">m =</span> veggie_choices, 
+           <span class="dt">n =</span> meat_choices, 
+           <span class="dt">k =</span> num_toppings)
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(v)) {
+  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;Probability of &quot;</span>, 
+               i<span class="op">-</span><span class="dv">1</span>,
+               <span class="st">&quot; veggie toppings is: &quot;</span>,
+               <span class="kw">round</span>(v[i], <span class="dv">3</span>)))
+}</code></pre></div>
+<pre><code>## [1] &quot;Probability of 0 veggie toppings is: 0.061&quot;
+## [1] &quot;Probability of 1 veggie toppings is: 0.364&quot;
+## [1] &quot;Probability of 2 veggie toppings is: 0.455&quot;
+## [1] &quot;Probability of 3 veggie toppings is: 0.121&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> v)) <span class="op">+</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Num Veggies&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Probability&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">geom_segment</span>(<span class="dt">xend =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">yend=</span><span class="dv">0</span>)</code></pre></div>
+<p><img src="Module2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="the-hypergeometric-distribution" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> The Hypergeometric Distribution</h3>
+<p>We can represent this in a more general way using notation. We say that X has a “hypergeometric distribution with parameters N, K, &amp; n,” denoted X ~ H(N,K,n). Where</p>
+<ul>
+<li>N = Total number of toppings</li>
+<li>K = Total number of veg toppings</li>
+<li>n = The number we choose</li>
+</ul>
+<p>Its Probability Function (PF) is defined similar to before, however we add a note for which values of x that there is positive probability. We should, if being fully formal, also add a final part which states it is 0 otherwise. If this is not explicit, as shown below, in terms of the zero otherwise, we can assume this to be the case.</p>
+<p><span class="math display">\[fx(x)=  \binom{K}{x} \binom{N-K}{n - x} \\\binom{N}{n}\]</span> <span class="math display">\[ where \; x = max(0, n + K-N),...,min(n,K) \]</span></p>
+<p>The hypergeometric distribution describes the number of number of “realized successes” (in a given sample - represented as x) in n trials where you’re sampling without replacement from a sample of size N, whose initial probability of success was K/N.</p>
+<p>The function provides the probability of X (number of successful outcomes / number of possible outcomes in the sample space).</p>
+</div>
+<div id="steph-curry-shooting-example" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Steph Curry Shooting example</h3>
+<p>If Steph has a probability of making 44% of any shot taken and therefore 56% chance of missing, we can use the binomial formula to calculate the probability of making n shots out of 6 possible shots as follows.</p>
+<p>*<a href="https://en.wikipedia.org/wiki/Binomial_coefficient">For more information see the Binomial Coefficient</a></p>
+<p>X has a “binomial distribution with parameters n &amp; p,” denoted <span class="math inline">\(X \sim B(n,p)\)</span>. Its PF is</p>
+<p><span class="math display">\[fx(x)=  \binom{n}{x} p^x (1-p)^{n-x} \; \; \; where \; x= 0,1,...n\]</span></p>
+<p>The binomial distribution describes the number of “successes” in n trials where the trials are independent and the probability of success in each is p.</p>
+<p>So plugging in our example we get</p>
+<p><span class="math display">\[fx(x)=  \binom{6}{x} .44^x (.56)^{6-x}\]</span></p>
+<p>Which yields:</p>
+<p>P(X=0) = .03 P(X=1) = .15 P(X=2) = .29 P(X=3) = .30 P(X=4) = .18 P(X=5) = .06 P(X=6) = .01</p>
+<p>As the number of n increases, if p = 50% (a symetric distribution), the distribution would begin to look like a normal distribution.</p>
+<p><img src="images/binomial.png" width="100%" /></p>
+<p>In another example, suppose that you will take 3 penalty kicks in a row. The likelihood of making each penalty kick is ¾ or 75%. What is the probability that you will score 2 (and only 2) of the 3 penalty kicks?</p>
+<p><span class="math display">\[fx(x)=  \binom{3}{x} .75^x (.25)^{3-x}\]</span> P(X=0) = .02 P(X=1) = .14 P(X=2) = .42 &lt;- this is the answer P(X=3) = .42</p>
 
 </div>
 </div>
