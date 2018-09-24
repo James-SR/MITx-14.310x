@@ -17,8 +17,8 @@ output:
 
 Module Content:
 
-* [Module 2 Slides](./files/M1/Lecture_Slides_02.pdf)
-
+* [Module 2 Slides - Fundamentals of Probability](./files/M1/Lecture_Slides_02.pdf)
+* [Module 3 Slides - Random Variables, Distributions and Joint Distributions](./files/M1/Lecture_Slides_03.pdf)
 
 
 ## Fundamentals of Probability
@@ -325,3 +325,85 @@ P(+|Z) = .8
 P(+|Zc) = .5 
 P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem
 = .389 - around 40% probability
+
+## Random Variables, Distributions and Joint Distributions
+
+A *random variable* is a real-valued function whose domain is the sample space - it goes from the sample space to the real line.
+
+A probability goes from the set of all subsets of the sample space in to the unit interval e.g. [0,1] between zero and 1
+
+A random variable goes from the sample space to the real line and it has some numerial charecteristics of the sample space we are interested in.
+
+The probability that something exists induces a distribution of the random variable, they are not the same.
+
+There are two types of random variable:
+
+* Discrete - one that can take on only a - finite or infinite - countably number of values 
+* Continous - a random variable that can take on any value in some interval, bounded or unbounded, of the real line
+
+Discrete random variables can be approximated using a continous random variable, so we typically just use continous.  Most of the example we have seen so far in this section have dealt with discreet random variables.
+
+### Probability Functions of Random Variables
+
+For discrete random variables, we often start with a verbal description, calculate probabilities for each value of the random variable, and then write down a function or draw a graph describing those probabilities for different values of the random variable. This is called a probability
+function (PF).  We saw one of these before in the hypogeometric and binomial, when looking at the pizza toppings. 
+
+Hypergeometric (pizza topping) random variable:
+
+1 Verbal description - Let X be the number of vegetarian toppings I get on my pizza if I draw the Area Four toppings randomly (without replacement)  
+
+2 Calculation - We can calculate the probability that X = 0, 1, 2, and so forth, up to the maximum of 6 or n, whichever is smaller, using the formula from last time. Six is the maximum number of veg toppings available, n is the number of toppings chosen at random.  If there are 0 toppings of a particular type, the result will be undefined, so we adjust 0! to be defined as just 1.  Also, to be consistent with notation for the random variable, n1 from before now becomes x and since we only have two options, n2 now becomes n - x    
+
+$$P(x  veg, n - x  non-veg)=  \binom{6}{x} \binom{5}{n - x} \\ \binom{11}{n}$$
+
+3 If we then take an example, such as 3 veg toppings - n = 3 - we can calculate the probabilities for each n 
+
+P(X=0) = 6/99
+P(X=1) = 36/99
+P(X=2) = 45/99
+P(X=3) = 12/99
+
+And we can represent the probability function graphically, with points (aka point mass) then add vertical lines under each point to the axis to make it easier to read e.g.
+
+```{r}
+library(ggplot2)
+
+veggie_choices = 6
+meat_choices = 5
+num_toppings = 3
+veggie_received = 0:num_toppings
+v = dhyper(x = veggie_received, 
+           m = veggie_choices, 
+           n = meat_choices, 
+           k = num_toppings)
+
+for (i in 1:length(v)) {
+  print(paste0("Probability of ", 
+               i-1,
+               " veggie toppings is: ",
+               round(v[i], 3)))
+}
+
+ggplot(mapping = aes(x = 0:3, y = v)) + 
+      geom_point(color = 'red') + 
+      labs(x = 'Num Veggies', y = 'Probability') + 
+      geom_segment(xend = 0:3, yend=0)
+
+```
+
+### The Hypergeometric Distribution
+
+We can represent this in a more general way using notation.  We say that X has a “hypergeometric distribution with parameters N, K, & n,” denoted X ~ H(N,K,n). Where
+
+* N = Total number of toppings
+* K = Total number of veg toppings
+* n = The number we choose
+
+Its Probability Function (PF) is defined similar to before, however we add a note for which values of x that there is positive probability.  We should, if being fully formal, also add a final part which states it is 0 otherwise.  If this is not explicit, as shown below, in terms of the zero otherwise, we can assume this to be the case.
+
+$$fx(x)=  \binom{K}{x} \binom{N-K}{n - x} \\  \binom{N}{n}}$$
+$$ where x = max(0, n + K-N),...,min(n,K) $$
+
+The hypergeometric distribution describes the number of number of "realized successes" (in a given sample - represented as x) in n trials where you’re sampling without replacement from a sample of size N, whose initial probability of success was K/N.
+
+The function provides the probability of X (number of successful outcomes / number of possible outcomes in the sample space). 
