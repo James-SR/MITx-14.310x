@@ -307,24 +307,24 @@ P(Cc) * P(t+|Cc) = 0.99 * 0.04 = 0.0396
 
 Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?
 
-P(C) = .01 (unconditional probability of having condition)
-P(Cc) = .99 (99 people don't have it)
-P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition)
-P(t+|Cc) = .04 (probability of having a positive result if you don't have the virus is 5% - false positive rate)
-P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem
-= 0.0094 / {0.0094 + 0.0396}
-= .19 - around than 15% probability 
+P(C) = .01 (unconditional probability of having condition)  
+P(Cc) = .99 (99 people don't have it)  
+P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition)  
+P(t+|Cc) = .04 (probability of having a positive result if you don't have the virus is 5% - false positive rate)  
+P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem  
+= 0.0094 / {0.0094 + 0.0396}  
+= .19 - around than 15% probability   
 
 Suppose that there is an 80% chance you will be invited to a dinner party on a Friday or Saturday evening. In contrast, there is only a 50% chance that you will be invited to a dinner party on one of the other nights of the week. Suppose that you know that you’ve been invited to a dinner party tonight, but have forgotten which day of the week it is. Once you know that you’ve been invited to a dinner party, what is the chance that it is either Friday or Saturday? (Please round your answer to 2 decimal places. For example, if the correct answer is 0.6724, please input 0.67.)
 
 Hint: Using the notation of Zika question, Let Z:= { Fri, Sat} and Z^c = { M,T,W,Th,Sun}. Let "+" denote invitation. You are given Pr("+"| Z) = 0.8 and Pr("+"| Z^c) = 0.5. We want to compute Pr( Z | "+")
 
-P(Z) = .286 (unconditional probability of it being Friday or Saturday)
-P(Zc) = .714 (the other 5 days of the week)
-P(+|Z) = .8 
-P(+|Zc) = .5 
-P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem
-= .389 - around 40% probability
+P(Z) = .286 (unconditional probability of it being Friday or Saturday)  
+P(Zc) = .714 (the other 5 days of the week)  
+P(+|Z) = .8   
+P(+|Zc) = .5   
+P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem  
+= .389 - around 40% probability  
 
 ## Random Variables, Distributions and Joint Distributions
 
@@ -350,9 +350,9 @@ function (PF).  We saw one of these before in the hypogeometric and binomial, wh
 
 Note that:
 
-* The term probability density function is used to draw attention to the fact that we are discussing a continuous random variable.
-* The term probability mass function is used to draw attention to the fact that we are discussing a discrete random variable.
-* The term probability function is used when we are speaking in more general terms, when we're discussing both "flavors" of probability function or the distinction between the two types of probability functions(/random variables) doesn't matter.
+* The term probability density function is used to draw attention to the fact that we are discussing a continuous random variable.  
+* The term probability mass function is used to draw attention to the fact that we are discussing a discrete random variable.  
+* The term probability function - or sometimes just the term "distribution" - is used when we are speaking in more general terms, when we're discussing both "flavors" of probability function or the distinction between the two types of probability functions/random variables doesn't matter.  
 
 Hypergeometric (pizza topping) random variable:
 
@@ -364,10 +364,10 @@ $$P(x  veg, n - x  non-veg)=  \binom{6}{x} \binom{5}{n - x} \\ \binom{11}{n}$$
 
 3 If we then take an example, such as 3 veg toppings - n = 3 - we can calculate the probabilities for each n 
 
-P(X=0) = 6/99
-P(X=1) = 36/99
-P(X=2) = 45/99
-P(X=3) = 12/99
+P(X=0) = 6/99  
+P(X=1) = 36/99  
+P(X=2) = 45/99  
+P(X=3) = 12/99  
 
 And we can represent the probability function graphically, with points (aka point mass) then add vertical lines under each point to the axis to make it easier to read e.g.
 
@@ -433,13 +433,13 @@ $$fx(x)=  \binom{6}{x} .44^x (.56)^{6-x}$$
 
 Which yields:
 
-P(X=0) = .03
-P(X=1) = .15
-P(X=2) = .29
-P(X=3) = .30
-P(X=4) = .18
-P(X=5) = .06
-P(X=6) = .01
+P(X=0) = .03  
+P(X=1) = .15  
+P(X=2) = .29  
+P(X=3) = .30  
+P(X=4) = .18  
+P(X=5) = .06  
+P(X=6) = .01  
 
 As the number of n increases, if p = 50% (a symetric distribution), the distribution would begin to look like a normal distribution.
 
@@ -450,7 +450,21 @@ knitr::include_graphics("images/binomial.png")
 In another example, suppose that you will take 3 penalty kicks in a row. The likelihood of making each penalty kick is ¾ or 75%. What is the probability that you will score 2 (and only 2) of the 3 penalty kicks?
 
 $$fx(x)=  \binom{3}{x} .75^x (.25)^{3-x}$$
-P(X=0) = .02
-P(X=1) = .14
-P(X=2) = .42 <- this is the answer
-P(X=3) = .42
+P(X=0) = .02  
+P(X=1) = .14  
+P(X=2) = .42 <- this is the answer  
+P(X=3) = .42  
+
+### Properties of the Probability Distribution
+
+So for a general probability function, we have some broad properties:
+
+* $0 <= f_x(x_i) <= 1$ which is to say the value of any probability function is going to be between 0 and 1
+* $Σ_i f_x (x_i) = 1$ if you sum up over all of the possible values it will sum to 1
+* $P(A) = P(XcA) = Σ_Af_x(x_i)$ which is to say if you want the probability over a set of values of x, you just sum up the individual values for each item in the set
+
+For a continous random variable, we rarely start with a verbal description.  Instead, we typically have a density that describes the probability that the random variable is in various regions.  The density, or probability density function (PDF) is the continuous compliment to the discrete PF. The PF (discret) and PDF (continous) are similar but not exactly the same.
+
+A random variable X is continuous if there exists a nonnegative function f_X_ such that for any interval A c R as follows.  We tend to speak about a region, that A is in a region of the real line (R), the probability that X is in A is equal to the integral over that region A of the PDF.
+
+$$P(X c A) = \int_{A} f_X(x)dx$$

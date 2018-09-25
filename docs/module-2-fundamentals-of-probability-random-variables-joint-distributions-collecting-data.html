@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-24">
+<meta name="date" content="2018-09-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -126,6 +126,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-functions-of-random-variables"><i class="fa fa-check"></i><b>2.2.1</b> Probability Functions of Random Variables</a></li>
 <li class="chapter" data-level="2.2.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#the-hypergeometric-distribution"><i class="fa fa-check"></i><b>2.2.2</b> The Hypergeometric Distribution</a></li>
 <li class="chapter" data-level="2.2.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#steph-curry-shooting-example"><i class="fa fa-check"></i><b>2.2.3</b> Steph Curry Shooting example</a></li>
+<li class="chapter" data-level="2.2.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#properties-of-the-probability-distribution"><i class="fa fa-check"></i><b>2.2.4</b> Properties of the Probability Distribution</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -355,10 +356,21 @@ Carson P(W|A<sub>4</sub>) = .4</p>
 <p>Suppose that a new test is developed that is more accurate. Now, the probability of testing positive if you have the condition is 94%, and the chance of testing positive if you do not have the condition is only 4%. Now, what is the probability p(t+) that you test positive for the condition?</p>
 <p>So the Probability of having the condition is P(C) 0.01 * P(t+|C) = .94 which is the probability at a test you will test positive = 0.0094 + P(Cc) * P(t+|Cc) = 0.99 * 0.04 = 0.0396 = 0.049</p>
 <p>Suppose that you tested positive for the condition. What is the probability that you truly have the underlying condition?</p>
-<p>P(C) = .01 (unconditional probability of having condition) P(Cc) = .99 (99 people don’t have it) P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition) P(t+|Cc) = .04 (probability of having a positive result if you don’t have the virus is 5% - false positive rate) P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem = 0.0094 / {0.0094 + 0.0396} = .19 - around than 15% probability</p>
+<p>P(C) = .01 (unconditional probability of having condition)<br />
+P(Cc) = .99 (99 people don’t have it)<br />
+P(t+|C) = .94 (probability of having a positive test result, conditional on having the condition)<br />
+P(t+|Cc) = .04 (probability of having a positive result if you don’t have the virus is 5% - false positive rate)<br />
+P(C|+) = P(t+|C)P(C)/{P(t+|C)P(C) + P(t+|Cc)P(Cc)} - Bayes theorem<br />
+= 0.0094 / {0.0094 + 0.0396}<br />
+= .19 - around than 15% probability</p>
 <p>Suppose that there is an 80% chance you will be invited to a dinner party on a Friday or Saturday evening. In contrast, there is only a 50% chance that you will be invited to a dinner party on one of the other nights of the week. Suppose that you know that you’ve been invited to a dinner party tonight, but have forgotten which day of the week it is. Once you know that you’ve been invited to a dinner party, what is the chance that it is either Friday or Saturday? (Please round your answer to 2 decimal places. For example, if the correct answer is 0.6724, please input 0.67.)</p>
 <p>Hint: Using the notation of Zika question, Let Z:= { Fri, Sat} and Z^c = { M,T,W,Th,Sun}. Let “+” denote invitation. You are given Pr(“+”| Z) = 0.8 and Pr(“+”| Z^c) = 0.5. We want to compute Pr( Z | “+”)</p>
-<p>P(Z) = .286 (unconditional probability of it being Friday or Saturday) P(Zc) = .714 (the other 5 days of the week) P(+|Z) = .8 P(+|Zc) = .5 P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem = .389 - around 40% probability</p>
+<p>P(Z) = .286 (unconditional probability of it being Friday or Saturday)<br />
+P(Zc) = .714 (the other 5 days of the week)<br />
+P(+|Z) = .8<br />
+P(+|Zc) = .5<br />
+P(Z|+) = P(+|Z)P(Z)/{P(+|Z)P(Z) + P(+|Zc)P(Zc)} - Bayes theorem<br />
+= .389 - around 40% probability</p>
 </div>
 </div>
 <div id="random-variables-distributions-and-joint-distributions" class="section level2">
@@ -378,16 +390,21 @@ Carson P(W|A<sub>4</sub>) = .4</p>
 <p>For discrete random variables, we often start with a verbal description, calculate probabilities for each value of the random variable, and then write down a function or draw a graph describing those probabilities for different values of the random variable. This is called a probability function (PF). We saw one of these before in the hypogeometric and binomial, when looking at the pizza toppings.</p>
 <p>Note that:</p>
 <ul>
-<li>The term probability density function is used to draw attention to the fact that we are discussing a continuous random variable.</li>
-<li>The term probability mass function is used to draw attention to the fact that we are discussing a discrete random variable.</li>
-<li>The term probability function is used when we are speaking in more general terms, when we’re discussing both “flavors” of probability function or the distinction between the two types of probability functions(/random variables) doesn’t matter.</li>
+<li>The term probability density function is used to draw attention to the fact that we are discussing a continuous random variable.<br />
+</li>
+<li>The term probability mass function is used to draw attention to the fact that we are discussing a discrete random variable.<br />
+</li>
+<li>The term probability function - or sometimes just the term “distribution” - is used when we are speaking in more general terms, when we’re discussing both “flavors” of probability function or the distinction between the two types of probability functions/random variables doesn’t matter.</li>
 </ul>
 <p>Hypergeometric (pizza topping) random variable:</p>
 <p>1 Verbal description - Let X be the number of vegetarian toppings I get on my pizza if I draw the Area Four toppings randomly (without replacement)</p>
 <p>2 Calculation - We can calculate the probability that X = 0, 1, 2, and so forth, up to the maximum of 6 or n, whichever is smaller, using the formula from last time. Six is the maximum number of veg toppings available, n is the number of toppings chosen at random. If there are 0 toppings of a particular type, the result will be undefined, so we adjust 0! to be defined as just 1. Also, to be consistent with notation for the random variable, n1 from before now becomes x and since we only have two options, n2 now becomes n - x</p>
 <p><span class="math display">\[P(x  veg, n - x  non-veg)=  \binom{6}{x} \binom{5}{n - x} \\ \binom{11}{n}\]</span></p>
 <p>3 If we then take an example, such as 3 veg toppings - n = 3 - we can calculate the probabilities for each n</p>
-<p>P(X=0) = 6/99 P(X=1) = 36/99 P(X=2) = 45/99 P(X=3) = 12/99</p>
+<p>P(X=0) = 6/99<br />
+P(X=1) = 36/99<br />
+P(X=2) = 45/99<br />
+P(X=3) = 12/99</p>
 <p>And we can represent the probability function graphically, with points (aka point mass) then add vertical lines under each point to the axis to make it easier to read e.g.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
@@ -439,11 +456,32 @@ v =<span class="st"> </span><span class="kw">dhyper</span>(<span class="dt">x =<
 <p>So plugging in our example we get</p>
 <p><span class="math display">\[fx(x)=  \binom{6}{x} .44^x (.56)^{6-x}\]</span></p>
 <p>Which yields:</p>
-<p>P(X=0) = .03 P(X=1) = .15 P(X=2) = .29 P(X=3) = .30 P(X=4) = .18 P(X=5) = .06 P(X=6) = .01</p>
+<p>P(X=0) = .03<br />
+P(X=1) = .15<br />
+P(X=2) = .29<br />
+P(X=3) = .30<br />
+P(X=4) = .18<br />
+P(X=5) = .06<br />
+P(X=6) = .01</p>
 <p>As the number of n increases, if p = 50% (a symetric distribution), the distribution would begin to look like a normal distribution.</p>
 <p><img src="images/binomial.png" width="100%" /></p>
 <p>In another example, suppose that you will take 3 penalty kicks in a row. The likelihood of making each penalty kick is ¾ or 75%. What is the probability that you will score 2 (and only 2) of the 3 penalty kicks?</p>
-<p><span class="math display">\[fx(x)=  \binom{3}{x} .75^x (.25)^{3-x}\]</span> P(X=0) = .02 P(X=1) = .14 P(X=2) = .42 &lt;- this is the answer P(X=3) = .42</p>
+<p><span class="math display">\[fx(x)=  \binom{3}{x} .75^x (.25)^{3-x}\]</span> P(X=0) = .02<br />
+P(X=1) = .14<br />
+P(X=2) = .42 &lt;- this is the answer<br />
+P(X=3) = .42</p>
+</div>
+<div id="properties-of-the-probability-distribution" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Properties of the Probability Distribution</h3>
+<p>So for a general probability function, we have some broad properties:</p>
+<ul>
+<li><span class="math inline">\(0 &lt;= f_x(x_i) &lt;= 1\)</span> which is to say the value of any probability function is going to be between 0 and 1</li>
+<li><span class="math inline">\(Σ_i f_x_ (x_i) = 1\)</span> if you sum up over all of the possible values it will sum to 1</li>
+<li><span class="math inline">\(P(A) = P(XcA) = Σ_Af_x(x_i)\)</span> which is to say if you want the probability over a set of values of x, you just sum up the individual values for each item in the set</li>
+</ul>
+<p>For a continous random variable, we rarely start with a verbal description. Instead, we typically have a density that describes the probability that the random variable is in various regions. The density, or probability density function (PDF) is the continuous compliment to the discrete PF. The PF (discret) and PDF (continous) are similar but not exactly the same.</p>
+<p>A random variable X is continuous if there exists a nonnegative function f_X_ such that for any interval A c R as follows. We tend to speak about a region, that A is in a region of the real line (R), the probability that X is in A is equal to the integral over that region A of the PDF.</p>
+<p><span class="math display">\[P(X c A) = \int_{A} f_X(x)dx\]</span></p>
 
 </div>
 </div>
