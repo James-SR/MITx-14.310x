@@ -406,7 +406,7 @@ ggplot(mapping = aes(x = 0:3, y = v)) +
       geom_segment(xend = 0:3, yend=0)
 ```
 
-![](Module2_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
+![](Module2_files/figure-epub3/unnamed-chunk-1-1.png)<!-- -->
 
 ### The Hypergeometric Distribution
 
@@ -454,8 +454,7 @@ P(X=6) = .01
 
 As the number of n increases, if p = 50% (a symetric distribution), the distribution would begin to look like a normal distribution.
 
-
-\includegraphics[width=1\linewidth]{images/binomial} 
+<img src="images/binomial.png" width="100%" />
 
 In another example, suppose that you will take 3 penalty kicks in a row. The likelihood of making each penalty kick is ¾ or 75%. What is the probability that you will score 2 (and only 2) of the 3 penalty kicks?
 
@@ -470,7 +469,7 @@ P(X=3) = .42
 So for a general probability function, we have some broad properties:
 
 * $0 <= f_x(x_i) <= 1$ which is to say the value of any probability function is going to be between 0 and 1
-* $Σ_i f_x_ (x_i) = 1$ if you sum up over all of the possible values it will sum to 1
+* $Σ_i f_x (x_i) = 1$ if you sum up over all of the possible values it will sum to 1
 * $P(A) = P(XcA) = Σ_Af_x(x_i)$ which is to say if you want the probability over a set of values of x, you just sum up the individual values for each item in the set
 
 For a continous random variable, we rarely start with a verbal description.  Instead, we typically have a density that describes the probability that the random variable is in various regions.  The density, or probability density function (PDF) is the continuous compliment to the discrete PF. The PF (discret) and PDF (continous) are similar but not exactly the same.
@@ -478,3 +477,26 @@ For a continous random variable, we rarely start with a verbal description.  Ins
 A random variable X is continuous if there exists a nonnegative function f_X_ such that for any interval A c R as follows.  We tend to speak about a region, that A is in a region of the real line (R), the probability that X is in A is equal to the integral over that region A of the PDF.
 
 $$P(X c A) = \int_{A} f_X(x)dx$$
+
+### Discrete versus Continuous Random Variables
+
+Just like the discrete probability function, the probability density function for a continous random variable has certain properties, these are:
+
+* $0 <= f_X(x)$  which is to say it is non-negative.  A PDF, unlike a PF, may have a region where the PDF is greater than 1  
+* $\int f_X(x) = 1$ the PF sums to one for each discreet part, the PDF integrates to one (as it is continous) 
+* $P(A) = P(a <= X <= b) = \int_{A} f_X(x)dx$ with discreet we sum for the values of interest, with PDF we integrate over the region (between a and b)
+
+The value at a particular X for a PDF is equal to zero, if X is a continous random variable.
+
+In terms of point 1, we can think of it like the image below.  The area represented by the black lines will integrate to 1, however the area under the red line will have a region (top left, above the line) where it will integrate to more than 1. 
+
+<img src="images/PDF1.png" width="100%" />
+
+In terms of any particular point (value of X) being zero, this is because at any single point on a continuous random variable, it is infinitely small and the integral of a single point is always zero.  Or from wikipedia (!):
+
+> Suppose a species of bacteria typically lives 4 to 6 hours. What is the probability that a bacterium lives exactly 5 hours? The answer is 0%. A lot of bacteria live for approximately 5 hours, but there is no chance that any given bacterium dies at exactly 5.0000000000... hours.  
+Instead one might ask: What is the probability that the bacterium dies between 5 hours and 5.01 hours? Suppose the answer is 0.02 (i.e., 2%). Next: What is the probability that the bacterium dies between 5 hours and 5.001 hours? The answer should be about 0.002, since this time interval is one-tenth as long as the previous. The probability that the bacterium dies between 5 hours and 5.0001 hours should be about 0.0002, and so on.  
+In these three examples, the ratio (probability of dying during an interval) / (duration of the interval) is approximately constant, and equal to 2 per hour (or 2 hour^−1). For example, there is 0.02 probability of dying in the 0.01-hour interval between 5 and 5.01 hours, and (0.02 probability / 0.01 hours) = 2 hour^−1. This quantity 2 hour^−1 is called the probability density for dying at around 5 hours.  
+Therefore, in response to the question "What is the probability that the bacterium dies at 5 hours?", a literally correct but unhelpful answer is "0", but a better answer can be written as (2 hour^−1)dt. This is the probability that the bacterium dies within a small (infinitesimal) window of time around 5 hours, where dt is the duration of this window.  
+For example, the probability that it lives longer than 5 hours, but shorter than (5 hours + 1 nanosecond), is 2 hour^−1⋅(1 nanosecond)≃6×10−13 (using the unit conversion 3.6×1012 nanoseconds = 1 hour).  
+There is a probability density function f with f(5hours)=2hour^−1. The integral of f over any window of time (not only infinitesimal windows but also large windows) is the probability that the bacterium dies in that window.

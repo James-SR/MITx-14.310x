@@ -1,7 +1,7 @@
 --- 
 title: "Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)"
 author: "James Solomon-Rounce"
-date: "2018-09-25"
+date: "2018-09-26"
 bibliography: book.bib
 description: Study notes taken from the courses for personal reference.
 documentclass: book
@@ -29,5 +29,4 @@ Thank you to the original content providers.  Additional ramblings are my own.
 * [R for Data Science Book](http://r4ds.had.co.nz/index.html)
 
 
-
-\includegraphics[width=1\linewidth]{images/standing} 
+<img src="images/standing.jpg" width="100%" />
