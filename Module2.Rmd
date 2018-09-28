@@ -535,3 +535,41 @@ $$P((X,Y) c A) = ∫∫AfXY(x,y)dxdy$$
 Like the PDF from before, it will integrate over the entire area to 1, and the probability at any one particular point is equal to zero.
 
 *[Video on single and double integration including limit](https://www.youtube.com/watch?v=w97tr8dafGA)
+
+### Joint Distribution Example
+
+If you develop a headache you might decide to take tablets, one may be paracetamol and the other ibuprofen.  If X is the effective period of ipbuprofen and Y that of paracetamol, then
+
+$$fXY(x,y) = λ^2exp{-λ(x+y)} \; \; for x,y >= 0$$
+
+Lambda is introducting some function - it is a general formula or 'black box', it states how the output calculated in relation to the input.
+
+[Lambda Calculus](https://www.youtube.com/watch?v=eis11j_iGMs)
+[Church-Turing Hypothesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)
+[Integrals for exponential functions](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions)
+
+In this case, lambda can be considered as a constant,  so our steps would be 
+
+* remove λ i.e. let λ=1 and work just on $exp{-λ(x+y)}$
+* integrate on Y from [0,3] (meaning x is just another constant)
+* without Y, integrate on X from [0,3]
+
+We could always put λ back in later.
+
+In our example, we are interested in the probability that the medicine is effective within 3 hours, however we wish to calculate the probability that the headache comes back within three hours (or less), so we have a double integration to calculate the area over which it is effective (3 hours), then the probability becomes 1 minus that area (the probability it comes back). e.g.
+
+$ \int_{0}^{3} \int_{0}^{3} λ^2exp{-λ(x+y)}dydx$  
+...calculation steps
+$(1-exp({-3λ})^2$
+
+The area we calculate is roughly shown as below - not there should be an area above the axis also, not just a 2d plane
+
+```{r Headache XY Double Integration, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/headache.png")
+```
+
+The calculation steps missed out are as follows:
+
+```{r double integration calculation steps, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/headachesteps.png")
+```
