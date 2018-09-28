@@ -493,3 +493,45 @@ In these three examples, the ratio (probability of dying during an interval) / (
 Therefore, in response to the question "What is the probability that the bacterium dies at 5 hours?", a literally correct but unhelpful answer is "0", but a better answer can be written as (2 hour^−1)dt. This is the probability that the bacterium dies within a small (infinitesimal) window of time around 5 hours, where dt is the duration of this window.  
 For example, the probability that it lives longer than 5 hours, but shorter than (5 hours + 1 nanosecond), is 2 hour^−1⋅(1 nanosecond)≃6×10−13 (using the unit conversion 3.6×1012 nanoseconds = 1 hour).  
 There is a probability density function f with f(5hours)=2hour^−1. The integral of f over any window of time (not only infinitesimal windows but also large windows) is the probability that the bacterium dies in that window.
+
+### A Note on Terminology and the Uniform Distribution
+
+In both text books and online, there can be differences in both the the terminology for random variables and the notation used.  As noted earlier, we tend to use PMF (or just PF) for discreet RVs, PDF for continous and sometimes just PF or the "distribution of a random variable"  when talking more broadly about both.  It's perhaps best just to try and be consistent.
+
+There can also be mixed random variables.  One example might be if our measuring technology is such that we cannot measure past a certain point, so our variable is continous up to that point, then all values beyond that point get truncated or grouped (it is a probability mass and is discreet) to that maximal value.
+
+There are some random variables which are simply uniform.  We call such a random variable X "uniform with parameters and b" denoted as $X \sim U[a,b]$.  In such a situation, the probability of X is defined in such a way that the probability of X belonging to any subinterval of X is proportional to the length of the subinterval.  Graphically, it looks like a box and similar to the last image above (the black line).
+
+To calculate the probability of some interval [c,d] in [a,b] you integrate a/(b-a) over that region, or as the PDF is flat, we can just use (d-c)/(b-a).
+e.g. if we have a random variable that is uniformly-distributed from 3 to 8. What is the probability that the random variable takes on a value less than or equal to 7? 
+
+(7-3) / (8-3) = 4/5 = 0.8 or 80%
+
+### The Cumulative Distribution Function
+
+Both discreet and continous random variables can be expressed in the form of a continous random variable (CDF) which takes on a value between 0 and 1.  It is defined as:
+
+$$f_X(x) = P(X <= x)$$
+Also note that 
+$lim_{x→-∞}\; FX(x) = 0$  
+$lim_{x→∞}\; FX(x) = 1$  
+
+So the CDF will start at zero, it may have flat parts, but it will never decrease.  And as we go to the limit (x approaches infinity) then the CDF will be equal to 1.
+
+Given a CDF it would be possible to recover the PDF or PF for continous or discreet distribution respectively.  
+
+* So if you want to get the CDF for a continuous random variable at a particular point, then you integrate the PDF up to that point: $FX (x) = P(X <= x) = -∞∫ fX(x)dx$
+* If you have the CDF and you want to get the PDF i.e. you want to recover the PDF from it, then you take the derivative: $F’X(x) = \frac{dF(x)}{dx} = fX(x)$
+
+### Joint Distributions
+
+A lot of what we do in data analysis is gather repeated observations from joint distributions of random variables, for instance, rainfall and crop growth.  Such a two way joint distribution is called a bivariate distribution.
+
+More formally we say
+
+If X and Y are continuous random variables defined on the same sample space S, then the joint probability density function of X&Y, f_X_Y(x,y), is the surface such that for any region A of the xy-plane - note this is similar to the generalisation of the PDF but as a generalisation of the bivariate distribution:
+
+$$P((X,Y) c A) = ∫∫AfXY(x,y)dxdy$$
+Like the PDF from before, it will integrate over the entire area to 1, and the probability at any one particular point is equal to zero.
+
+*[Video on single and double integration including limit](https://www.youtube.com/watch?v=w97tr8dafGA)
