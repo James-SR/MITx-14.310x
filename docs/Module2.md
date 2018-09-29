@@ -406,7 +406,7 @@ ggplot(mapping = aes(x = 0:3, y = v)) +
       geom_segment(xend = 0:3, yend=0)
 ```
 
-![](Module2_files/figure-epub3/unnamed-chunk-1-1.png)<!-- -->
+![](Module2_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
 
 ### The Hypergeometric Distribution
 
@@ -454,7 +454,8 @@ P(X=6) = .01
 
 As the number of n increases, if p = 50% (a symetric distribution), the distribution would begin to look like a normal distribution.
 
-<img src="images/binomial.png" width="100%" />
+
+\includegraphics[width=1\linewidth]{images/binomial} 
 
 In another example, suppose that you will take 3 penalty kicks in a row. The likelihood of making each penalty kick is ¾ or 75%. What is the probability that you will score 2 (and only 2) of the 3 penalty kicks?
 
@@ -490,7 +491,8 @@ The value at a particular X for a PDF is equal to zero, if X is a continous rand
 
 In terms of point 1, we can think of it like the image below.  The area represented by the black lines will integrate to 1, however the area under the red line will have a region (top left, above the line) where it will integrate to more than 1. 
 
-<img src="images/PDF1.png" width="100%" />
+
+\includegraphics[width=1\linewidth]{images/PDF1} 
 
 In terms of any particular point (value of X) being zero, this is because at any single point on a continuous random variable, it is infinitely small and the integral of a single point is always zero.  Or from wikipedia (!):
 
@@ -500,3 +502,93 @@ In these three examples, the ratio (probability of dying during an interval) / (
 Therefore, in response to the question "What is the probability that the bacterium dies at 5 hours?", a literally correct but unhelpful answer is "0", but a better answer can be written as (2 hour^−1)dt. This is the probability that the bacterium dies within a small (infinitesimal) window of time around 5 hours, where dt is the duration of this window.  
 For example, the probability that it lives longer than 5 hours, but shorter than (5 hours + 1 nanosecond), is 2 hour^−1⋅(1 nanosecond)≃6×10−13 (using the unit conversion 3.6×1012 nanoseconds = 1 hour).  
 There is a probability density function f with f(5hours)=2hour^−1. The integral of f over any window of time (not only infinitesimal windows but also large windows) is the probability that the bacterium dies in that window.
+
+### A Note on Terminology and the Uniform Distribution
+
+In both text books and online, there can be differences in both the the terminology for random variables and the notation used.  As noted earlier, we tend to use PMF (or just PF) for discreet RVs, PDF for continous and sometimes just PF or the "distribution of a random variable"  when talking more broadly about both.  It's perhaps best just to try and be consistent.
+
+There can also be mixed random variables.  One example might be if our measuring technology is such that we cannot measure past a certain point, so our variable is continous up to that point, then all values beyond that point get truncated or grouped (it is a probability mass and is discreet) to that maximal value.
+
+There are some random variables which are simply uniform.  We call such a random variable X "uniform with parameters and b" denoted as $X \sim U[a,b]$.  In such a situation, the probability of X is defined in such a way that the probability of X belonging to any subinterval of X is proportional to the length of the subinterval.  Graphically, it looks like a box and similar to the last image above (the black line).
+
+To calculate the probability of some interval [c,d] in [a,b] you integrate a/(b-a) over that region, or as the PDF is flat, we can just use (d-c)/(b-a).
+e.g. if we have a random variable that is uniformly-distributed from 3 to 8. What is the probability that the random variable takes on a value less than or equal to 7? 
+
+(7-3) / (8-3) = 4/5 = 0.8 or 80%
+
+### The Cumulative Distribution Function
+
+Both discreet and continous random variables can be expressed in the form of a continous random variable (CDF) which takes on a value between 0 and 1.  It is defined as:
+
+$$f_X(x) = P(X <= x)$$
+Also note that 
+$lim_{x→-∞}\; FX(x) = 0$  
+$lim_{x→∞}\; FX(x) = 1$  
+
+So the CDF will start at zero, it may have flat parts, but it will never decrease.  And as we go to the limit (x approaches infinity) then the CDF will be equal to 1.
+
+Given a CDF it would be possible to recover the PDF or PF for continous or discreet distribution respectively.  
+
+* So if you want to get the CDF for a continuous random variable at a particular point, then you integrate the PDF up to that point: $FX (x) = P(X <= x) = -∞∫ fX(x)dx$
+* If you have the CDF and you want to get the PDF i.e. you want to recover the PDF from it, then you take the derivative: $F’X(x) = \frac{dF(x)}{dx} = fX(x)$
+
+### Joint Distributions
+
+A lot of what we do in data analysis is gather repeated observations from joint distributions of random variables, for instance, rainfall and crop growth.  Such a two way joint distribution is called a bivariate distribution.
+
+More formally we say
+
+If X and Y are continuous random variables defined on the same sample space S, then the joint probability density function of X&Y, f_X_Y(x,y), is the surface such that for any region A of the xy-plane - note this is similar to the generalisation of the PDF but as a generalisation of the bivariate distribution:
+
+$$P((X,Y) c A) = ∫∫AfXY(x,y)dxdy$$
+Like the PDF from before, it will integrate over the entire area to 1, and the probability at any one particular point is equal to zero.
+
+*[Video on single and double integration including limit](https://www.youtube.com/watch?v=w97tr8dafGA)
+
+### Joint Distribution Example
+
+If you develop a headache you might decide to take tablets, one may be paracetamol and the other ibuprofen.  If X is the effective period of ipbuprofen and Y that of paracetamol, then
+
+$$fXY(x,y) = λ^2exp{-λ(x+y)} \; \; for x,y >= 0$$
+
+Lambda is introducting some function - it is a general formula or 'black box', it states how the output calculated in relation to the input.
+
+[Lambda Calculus](https://www.youtube.com/watch?v=eis11j_iGMs)
+[Church-Turing Hypothesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)
+[Integrals for exponential functions](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions)
+
+In this case, lambda can be considered as a constant,  so our steps would be 
+
+* remove λ i.e. let λ=1 and work just on $exp{-λ(x+y)}$  
+* integrate on Y from [0,3] (meaning x is just another constant)  
+* without Y, integrate on X from [0,3]  
+
+We could always put λ back in later.
+
+In our example, we are interested in the probability that the medicine is effective within 3 hours, however we wish to calculate the probability that the headache comes back within three hours (or less), so we have a double integration to calculate the area over which it is effective (3 hours), then the probability becomes 1 minus that area (the probability it comes back). e.g.
+
+$ \int_{0}^{3} \int_{0}^{3} λ^2exp{-λ(x+y)}dydx$    
+...calculation steps  
+$(1-exp({-3λ})^2$  
+
+The area we calculate is roughly shown as below - not there should be an area above the axis also, not just a 2d plane
+
+
+\includegraphics[width=1\linewidth]{images/headache} 
+
+The calculation steps missed out are as follows:
+
+
+\includegraphics[width=1\linewidth]{images/headachesteps} 
+
+If we change the question so that we take the paracetamol only after the ibuprofen has stopped working, what is the probability the sum of the two lengths is less than or equal to three.  The region over which we integrate over changes
+
+$ \int_{0}^{3}[ \int_{0}^{3-x} λ^2 \; exp^{-λx} \; exp^{-λy} dy]dx$  
+...  
+$1-(1 + 3λ) e^{-3λ}$  
+
+The joint probability is the result of two random variables which are independent, which means you multiply their individual distributions together.
+
+If we wanted to take one drug then the other - sequentially - we could work out the total effective length as Z.  What is FZ(z) = P(Z <= z) = P(X+Y <= z).  We take the derivative fZ(z) = F’Z(z) = $λ^2zexp(- zλ)$, for z > 0.
+
+* The study of statistics is essentially functions of random variables.  And so if we want to understand how statistics behave, we have to understand how functions of random variables behave.

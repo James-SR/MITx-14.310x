@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-09-26">
+<meta name="date" content="2018-09-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -128,6 +128,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#steph-curry-shooting-example"><i class="fa fa-check"></i><b>2.2.3</b> Steph Curry Shooting example</a></li>
 <li class="chapter" data-level="2.2.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#properties-of-the-probability-distribution"><i class="fa fa-check"></i><b>2.2.4</b> Properties of the Probability Distribution</a></li>
 <li class="chapter" data-level="2.2.5" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#discrete-versus-continuous-random-variables"><i class="fa fa-check"></i><b>2.2.5</b> Discrete versus Continuous Random Variables</a></li>
+<li class="chapter" data-level="2.2.6" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#a-note-on-terminology-and-the-uniform-distribution"><i class="fa fa-check"></i><b>2.2.6</b> A Note on Terminology and the Uniform Distribution</a></li>
+<li class="chapter" data-level="2.2.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#the-cumulative-distribution-function"><i class="fa fa-check"></i><b>2.2.7</b> The Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="2.2.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#joint-distributions"><i class="fa fa-check"></i><b>2.2.8</b> Joint Distributions</a></li>
+<li class="chapter" data-level="2.2.9" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#joint-distribution-example"><i class="fa fa-check"></i><b>2.2.9</b> Joint Distribution Example</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -505,6 +509,67 @@ Therefore, in response to the question “What is the probability that the bacte
 For example, the probability that it lives longer than 5 hours, but shorter than (5 hours + 1 nanosecond), is 2 hour^−1⋅(1 nanosecond)≃6×10−13 (using the unit conversion 3.6×1012 nanoseconds = 1 hour).<br />
 There is a probability density function f with f(5hours)=2hour^−1. The integral of f over any window of time (not only infinitesimal windows but also large windows) is the probability that the bacterium dies in that window.</p>
 </blockquote>
+</div>
+<div id="a-note-on-terminology-and-the-uniform-distribution" class="section level3">
+<h3><span class="header-section-number">2.2.6</span> A Note on Terminology and the Uniform Distribution</h3>
+<p>In both text books and online, there can be differences in both the the terminology for random variables and the notation used. As noted earlier, we tend to use PMF (or just PF) for discreet RVs, PDF for continous and sometimes just PF or the “distribution of a random variable” when talking more broadly about both. It’s perhaps best just to try and be consistent.</p>
+<p>There can also be mixed random variables. One example might be if our measuring technology is such that we cannot measure past a certain point, so our variable is continous up to that point, then all values beyond that point get truncated or grouped (it is a probability mass and is discreet) to that maximal value.</p>
+<p>There are some random variables which are simply uniform. We call such a random variable X “uniform with parameters and b” denoted as <span class="math inline">\(X \sim U[a,b]\)</span>. In such a situation, the probability of X is defined in such a way that the probability of X belonging to any subinterval of X is proportional to the length of the subinterval. Graphically, it looks like a box and similar to the last image above (the black line).</p>
+<p>To calculate the probability of some interval [c,d] in [a,b] you integrate a/(b-a) over that region, or as the PDF is flat, we can just use (d-c)/(b-a). e.g. if we have a random variable that is uniformly-distributed from 3 to 8. What is the probability that the random variable takes on a value less than or equal to 7?</p>
+<p>(7-3) / (8-3) = 4/5 = 0.8 or 80%</p>
+</div>
+<div id="the-cumulative-distribution-function" class="section level3">
+<h3><span class="header-section-number">2.2.7</span> The Cumulative Distribution Function</h3>
+<p>Both discreet and continous random variables can be expressed in the form of a continous random variable (CDF) which takes on a value between 0 and 1. It is defined as:</p>
+<p><span class="math display">\[f_X(x) = P(X &lt;= x)\]</span> Also note that <span class="math inline">\(lim_{x→-∞}\; FX(x) = 0\)</span><br />
+<span class="math inline">\(lim_{x→∞}\; FX(x) = 1\)</span></p>
+<p>So the CDF will start at zero, it may have flat parts, but it will never decrease. And as we go to the limit (x approaches infinity) then the CDF will be equal to 1.</p>
+<p>Given a CDF it would be possible to recover the PDF or PF for continous or discreet distribution respectively.</p>
+<ul>
+<li>So if you want to get the CDF for a continuous random variable at a particular point, then you integrate the PDF up to that point: <span class="math inline">\(FX (x) = P(X &lt;= x) = -∞∫ fX(x)dx\)</span></li>
+<li>If you have the CDF and you want to get the PDF i.e. you want to recover the PDF from it, then you take the derivative: <span class="math inline">\(F’X(x) = \frac{dF(x)}{dx} = fX(x)\)</span></li>
+</ul>
+</div>
+<div id="joint-distributions" class="section level3">
+<h3><span class="header-section-number">2.2.8</span> Joint Distributions</h3>
+<p>A lot of what we do in data analysis is gather repeated observations from joint distributions of random variables, for instance, rainfall and crop growth. Such a two way joint distribution is called a bivariate distribution.</p>
+<p>More formally we say</p>
+<p>If X and Y are continuous random variables defined on the same sample space S, then the joint probability density function of X&amp;Y, f_X_Y(x,y), is the surface such that for any region A of the xy-plane - note this is similar to the generalisation of the PDF but as a generalisation of the bivariate distribution:</p>
+<p><span class="math display">\[P((X,Y) c A) = ∫∫AfXY(x,y)dxdy\]</span> Like the PDF from before, it will integrate over the entire area to 1, and the probability at any one particular point is equal to zero.</p>
+<p>*<a href="https://www.youtube.com/watch?v=w97tr8dafGA">Video on single and double integration including limit</a></p>
+</div>
+<div id="joint-distribution-example" class="section level3">
+<h3><span class="header-section-number">2.2.9</span> Joint Distribution Example</h3>
+<p>If you develop a headache you might decide to take tablets, one may be paracetamol and the other ibuprofen. If X is the effective period of ipbuprofen and Y that of paracetamol, then</p>
+<p><span class="math display">\[fXY(x,y) = λ^2exp{-λ(x+y)} \; \; for x,y &gt;= 0\]</span></p>
+<p>Lambda is introducting some function - it is a general formula or ‘black box’, it states how the output calculated in relation to the input.</p>
+<p><a href="https://www.youtube.com/watch?v=eis11j_iGMs">Lambda Calculus</a> <a href="https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis">Church-Turing Hypothesis</a> <a href="https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions">Integrals for exponential functions</a></p>
+<p>In this case, lambda can be considered as a constant, so our steps would be</p>
+<ul>
+<li>remove λ i.e. let λ=1 and work just on <span class="math inline">\(exp{-λ(x+y)}\)</span><br />
+</li>
+<li>integrate on Y from [0,3] (meaning x is just another constant)<br />
+</li>
+<li>without Y, integrate on X from [0,3]</li>
+</ul>
+<p>We could always put λ back in later.</p>
+<p>In our example, we are interested in the probability that the medicine is effective within 3 hours, however we wish to calculate the probability that the headache comes back within three hours (or less), so we have a double integration to calculate the area over which it is effective (3 hours), then the probability becomes 1 minus that area (the probability it comes back). e.g.</p>
+<p>$ <em>{0}^{3} </em>{0}^{3} λ^2exp{-λ(x+y)}dydx$<br />
+…calculation steps<br />
+<span class="math inline">\((1-exp({-3λ})^2\)</span></p>
+<p>The area we calculate is roughly shown as below - not there should be an area above the axis also, not just a 2d plane</p>
+<p><img src="images/headache.png" width="100%" /></p>
+<p>The calculation steps missed out are as follows:</p>
+<p><img src="images/headachesteps.png" width="100%" /></p>
+<p>If we change the question so that we take the paracetamol only after the ibuprofen has stopped working, what is the probability the sum of the two lengths is less than or equal to three. The region over which we integrate over changes</p>
+<p>$ _{0}^{3}[ _{0}^{3-x} λ^2 ; exp^{-λx} ; exp^{-λy} dy]dx$<br />
+…<br />
+<span class="math inline">\(1-(1 + 3λ) e^{-3λ}\)</span></p>
+<p>The joint probability is the result of two random variables which are independent, which means you multiply their individual distributions together.</p>
+<p>If we wanted to take one drug then the other - sequentially - we could work out the total effective length as Z. What is FZ(z) = P(Z &lt;= z) = P(X+Y &lt;= z). We take the derivative fZ(z) = F’Z(z) = <span class="math inline">\(λ^2zexp(- zλ)\)</span>, for z &gt; 0.</p>
+<ul>
+<li>The study of statistics is essentially functions of random variables. And so if we want to understand how statistics behave, we have to understand how functions of random variables behave.</li>
+</ul>
 
 </div>
 </div>
