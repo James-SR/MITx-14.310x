@@ -17,8 +17,9 @@ output:
 
 Module Content:
 
-* [Module 2 Slides - Fundamentals of Probability](./files/M1/Lecture_Slides_02.pdf)
-* [Module 3 Slides - Random Variables, Distributions and Joint Distributions](./files/M1/Lecture_Slides_03.pdf)
+* [Section 2 Slides - Fundamentals of Probability](./files/M1/Lecture_Slides_02.pdf)
+* [Section 3 Slides - Random Variables, Distributions and Joint Distributions](./files/M1/Lecture_Slides_03.pdf)
+* [Section 4 Slides - Gathering and Collecting Data](./files/M1/Gathering_Data.pdf)
 
 
 ## Fundamentals of Probability
@@ -585,3 +586,23 @@ The joint probability is the result of two random variables which are independen
 If we wanted to take one drug then the other - sequentially - we could work out the total effective length as Z.  What is FZ(z) = P(Z <= z) = P(X+Y <= z).  We take the derivative fZ(z) = F’Z(z) = $λ^2zexp(- zλ)$, for z > 0.
 
 * The study of statistics is essentially functions of random variables.  And so if we want to understand how statistics behave, we have to understand how functions of random variables behave.
+
+## Gathering and Collecting Data
+
+We essentially have three data sources:
+
+1. Existing data libraries - collected by someone else  
+2. Collect your own  
+3. Extracting data from the internet - really this means generating data, since 1 could be from the internet  
+
+There are a lot of data sources available on the web for social sciences, including international census [IPUMS](https://international.ipums.org/international/) and others:
+ A Great resource for MIT students and others: http://libguides.mit.edu/ssds  
+ Amazon dataverse http://aws.amazon.com/public-data-sets/  
+ [ICPSR which includes published guidelines for handling identifiable information and for documenting datasets publishing data such as codebooks etc](http://www.icpsr.umich.edu/icpsrweb/ICPSR/)  
+ Plus more - [see slide 3](./files/M1/Gathering_Data.pdf)  
+
+We can also use DHS harmonised questions and datasets on [demographic and health](http://www.dhsprogram.com/).
+
+Additionally, more and more social scientists and national governments are running expriments or RTCs and then making the trial data available online after. Harvard publish their RCT findings and sometimes data in thier [RCT dataverse](https://dataverse.harvard.edu/dataverse/socialsciencercts).  The use of data collected for a specific purpose, including RCTs, is used less by secondary researchers than other datasets e.g. LFS style surveys.   Many journals now require publishing of datasets, such as the The American Economic Association journals, however these datasets are published more for transparency purposes rather than data re-use.
+
+ 
