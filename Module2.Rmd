@@ -596,6 +596,7 @@ We essentially have three data sources:
 3. Extracting data from the internet - really this means generating data, since 1 could be from the internet  
 
 There are a lot of data sources available on the web for social sciences, including international census [IPUMS](https://international.ipums.org/international/) and others:
+
  A Great resource for MIT students and others: http://libguides.mit.edu/ssds  
  Amazon dataverse http://aws.amazon.com/public-data-sets/  
  [ICPSR which includes published guidelines for handling identifiable information and for documenting datasets publishing data such as codebooks etc](http://www.icpsr.umich.edu/icpsrweb/ICPSR/)  
@@ -605,4 +606,12 @@ We can also use DHS harmonised questions and datasets on [demographic and health
 
 Additionally, more and more social scientists and national governments are running expriments or RTCs and then making the trial data available online after. Harvard publish their RCT findings and sometimes data in thier [RCT dataverse](https://dataverse.harvard.edu/dataverse/socialsciencercts).  The use of data collected for a specific purpose, including RCTs, is used less by secondary researchers than other datasets e.g. LFS style surveys.   Many journals now require publishing of datasets, such as the The American Economic Association journals, however these datasets are published more for transparency purposes rather than data re-use.
 
+There are more links to data sources on the slides.
+
+### A Google Maps API example
+
+The Google API allows search of up to 2,500 per day for free, then about £1 per 2000 after that, as a researcher therefore it is possible to do queries over multiple days to get your dataset and not be charged.
  
+USing Google Maps it is possible to get travel times from point A to point B, taking into account traffic conditions.  This data is obtained via crowdsourced Google Android users.  It is possible to get both departure time now results - API call is ?now - or depature time predictions based on historic trends - API call ?prediction.
+
+An example of the departure time now API call was the Delhi Odd-Even study - there was a restriction on driving with certain number plates on certain days.  Delhi is one of the most polluted cities in the world.  They initially implemented the policy for a 15 day period of January 1st to 15th 2016.  So a researcher collected data from the 1st January 2016 for 93 routes across Delhi, every 20 minutes, for the 15 days of the policy then 15 days after the policy.
