@@ -615,3 +615,41 @@ The Google API allows search of up to 2,500 per day for free, then about £1 per
 USing Google Maps it is possible to get travel times from point A to point B, taking into account traffic conditions.  This data is obtained via crowdsourced Google Android users.  It is possible to get both departure time now results - API call is ?now - or depature time predictions based on historic trends - API call ?prediction.
 
 An example of the departure time now API call was the Delhi Odd-Even study - there was a restriction on driving with certain number plates on certain days.  Delhi is one of the most polluted cities in the world.  They initially implemented the policy for a 15 day period of January 1st to 15th 2016.  So a researcher collected data from the 1st January 2016 for 93 routes across Delhi, every 20 minutes, for the 15 days of the policy then 15 days after the policy.
+
+### Web Scraping
+
+Data is not always available via an API, but we still have the web page.  Ellison and Ellison (as in the teacher of this class with her husband) did some research to look at the prices of used books online compared to bricks and mortar stores.  Abebooks was used as a the online data source.  We can extract = web scrape - the price data by extracting the relevant code blocks from the returned results.  We would use BeautifulSoup library in Python to pull up the search on the identified page then bring up the class - span class - element which contains the price.  BeautifulSoup is a simple Python package which allows users to find information on websites by utilizing a site’s HTML or XML code.
+
+We can also do webscraping in R.  R is fine as long as the webscraping project is not very large.  We use the package rvest which works well with the Chrome Plugin called Selector Gadget.  An example might be to get admissions data from CalPoly via a html page on their site e.g.
+
+```{r}
+# Note there was an error in the original slides and handout, whereby the code printed each object to the console, then saved all tables in to a html file
+# I believe the intention was to save each html table in to it's own object so you have three extracted html tables, rather than three
+# identical objects each containing all three tables
+
+library(rvest)
+
+CPadmissions <- read_html("https://admissions.calpoly.edu/prospective/profile.html")
+
+admission_1 <- CPadmissions %>%
+  html_nodes("table") %>%
+  .[[1]] %>%
+  html_table()
+
+admission_2 <- CPadmissions %>%
+  html_nodes("table") %>%
+  .[[2]] %>%
+  html_table()
+
+admission_3 <- CPadmissions %>%
+  html_nodes("table") %>%
+  .[[3]] %>%
+  html_table()
+
+admission_1
+admission_2
+admission_3
+
+```
+
+Comment from another student was 'if you want to get good at web scraping learn xpath and also css selectors. If you plan on working with xml data xpath is a must'!
