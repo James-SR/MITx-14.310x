@@ -652,4 +652,48 @@ admission_3
 
 ```
 
-Comment from another student was 'if you want to get good at web scraping learn xpath and also css selectors. If you plan on working with xml data xpath is a must'!
+Comment from another student was 'if you want to get good at web scraping learn xpath and also css selectors. If you plan on working with xml data xpath is a must'.
+
+Another example where we want specific items would be as follows, we find out which elements we need from the webpage (search results in this instance) using the selector gadget.
+
+```{r}
+library(rvest)
+
+link <- "https://www.abebooks.co.uk/servlet/SearchResults?sts=t&cm_sp=SearchF-_-home-_-Results&an=&tn=&kn=&isbn=2070361594"
+larecherche <- read_html(link)
+
+titlehtml <- html_nodes(larecherche, ".col-xs-8 a span")
+titletext <- html_text(titlehtml)
+
+pricehtml <- html_nodes(larecherche, ".item-price .price")
+pricetext <- html_text(pricehtml)
+
+head(pricetext)
+```
+Note that the results are in ascending order - lowest priced overall - first.  The reason that some later ones are lower price is that it does not include shipping in the results, that is a seperate item in the html.  We should therefore consider extracting the shipping item also, then combining the two data tables together to give a total price.
+
+We can also write slightly cleaner code using the pipe operator as follows.
+
+```{r}
+library(rvest)
+library(tidyr)
+library(dplyr)
+
+larecherche <- read_html(link)
+
+price <- larecherche %>%
+  html_nodes(".item-price .price") %>%
+  html_text() %>%
+  readr::parse_number()
+
+booktitle <- larecherche %>%
+  html_nodes(".col-xs-8 a span") %>%
+  html_text() %>%
+  readr::parse_character()
+
+combined <- data_frame(booktitle, 'data and time' = Sys.time(), price)
+
+head(combined)
+```
+
+If you collect your own data, sometimes in an academic environment you may need to complete a process to authenticate the data collection method.  This would be an Institutional Review Board or IRB at MIT who would check your data collection method is ethical.  Sometimes these are called more generically Human Research Board or just an ethics committee.  They may be national guidance governing ethical considerations and research involving humans.  In the UK there are the ESRC Framework for Research Ethics for instance.
