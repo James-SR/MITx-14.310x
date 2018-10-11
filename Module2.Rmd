@@ -697,3 +697,73 @@ head(combined)
 ```
 
 If you collect your own data, sometimes in an academic environment you may need to complete a process to authenticate the data collection method.  This would be an Institutional Review Board or IRB at MIT who would check your data collection method is ethical.  Sometimes these are called more generically Human Research Board or just an ethics committee.  They may be national guidance governing ethical considerations and research involving humans.  In the UK there are the ESRC Framework for Research Ethics for instance.
+
+### Human Research Subject Definitions
+
+*Research* - A systematic investigation, including research development, testing and evaluation, designed to develop or
+contribute to generalizable knowledge. **This means that Facebook or Amazon can experiment as much as they want on you unless they publish; but if you are working with them with the goal of publishing you need to go through an IRB**
+
+*Human Subject* - A living individual about whom an investigator (whether professional or student) conducting research obtains (1)
+data through intervention or interaction with the individual, or (2) identifiable private information.
+
+## Homework
+
+This is a sample of some of the homework answers.
+
+Q9
+
+```{r}
+success <- rbinom(1000, 8, 0.2)
+hist(success)
+```
+
+Q12 
+A. What is the probability of getting exactly 7 heads on 10 flips?
+
+dbinom() function gives the probability density distribution at each point.
+
+```{r}
+# Calculate the figure
+dbinom(7,10,0.65)
+
+#Plot the distribution
+x <- seq(1,10,by = 1)
+y <- dbinom(x,10,0.65)
+plot(x,y)
+```
+
+B. What is the probability of getting at most 7 heads on 10 flips?
+
+```{r}
+# Probability of getting 7 or less heads from 10 tosses of a coin
+pbinom(7,10,0.65)
+```
+
+C.What is the probability of getting at least 6 heads on 10 flips?
+
+```{r}
+# Probability of getting 6 or greater heads from 10 tosses of a coin
+pbinom(5,10,0.65, lower.tail = F)
+```
+
+Q14. - Tidy up the R code and fill in the blanks
+
+```{r}
+library(dplyr)
+library(tibble)
+library(ggplot2)
+
+binom_draws <- as_tibble(data.frame(success))
+
+estimated_pf <- binom_draws %>%
+  group_by(success) %>%
+  summarise(n=n()) %>%
+  mutate(freq = n/sum(n))
+
+ggplot(estimated_pf, aes(success, freq)) + 
+  geom_col() +
+  ylab("Estimated Density")
+```
+
+
+
