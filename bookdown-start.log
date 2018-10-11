@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.2.12)  29 SEP 2018 04:46
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.2.12)  11 OCT 2018 04:55
 entering extended mode
 **./bookdown-start.tex
 (bookdown-start.tex
@@ -993,7 +993,7 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 234.
 [7] [8] [9] [10]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 581.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 584.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1002,34 +1002,34 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmr' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 581.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 584.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 581
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 584
 .
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 581
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 584
 .
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 581.
+(Font)              <10> on input line 584.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 581.
+(Font)              <7> on input line 584.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 581.
-LaTeX Font Info:    Try loading font information for U+msa on input line 581.
+(Font)              <5> on input line 584.
+LaTeX Font Info:    Try loading font information for U+msa on input line 584.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\microtype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 581.
+LaTeX Font Info:    Try loading font information for U+msb on input line 584.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\microtype\mt-msb.cfg"
@@ -1055,12 +1055,12 @@ LITY, RANDOM VARIABLES, JOINT DISTRIBUTIONS + COLLECTING DATA
  []
 
 [16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 1154--1157
+Underfull \hbox (badness 10000) in paragraph at lines 1157--1160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1157--1160
+Underfull \hbox (badness 10000) in paragraph at lines 1160--1163
 
  []
 
@@ -1089,7 +1089,7 @@ File: images/binomial.png Graphic file (type bmp)
 Missing character: There is no Σ in font lmmi10!
 Missing character: There is no Σ in font lmmi10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 1362--1365
+Underfull \hbox (badness 10000) in paragraph at lines 1365--1368
 
  []
 
@@ -1130,12 +1130,12 @@ Missing character: There is no λ in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no λ in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no λ in font lmmi10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 1529--1531
+Underfull \hbox (badness 10000) in paragraph at lines 1532--1534
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1531--1533
+Underfull \hbox (badness 10000) in paragraph at lines 1534--1536
 
  []
 
@@ -1143,7 +1143,7 @@ Missing character: There is no λ in font [lmroman10-regular]:mapping=tex-text;!
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.1545 \$ \int
+l.1548 \$ \int
               \emph{\{0\}\^{}\{3\} \int}\{0\}\^{}\{3\} 
 Here is how much of TeX's memory you used:
  22843 strings out of 427841

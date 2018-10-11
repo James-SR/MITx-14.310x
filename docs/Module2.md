@@ -17,8 +17,9 @@ output:
 
 Module Content:
 
-* [Module 2 Slides - Fundamentals of Probability](./files/M1/Lecture_Slides_02.pdf)
-* [Module 3 Slides - Random Variables, Distributions and Joint Distributions](./files/M1/Lecture_Slides_03.pdf)
+* [Section 2 Slides - Fundamentals of Probability](./files/M1/Lecture_Slides_02.pdf)
+* [Section 3 Slides - Random Variables, Distributions and Joint Distributions](./files/M1/Lecture_Slides_03.pdf)
+* [Section 4 Slides - Gathering and Collecting Data](./files/M1/Gathering_Data.pdf)
 
 
 ## Fundamentals of Probability
@@ -592,3 +593,300 @@ The joint probability is the result of two random variables which are independen
 If we wanted to take one drug then the other - sequentially - we could work out the total effective length as Z.  What is FZ(z) = P(Z <= z) = P(X+Y <= z).  We take the derivative fZ(z) = F’Z(z) = $λ^2zexp(- zλ)$, for z > 0.
 
 * The study of statistics is essentially functions of random variables.  And so if we want to understand how statistics behave, we have to understand how functions of random variables behave.
+
+## Gathering and Collecting Data
+
+We essentially have three data sources:
+
+1. Existing data libraries - collected by someone else  
+2. Collect your own  
+3. Extracting data from the internet - really this means generating data, since 1 could be from the internet  
+
+There are a lot of data sources available on the web for social sciences, including international census [IPUMS](https://international.ipums.org/international/) and others:
+
+ A Great resource for MIT students and others: http://libguides.mit.edu/ssds  
+ Amazon dataverse http://aws.amazon.com/public-data-sets/  
+ [ICPSR which includes published guidelines for handling identifiable information and for documenting datasets publishing data such as codebooks etc](http://www.icpsr.umich.edu/icpsrweb/ICPSR/)  
+ Plus more - [see slide 3](./files/M1/Gathering_Data.pdf)  
+
+We can also use DHS harmonised questions and datasets on [demographic and health](http://www.dhsprogram.com/).
+
+Additionally, more and more social scientists and national governments are running expriments or RTCs and then making the trial data available online after. Harvard publish their RCT findings and sometimes data in thier [RCT dataverse](https://dataverse.harvard.edu/dataverse/socialsciencercts).  The use of data collected for a specific purpose, including RCTs, is used less by secondary researchers than other datasets e.g. LFS style surveys.   Many journals now require publishing of datasets, such as the The American Economic Association journals, however these datasets are published more for transparency purposes rather than data re-use.
+
+There are more links to data sources on the slides.
+
+### A Google Maps API example
+
+The Google API allows search of up to 2,500 per day for free, then about £1 per 2000 after that, as a researcher therefore it is possible to do queries over multiple days to get your dataset and not be charged.
+ 
+USing Google Maps it is possible to get travel times from point A to point B, taking into account traffic conditions.  This data is obtained via crowdsourced Google Android users.  It is possible to get both departure time now results - API call is ?now - or depature time predictions based on historic trends - API call ?prediction.
+
+An example of the departure time now API call was the Delhi Odd-Even study - there was a restriction on driving with certain number plates on certain days.  Delhi is one of the most polluted cities in the world.  They initially implemented the policy for a 15 day period of January 1st to 15th 2016.  So a researcher collected data from the 1st January 2016 for 93 routes across Delhi, every 20 minutes, for the 15 days of the policy then 15 days after the policy.
+
+### Web Scraping
+
+Data is not always available via an API, but we still have the web page.  Ellison and Ellison (as in the teacher of this class with her husband) did some research to look at the prices of used books online compared to bricks and mortar stores.  Abebooks was used as a the online data source.  We can extract = web scrape - the price data by extracting the relevant code blocks from the returned results.  We would use BeautifulSoup library in Python to pull up the search on the identified page then bring up the class - span class - element which contains the price.  BeautifulSoup is a simple Python package which allows users to find information on websites by utilizing a site’s HTML or XML code.
+
+We can also do webscraping in R.  R is fine as long as the webscraping project is not very large.  We use the package rvest which works well with the Chrome Plugin called Selector Gadget.  An example might be to get admissions data from CalPoly via a html page on their site e.g.
+
+
+```r
+# Note there was an error in the original slides and handout, whereby the code printed each object to the console, then saved all tables in to a html file
+# I believe the intention was to save each html table in to it's own object so you have three extracted html tables, rather than three
+# identical objects each containing all three tables
+
+library(rvest)
+```
+
+```
+## Loading required package: xml2
+```
+
+```r
+CPadmissions <- read_html("https://admissions.calpoly.edu/prospective/profile.html")
+
+admission_1 <- CPadmissions %>%
+  html_nodes("table") %>%
+  .[[1]] %>%
+  html_table()
+
+admission_2 <- CPadmissions %>%
+  html_nodes("table") %>%
+  .[[2]] %>%
+  html_table()
+
+admission_3 <- CPadmissions %>%
+  html_nodes("table") %>%
+  .[[3]] %>%
+  html_table()
+
+admission_1
+```
+
+```
+##                                      COLLEGE APPLIED SELECTED Target  GPA
+## 1 Agriculture, Food & Environmental Sciences   4,842    2,150    907 4.00
+## 2        Architecture & Environmental Design   2,453      929    404 4.02
+## 3                                   Business   7,105    2,271    655 4.12
+## 4                                Engineering  19,071    4,337  1,123 4.21
+## 5                               Liberal Arts   9,265    3,025    756 4.04
+## 6                      Science & Mathematics  11,923    3,753    641 4.18
+## 7                                      TOTAL  54,659   16,465  4,486 4.12
+##   ACT* SAT*
+## 1   28 1325
+## 2   29 1364
+## 3   30 1410
+## 4   32 1481
+## 5   29 1355
+## 6   31 1420
+## 7   30 1407
+```
+
+```r
+admission_2
+```
+
+```
+##                                      COLLEGE APPLIED SELECTED Target  GPA
+## 1 Agriculture, Food & Environmental Sciences   1,008      283    172 3.28
+## 2        Architecture & Environmental Design     408       86     56 3.24
+## 3                                   Business   2,323      247    118 3.56
+## 4                                Engineering   2,978      395    203 3.47
+## 5                               Liberal Arts   2,771      443    185 3.41
+## 6                      Science & Mathematics   1,434      260    117 3.41
+## 7                                      TOTAL  10,922    1,714    893 3.41
+```
+
+```r
+admission_3
+```
+
+```
+##                                      COLLEGE UNDERGRAD POSTBAC/GRAD  TOTAL
+## 1 Agriculture, Food & Environmental Sciences     4,079           78  4,157
+## 2        Architecture & Environmental Design     1,827           46  1,873
+## 3                                   Business     3,051           45  3,096
+## 4                                Engineering     5,996          292  6,288
+## 5                               Liberal Arts     3,309           92  3,401
+## 6                      Science & Mathematics     2,786          317  3,103
+## 7                                     Others        44           17     61
+## 8                                      TOTAL    21,092          887 21,979
+```
+
+Comment from another student was 'if you want to get good at web scraping learn xpath and also css selectors. If you plan on working with xml data xpath is a must'.
+
+Another example where we want specific items would be as follows, we find out which elements we need from the webpage (search results in this instance) using the selector gadget.
+
+
+```r
+library(rvest)
+
+link <- "https://www.abebooks.co.uk/servlet/SearchResults?sts=t&cm_sp=SearchF-_-home-_-Results&an=&tn=&kn=&isbn=2070361594"
+larecherche <- read_html(link)
+
+titlehtml <- html_nodes(larecherche, ".col-xs-8 a span")
+titletext <- html_text(titlehtml)
+
+pricehtml <- html_nodes(larecherche, ".item-price .price")
+pricetext <- html_text(pricehtml)
+
+head(pricetext)
+```
+
+```
+## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.84" "£ 3.03" "£ 5.47"
+```
+Note that the results are in ascending order - lowest priced overall - first.  The reason that some later ones are lower price is that it does not include shipping in the results, that is a seperate item in the html.  We should therefore consider extracting the shipping item also, then combining the two data tables together to give a total price.
+
+We can also write slightly cleaner code using the pipe operator as follows.
+
+
+```r
+library(rvest)
+library(tidyr)
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+larecherche <- read_html(link)
+
+price <- larecherche %>%
+  html_nodes(".item-price .price") %>%
+  html_text() %>%
+  readr::parse_number()
+
+booktitle <- larecherche %>%
+  html_nodes(".col-xs-8 a span") %>%
+  html_text() %>%
+  readr::parse_character()
+
+combined <- data_frame(booktitle, 'data and time' = Sys.time(), price)
+
+head(combined)
+```
+
+```
+## # A tibble: 6 x 3
+##   booktitle                                      `data and time`     price
+##   <chr>                                          <dttm>              <dbl>
+## 1 Le temps retrouve                              2018-10-11 04:55:35  2.59
+## 2 Le temps retrouve                              2018-10-11 04:55:35  3.3 
+## 3 Le temps retrouve                              2018-10-11 04:55:35  0.76
+## 4 Le temps retrouve                              2018-10-11 04:55:35  0.84
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:35  3.03
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:35  5.47
+```
+
+If you collect your own data, sometimes in an academic environment you may need to complete a process to authenticate the data collection method.  This would be an Institutional Review Board or IRB at MIT who would check your data collection method is ethical.  Sometimes these are called more generically Human Research Board or just an ethics committee.  They may be national guidance governing ethical considerations and research involving humans.  In the UK there are the ESRC Framework for Research Ethics for instance.
+
+### Human Research Subject Definitions
+
+*Research* - A systematic investigation, including research development, testing and evaluation, designed to develop or
+contribute to generalizable knowledge. **This means that Facebook or Amazon can experiment as much as they want on you unless they publish; but if you are working with them with the goal of publishing you need to go through an IRB**
+
+*Human Subject* - A living individual about whom an investigator (whether professional or student) conducting research obtains (1)
+data through intervention or interaction with the individual, or (2) identifiable private information.
+
+## Homework
+
+This is a sample of some of the homework answers.
+
+Q9
+
+
+```r
+success <- rbinom(1000, 8, 0.2)
+hist(success)
+```
+
+![](Module2_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
+Q12 
+A. What is the probability of getting exactly 7 heads on 10 flips?
+
+dbinom() function gives the probability density distribution at each point.
+
+
+```r
+# Calculate the figure
+dbinom(7,10,0.65)
+```
+
+```
+## [1] 0.2522196
+```
+
+```r
+#Plot the distribution
+x <- seq(1,10,by = 1)
+y <- dbinom(x,10,0.65)
+plot(x,y)
+```
+
+![](Module2_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+
+B. What is the probability of getting at most 7 heads on 10 flips?
+
+
+```r
+# Probability of getting 7 or less heads from 10 tosses of a coin
+pbinom(7,10,0.65)
+```
+
+```
+## [1] 0.7383926
+```
+
+C.What is the probability of getting at least 6 heads on 10 flips?
+
+
+```r
+# Probability of getting 6 or greater heads from 10 tosses of a coin
+pbinom(5,10,0.65, lower.tail = F)
+```
+
+```
+## [1] 0.7514955
+```
+
+Q14. - Tidy up the R code and fill in the blanks
+
+
+```r
+library(dplyr)
+library(tibble)
+library(ggplot2)
+
+binom_draws <- as_tibble(data.frame(success))
+
+estimated_pf <- binom_draws %>%
+  group_by(success) %>%
+  summarise(n=n()) %>%
+  mutate(freq = n/sum(n))
+
+ggplot(estimated_pf, aes(success, freq)) + 
+  geom_col() +
+  ylab("Estimated Density")
+```
+
+![](Module2_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+
+
+

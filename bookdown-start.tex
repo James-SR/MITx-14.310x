@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-09-29}
+    \date{2018-10-11}
 
 \usepackage{booktabs}
 
@@ -549,11 +549,14 @@ Module Content:
 \begin{itemize}
 \tightlist
 \item
-  \href{./files/M1/Lecture_Slides_02.pdf}{Module 2 Slides - Fundamentals
-  of Probability}
+  \href{./files/M1/Lecture_Slides_02.pdf}{Section 2 Slides -
+  Fundamentals of Probability}
 \item
-  \href{./files/M1/Lecture_Slides_03.pdf}{Module 3 Slides - Random
+  \href{./files/M1/Lecture_Slides_03.pdf}{Section 3 Slides - Random
   Variables, Distributions and Joint Distributions}
+\item
+  \href{./files/M1/Gathering_Data.pdf}{Section 4 Slides - Gathering and
+  Collecting Data}
 \end{itemize}
 
 \section{Fundamentals of Probability}\label{fundamentals-of-probability}
@@ -1582,6 +1585,390 @@ F'Z(z) = \(λ^2zexp(- zλ)\), for z \textgreater{} 0.
   And so if we want to understand how statistics behave, we have to
   understand how functions of random variables behave.
 \end{itemize}
+
+\section{Gathering and Collecting
+Data}\label{gathering-and-collecting-data}
+
+We essentially have three data sources:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Existing data libraries - collected by someone else\\
+\item
+  Collect your own\\
+\item
+  Extracting data from the internet - really this means generating data,
+  since 1 could be from the internet
+\end{enumerate}
+
+There are a lot of data sources available on the web for social
+sciences, including international census
+\href{https://international.ipums.org/international/}{IPUMS} and others:
+
+A Great resource for MIT students and others:
+\url{http://libguides.mit.edu/ssds}\\
+Amazon dataverse \url{http://aws.amazon.com/public-data-sets/}\\
+\href{http://www.icpsr.umich.edu/icpsrweb/ICPSR/}{ICPSR which includes
+published guidelines for handling identifiable information and for
+documenting datasets publishing data such as codebooks etc}\\
+Plus more - \href{./files/M1/Gathering_Data.pdf}{see slide 3}
+
+We can also use DHS harmonised questions and datasets on
+\href{http://www.dhsprogram.com/}{demographic and health}.
+
+Additionally, more and more social scientists and national governments
+are running expriments or RTCs and then making the trial data available
+online after. Harvard publish their RCT findings and sometimes data in
+thier
+\href{https://dataverse.harvard.edu/dataverse/socialsciencercts}{RCT
+dataverse}. The use of data collected for a specific purpose, including
+RCTs, is used less by secondary researchers than other datasets e.g.~LFS
+style surveys. Many journals now require publishing of datasets, such as
+the The American Economic Association journals, however these datasets
+are published more for transparency purposes rather than data re-use.
+
+There are more links to data sources on the slides.
+
+\subsection{A Google Maps API example}\label{a-google-maps-api-example}
+
+The Google API allows search of up to 2,500 per day for free, then about
+£1 per 2000 after that, as a researcher therefore it is possible to do
+queries over multiple days to get your dataset and not be charged.
+
+USing Google Maps it is possible to get travel times from point A to
+point B, taking into account traffic conditions. This data is obtained
+via crowdsourced Google Android users. It is possible to get both
+departure time now results - API call is ?now - or depature time
+predictions based on historic trends - API call ?prediction.
+
+An example of the departure time now API call was the Delhi Odd-Even
+study - there was a restriction on driving with certain number plates on
+certain days. Delhi is one of the most polluted cities in the world.
+They initially implemented the policy for a 15 day period of January 1st
+to 15th 2016. So a researcher collected data from the 1st January 2016
+for 93 routes across Delhi, every 20 minutes, for the 15 days of the
+policy then 15 days after the policy.
+
+\subsection{Web Scraping}\label{web-scraping}
+
+Data is not always available via an API, but we still have the web page.
+Ellison and Ellison (as in the teacher of this class with her husband)
+did some research to look at the prices of used books online compared to
+bricks and mortar stores. Abebooks was used as a the online data source.
+We can extract = web scrape - the price data by extracting the relevant
+code blocks from the returned results. We would use BeautifulSoup
+library in Python to pull up the search on the identified page then
+bring up the class - span class - element which contains the price.
+BeautifulSoup is a simple Python package which allows users to find
+information on websites by utilizing a site's HTML or XML code.
+
+We can also do webscraping in R. R is fine as long as the webscraping
+project is not very large. We use the package rvest which works well
+with the Chrome Plugin called Selector Gadget. An example might be to
+get admissions data from CalPoly via a html page on their site e.g.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Note there was an error in the original slides and handout, whereby the code printed each object to the console, then saved all tables in to a html file}
+\CommentTok{# I believe the intention was to save each html table in to it's own object so you have three extracted html tables, rather than three}
+\CommentTok{# identical objects each containing all three tables}
+
+\KeywordTok{library}\NormalTok{(rvest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: xml2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CPadmissions <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(}\StringTok{"https://admissions.calpoly.edu/prospective/profile.html"}\NormalTok{)}
+
+\NormalTok{admission_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\NormalTok{CPadmissions }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{"table"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{.[[}\DecValTok{1}\NormalTok{]] }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_table}\NormalTok{()}
+
+\NormalTok{admission_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\NormalTok{CPadmissions }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{"table"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{.[[}\DecValTok{2}\NormalTok{]] }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_table}\NormalTok{()}
+
+\NormalTok{admission_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\NormalTok{CPadmissions }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{"table"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{.[[}\DecValTok{3}\NormalTok{]] }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_table}\NormalTok{()}
+
+\NormalTok{admission_}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                      COLLEGE APPLIED SELECTED Target  GPA
+## 1 Agriculture, Food & Environmental Sciences   4,842    2,150    907 4.00
+## 2        Architecture & Environmental Design   2,453      929    404 4.02
+## 3                                   Business   7,105    2,271    655 4.12
+## 4                                Engineering  19,071    4,337  1,123 4.21
+## 5                               Liberal Arts   9,265    3,025    756 4.04
+## 6                      Science & Mathematics  11,923    3,753    641 4.18
+## 7                                      TOTAL  54,659   16,465  4,486 4.12
+##   ACT* SAT*
+## 1   28 1325
+## 2   29 1364
+## 3   30 1410
+## 4   32 1481
+## 5   29 1355
+## 6   31 1420
+## 7   30 1407
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{admission_}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                      COLLEGE APPLIED SELECTED Target  GPA
+## 1 Agriculture, Food & Environmental Sciences   1,008      283    172 3.28
+## 2        Architecture & Environmental Design     408       86     56 3.24
+## 3                                   Business   2,323      247    118 3.56
+## 4                                Engineering   2,978      395    203 3.47
+## 5                               Liberal Arts   2,771      443    185 3.41
+## 6                      Science & Mathematics   1,434      260    117 3.41
+## 7                                      TOTAL  10,922    1,714    893 3.41
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{admission_}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                      COLLEGE UNDERGRAD POSTBAC/GRAD  TOTAL
+## 1 Agriculture, Food & Environmental Sciences     4,079           78  4,157
+## 2        Architecture & Environmental Design     1,827           46  1,873
+## 3                                   Business     3,051           45  3,096
+## 4                                Engineering     5,996          292  6,288
+## 5                               Liberal Arts     3,309           92  3,401
+## 6                      Science & Mathematics     2,786          317  3,103
+## 7                                     Others        44           17     61
+## 8                                      TOTAL    21,092          887 21,979
+\end{verbatim}
+
+Comment from another student was `if you want to get good at web
+scraping learn xpath and also css selectors. If you plan on working with
+xml data xpath is a must'.
+
+Another example where we want specific items would be as follows, we
+find out which elements we need from the webpage (search results in this
+instance) using the selector gadget.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rvest)}
+
+\NormalTok{link <-}\StringTok{ "https://www.abebooks.co.uk/servlet/SearchResults?sts=t&cm_sp=SearchF-_-home-_-Results&an=&tn=&kn=&isbn=2070361594"}
+\NormalTok{larecherche <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(link)}
+
+\NormalTok{titlehtml <-}\StringTok{ }\KeywordTok{html_nodes}\NormalTok{(larecherche, }\StringTok{".col-xs-8 a span"}\NormalTok{)}
+\NormalTok{titletext <-}\StringTok{ }\KeywordTok{html_text}\NormalTok{(titlehtml)}
+
+\NormalTok{pricehtml <-}\StringTok{ }\KeywordTok{html_nodes}\NormalTok{(larecherche, }\StringTok{".item-price .price"}\NormalTok{)}
+\NormalTok{pricetext <-}\StringTok{ }\KeywordTok{html_text}\NormalTok{(pricehtml)}
+
+\KeywordTok{head}\NormalTok{(pricetext)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.84" "£ 3.03" "£ 5.47"
+\end{verbatim}
+
+Note that the results are in ascending order - lowest priced overall -
+first. The reason that some later ones are lower price is that it does
+not include shipping in the results, that is a seperate item in the
+html. We should therefore consider extracting the shipping item also,
+then combining the two data tables together to give a total price.
+
+We can also write slightly cleaner code using the pipe operator as
+follows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rvest)}
+\KeywordTok{library}\NormalTok{(tidyr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{larecherche <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(link)}
+
+\NormalTok{price <-}\StringTok{ }\NormalTok{larecherche }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{".item-price .price"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_text}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{readr}\OperatorTok{::}\KeywordTok{parse_number}\NormalTok{()}
+
+\NormalTok{booktitle <-}\StringTok{ }\NormalTok{larecherche }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{".col-xs-8 a span"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_text}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{readr}\OperatorTok{::}\KeywordTok{parse_character}\NormalTok{()}
+
+\NormalTok{combined <-}\StringTok{ }\KeywordTok{data_frame}\NormalTok{(booktitle, }\StringTok{'data and time'}\NormalTok{ =}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{(), price)}
+
+\KeywordTok{head}\NormalTok{(combined)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   booktitle                                      `data and time`     price
+##   <chr>                                          <dttm>              <dbl>
+## 1 Le temps retrouve                              2018-10-11 04:55:35  2.59
+## 2 Le temps retrouve                              2018-10-11 04:55:35  3.3 
+## 3 Le temps retrouve                              2018-10-11 04:55:35  0.76
+## 4 Le temps retrouve                              2018-10-11 04:55:35  0.84
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:35  3.03
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:35  5.47
+\end{verbatim}
+
+If you collect your own data, sometimes in an academic environment you
+may need to complete a process to authenticate the data collection
+method. This would be an Institutional Review Board or IRB at MIT who
+would check your data collection method is ethical. Sometimes these are
+called more generically Human Research Board or just an ethics
+committee. They may be national guidance governing ethical
+considerations and research involving humans. In the UK there are the
+ESRC Framework for Research Ethics for instance.
+
+\subsection{Human Research Subject
+Definitions}\label{human-research-subject-definitions}
+
+\emph{Research} - A systematic investigation, including research
+development, testing and evaluation, designed to develop or contribute
+to generalizable knowledge. \textbf{This means that Facebook or Amazon
+can experiment as much as they want on you unless they publish; but if
+you are working with them with the goal of publishing you need to go
+through an IRB}
+
+\emph{Human Subject} - A living individual about whom an investigator
+(whether professional or student) conducting research obtains (1) data
+through intervention or interaction with the individual, or (2)
+identifiable private information.
+
+\section{Homework}\label{homework}
+
+This is a sample of some of the homework answers.
+
+Q9
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{success <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\DecValTok{8}\NormalTok{, }\FloatTok{0.2}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(success)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module2_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+Q12 A. What is the probability of getting exactly 7 heads on 10 flips?
+
+dbinom() function gives the probability density distribution at each
+point.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate the figure}
+\KeywordTok{dbinom}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{10}\NormalTok{,}\FloatTok{0.65}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2522196
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Plot the distribution}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DataTypeTok{by =} \DecValTok{1}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{dbinom}\NormalTok{(x,}\DecValTok{10}\NormalTok{,}\FloatTok{0.65}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module2_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+B. What is the probability of getting at most 7 heads on 10 flips?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Probability of getting 7 or less heads from 10 tosses of a coin}
+\KeywordTok{pbinom}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{10}\NormalTok{,}\FloatTok{0.65}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7383926
+\end{verbatim}
+
+C.What is the probability of getting at least 6 heads on 10 flips?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Probability of getting 6 or greater heads from 10 tosses of a coin}
+\KeywordTok{pbinom}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\FloatTok{0.65}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7514955
+\end{verbatim}
+
+Q14. - Tidy up the R code and fill in the blanks
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(tibble)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{binom_draws <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(success))}
+
+\NormalTok{estimated_pf <-}\StringTok{ }\NormalTok{binom_draws }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(success) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n=}\KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{freq =}\NormalTok{ n}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(n))}
+
+\KeywordTok{ggplot}\NormalTok{(estimated_pf, }\KeywordTok{aes}\NormalTok{(success, freq)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Estimated Density"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module2_files/figure-latex/unnamed-chunk-9-1.pdf}
 
 \bibliography{book.bib}
 
