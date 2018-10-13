@@ -1,0 +1,22 @@
+# Module 3: Describing Data, Joint and Conditional Distributions of Random Variables
+***
+
+
+**Module Sections:**
+
+* Summarizing and Describing Data
+* Joint, Marginal, and Conditional Distributions
+* R Tutorials: Basic Functions
+* Module 3: Homework 
+
+Module Content:
+
+* [Summarizing and Describing Data Slides](./files/M3/SummarizingandDescribingDataSlides.pdf)
+
+
+
+## Summarizing and Describing Data
+
+The goal of visualisation is either EDA for yourself or for conveying a message to other people.  The course uses ggplot in both instances, this module focuses more on EDA for yourself. 
+
+One common way of initially looking at the data is to use a histogram, which provides a rough estimate of the probability distribution function (PDF) of a continous variable.  We can have right open or closed sets when creating histogram bins $[a_i,b_i), [a_{i+1},b_{i+1})$ see this video for a [discussion on binning](https://youtu.be/kREoWbByNZs).
