@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-10-11}
+    \date{2018-10-14}
 
 \usepackage{booktabs}
 
@@ -1786,7 +1786,7 @@ instance) using the selector gadget.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.84" "£ 3.03" "£ 5.47"
+## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.79" "£ 3.04" "£ 5.51"
 \end{verbatim}
 
 Note that the results are in ascending order - lowest priced overall -
@@ -1847,12 +1847,12 @@ follows.
 ## # A tibble: 6 x 3
 ##   booktitle                                      `data and time`     price
 ##   <chr>                                          <dttm>              <dbl>
-## 1 Le temps retrouve                              2018-10-11 04:55:35  2.59
-## 2 Le temps retrouve                              2018-10-11 04:55:35  3.3 
-## 3 Le temps retrouve                              2018-10-11 04:55:35  0.76
-## 4 Le temps retrouve                              2018-10-11 04:55:35  0.84
-## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:35  3.03
-## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:35  5.47
+## 1 Le temps retrouve                              2018-10-14 06:14:39 2.59 
+## 2 Le temps retrouve                              2018-10-14 06:14:39 3.3  
+## 3 Le temps retrouve                              2018-10-14 06:14:39 0.76 
+## 4 Le temps retrouve                              2018-10-14 06:14:39 0.790
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-14 06:14:39 3.04 
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-14 06:14:39 5.51
 \end{verbatim}
 
 If you collect your own data, sometimes in an academic environment you
@@ -1969,6 +1969,174 @@ Q14. - Tidy up the R code and fill in the blanks
 \end{Shaded}
 
 \includegraphics{Module2_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\chapter{Module 3: Describing Data, Joint and Conditional Distributions
+of Random
+Variables}\label{module-3-describing-data-joint-and-conditional-distributions-of-random-variables}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Module Sections:}
+
+\begin{itemize}
+\tightlist
+\item
+  Summarizing and Describing Data
+\item
+  Joint, Marginal, and Conditional Distributions
+\item
+  R Tutorials: Basic Functions
+\item
+  Module 3: Homework
+\end{itemize}
+
+Module Content:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{./files/M3/SummarizingandDescribingDataSlides.pdf}{Summarizing
+  and Describing Data Slides}
+\end{itemize}
+
+\section{Summarizing and Describing
+Data}\label{summarizing-and-describing-data}
+
+The goal of visualisation is either EDA for yourself or for conveying a
+message to other people. The course uses ggplot in both instances, this
+module focuses more on EDA for yourself.
+
+One common way of initially looking at the data is to use a histogram,
+which provides a rough estimate of the probability distribution function
+(PDF) of a continous variable. We can have right open or closed sets
+when creating histogram bins \([a_i,b_i), [a_{i+1},b_{i+1})\) see this
+video for a \href{https://youtu.be/kREoWbByNZs}{discussion on binning}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{require}\NormalTok{(cowplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: cowplot
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'cowplot'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     ggsave
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages ------------------ tidyverse 1.2.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v tibble  1.4.2     v purrr   0.2.5
+## v tidyr   0.8.1     v dplyr   0.7.6
+## v readr   1.1.1     v stringr 1.3.1
+## v tibble  1.4.2     v forcats 0.3.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts --------------------- tidyverse_conflicts() --
+## x dplyr::filter()   masks stats::filter()
+## x cowplot::ggsave() masks ggplot2::ggsave()
+## x dplyr::lag()      masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bihar_data <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"./files/M3/Bihar.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   personid = col_integer(),
+##   female = col_integer(),
+##   adult = col_integer(),
+##   age = col_double(),
+##   height_cm = col_double(),
+##   weight_kg = col_double()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# keep the females}
+\NormalTok{bihar_adult_females <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(bihar_data, adult }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, female }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# take a look at our data}
+\KeywordTok{head}\NormalTok{(bihar_adult_females, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 6
+##    personid female adult   age height_cm weight_kg
+##       <int>  <int> <int> <dbl>     <dbl>     <dbl>
+##  1 11010103      1     1    28      150.      37.7
+##  2 11010202      1     1    30      140.      57.3
+##  3 11010207      1     1    35      148.      38.9
+##  4 11010302      1     1    48      145.      35.7
+##  5 11010303      1     1    22       NA       NA  
+##  6 11010306      1     1    18       NA       NA  
+##  7 11010308      1     1    28      145.      42.4
+##  8 11010402      1     1    58      156.      51.1
+##  9 11010404      1     1    36      156.      50.7
+## 10 11010407      1     1    55      156.      47.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot it}
+\KeywordTok{ggplot}\NormalTok{(bihar_adult_females, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 1432 rows containing non-finite values (stat_bin).
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# not very attractive, so lets tidy it up - there are some outliers close to 0 and 200 cm}
+\NormalTok{bihar_adult_females_trunc <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(bihar_adult_females, height_cm }\OperatorTok{>}\StringTok{ }\DecValTok{120}\NormalTok{, height_cm }\OperatorTok{<}\StringTok{ }\DecValTok{200}\NormalTok{)}
+
+\CommentTok{# Plot again with colour and labels}
+\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Height in centimeters, Bihar Females (truncated)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-1-2.pdf}
 
 \bibliography{book.bib}
 

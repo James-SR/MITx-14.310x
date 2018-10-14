@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-10-11">
+<meta name="date" content="2018-10-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="module-1-introduction-to-the-course.html">
-
+<link rel="next" href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -139,6 +139,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#human-research-subject-definitions"><i class="fa fa-check"></i><b>2.3.3</b> Human Research Subject Definitions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#homework"><i class="fa fa-check"></i><b>2.4</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><i class="fa fa-check"></i><b>3</b> Module 3: Describing Data, Joint and Conditional Distributions of Random Variables</a><ul>
+<li class="chapter" data-level="3.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#summarizing-and-describing-data"><i class="fa fa-check"></i><b>3.1</b> Summarizing and Describing Data</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -680,7 +683,7 @@ pricehtml &lt;-<span class="st"> </span><span class="kw">html_nodes</span>(larec
 pricetext &lt;-<span class="st"> </span><span class="kw">html_text</span>(pricehtml)
 
 <span class="kw">head</span>(pricetext)</code></pre></div>
-<pre><code>## [1] &quot;£ 2.59&quot; &quot;£ 3.30&quot; &quot;£ 0.76&quot; &quot;£ 0.84&quot; &quot;£ 3.03&quot; &quot;£ 5.47&quot;</code></pre>
+<pre><code>## [1] &quot;£ 2.59&quot; &quot;£ 3.30&quot; &quot;£ 0.76&quot; &quot;£ 0.79&quot; &quot;£ 3.04&quot; &quot;£ 5.51&quot;</code></pre>
 <p>Note that the results are in ascending order - lowest priced overall - first. The reason that some later ones are lower price is that it does not include shipping in the results, that is a seperate item in the html. We should therefore consider extracting the shipping item also, then combining the two data tables together to give a total price.</p>
 <p>We can also write slightly cleaner code using the pipe operator as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
@@ -712,12 +715,12 @@ combined &lt;-<span class="st"> </span><span class="kw">data_frame</span>(bookti
 <pre><code>## # A tibble: 6 x 3
 ##   booktitle                                      `data and time`     price
 ##   &lt;chr&gt;                                          &lt;dttm&gt;              &lt;dbl&gt;
-## 1 Le temps retrouve                              2018-10-11 04:55:25  2.59
-## 2 Le temps retrouve                              2018-10-11 04:55:25  3.3 
-## 3 Le temps retrouve                              2018-10-11 04:55:25  0.76
-## 4 Le temps retrouve                              2018-10-11 04:55:25  0.84
-## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:25  3.03
-## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-11 04:55:25  5.47</code></pre>
+## 1 Le temps retrouve                              2018-10-14 06:14:26 2.59 
+## 2 Le temps retrouve                              2018-10-14 06:14:26 3.3  
+## 3 Le temps retrouve                              2018-10-14 06:14:26 0.76 
+## 4 Le temps retrouve                              2018-10-14 06:14:26 0.790
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-14 06:14:26 3.04 
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-14 06:14:26 5.51</code></pre>
 <p>If you collect your own data, sometimes in an academic environment you may need to complete a process to authenticate the data collection method. This would be an Institutional Review Board or IRB at MIT who would check your data collection method is ethical. Sometimes these are called more generically Human Research Board or just an ethics committee. They may be national guidance governing ethical considerations and research involving humans. In the UK there are the ESRC Framework for Research Ethics for instance.</p>
 </div>
 <div id="human-research-subject-definitions" class="section level3">
@@ -775,8 +778,8 @@ estimated_pf &lt;-<span class="st"> </span>binom_draws <span class="op">%&gt;%</
           </div>
         </div>
       </div>
-<a href="module-1-introduction-to-the-course.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="module-1-introduction-to-the-course.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
