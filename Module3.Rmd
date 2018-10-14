@@ -20,3 +20,31 @@ Module Content:
 The goal of visualisation is either EDA for yourself or for conveying a message to other people.  The course uses ggplot in both instances, this module focuses more on EDA for yourself. 
 
 One common way of initially looking at the data is to use a histogram, which provides a rough estimate of the probability distribution function (PDF) of a continous variable.  We can have right open or closed sets when creating histogram bins $[a_i,b_i), [a_{i+1},b_{i+1})$ see this video for a [discussion on binning](https://youtu.be/kREoWbByNZs).
+
+```{r}
+library(ggplot2)
+require(cowplot)
+library(tidyverse)
+
+bihar_data <- read_csv("./files/M3/Bihar.csv")
+
+# keep the females
+bihar_adult_females <- dplyr::filter(bihar_data, adult == 1, female == 1)
+
+# take a look at our data
+head(bihar_adult_females, 10)
+
+# plot it
+ggplot(bihar_adult_females, aes(height_cm)) + 
+  geom_histogram()
+
+# not very attractive, so lets tidy it up - there are some outliers close to 0 and 200 cm
+bihar_adult_females_trunc <- dplyr::filter(bihar_adult_females, height_cm > 120, height_cm < 200)
+
+# Plot again with colour and labels
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "blue", color = "darkblue") + 
+  xlab("Height in centimeters, Bihar Females (truncated)")
+
+```
+
