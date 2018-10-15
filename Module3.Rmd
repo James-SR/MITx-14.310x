@@ -48,3 +48,35 @@ ggplot(bihar_adult_females_trunc, aes(height_cm)) +
 
 ```
 
+We could also adjust the bin width at this point if we wanted to.  The width of the bins depends in part on the volume of data you have, for instance, if you have just 50 observations, picking bin widths of 1 cm might be too much - you can't be sure your data is reliable, there may be quite a lot of noise.  Conversely, if you have a million observations, 1 cm bin widths might be fine.
+
+```{r}
+Bihar1 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "blue",color = "darkblue", binwidth = 5) +
+  xlab("binwidth = 5")
+
+Bihar2 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "blue",color = "darkblue", binwidth = 10) +
+  xlab("binwidth = 10")
+
+Bihar3 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "blue",color = "darkblue", binwidth = 20) +
+  xlab("binwidth = 20")
+
+Bihar4 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "blue",color = "darkblue", binwidth = 50) +
+  xlab("binwidth = 50")
+
+plot_grid(Bihar1, Bihar2, Bihar3, Bihar4, labels="female height in Bihar", hjust = -1, vjust = 1)
+# we could save the results to an image or a file using 
+# ggsave("folder/bihargrid.pdf")
+```
+
+To give a better and smoother representation of the data, we can use a kernel to visualise the data.  It can be thought of as a smoothed histogram.  
+
+```{r}
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  geom_density(kernel = "gaussian", aes(height_cm))
+```
+
