@@ -80,3 +80,26 @@ ggplot(bihar_adult_females_trunc, aes(height_cm)) +
   geom_density(kernel = "gaussian", aes(height_cm))
 ```
 
+In practice, it helps us to calculate our probability density function of the continous variable.  As we previously saw, we cannot find the probability that a particular value of a continous variable is a particular value - it integrates to zero on a infinitley small scale.  Intead, we can calculate the probability that it takes on some particular range of values.  This is where the Kernel Density Estimation or KDE comes in.  
+
+We can draw a KDE with default parameters - a Gaussian distribution and auto bin width and no weights - using the density function.  The autobin width are based on Silverman's rule, which the R help notes
+
+> bw.nrd0 implements a rule-of-thumb for choosing the bandwidth of a Gaussian kernel density estimator. It defaults to 0.9 times the minimum of the standard deviation and the interquartile range divided by 1.34 times the sample size to the negative one-fifth power (= Silverman's ‘rule of thumb’, Silverman (1986, page 48, eqn (3.31))) unless the quartiles coincide when a positive result will be guaranteed.
+
+```{r}
+kde = density(bihar_adult_females_trunc$height_cm)
+plot(kde)
+```
+
+If we were just calculating a density, then the mathmatical calulcation would be different than a KDE.  KDE is like a weighted distribution, based on the individual points.  A KDE has two paramers, K and h
+
+* K = kernel aka the distribution
+* h = smoothing parameter aka bin width
+
+There are a number of different kernels, the Guaussian belongs to the un-bounded which means each event in the study region contributes to the estimated density at a specific location.  This determines the overall shape of the curve around each of our observations x.
+
+The smoothing parameter helps to determine at each particular point x, how much other observations around x contribute i.e. how much they are weighted.  A higher bandwidth will result in a smoother curve, but may lead to the curve not fitting the underlying data well.  The smoothing parameter also helps to determine the shape, by determining how far points contribute to the distribution's peak - higher bandwidth results in points further away having an influence on the PDF and results in a flatter curve.  A lower bandwidth conversely means that only points close to our particular observation x will play a part i.e. be weighted, so will result in a peaked curve around our particular x value.
+
+$$\hat{f} ^{Kernel} (x) = \left. {\frac{1}{Nb} \sum_{i=1}^{N} K (\frac{x - x_i}{b})} \right.$$
+* [Kernel Density Estimation video](https://www.youtube.com/watch?v=gPWsDh59zdo)
+* [List of Kernels in Statistics](https://en.wikipedia.org/wiki/Kernel_(statistics)
