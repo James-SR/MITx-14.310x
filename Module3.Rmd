@@ -102,4 +102,60 @@ The smoothing parameter helps to determine at each particular point x, how much 
 
 $$\hat{f} ^{Kernel} (x) = \left. {\frac{1}{Nb} \sum_{i=1}^{N} K (\frac{x - x_i}{b})} \right.$$
 * [Kernel Density Estimation video](https://www.youtube.com/watch?v=gPWsDh59zdo)
-* [List of Kernels in Statistics](https://en.wikipedia.org/wiki/Kernel_(statistics)
+* [List of Kernels in Statistics](https://en.wikipedia.org/wiki/Kernel_(statistics))
+
+Two of the more common Kernels are the Epanechnikov and Normal distribution, with the former being bounded (see second link above). If the bandwidth is too wide, we will not fit the data well and introduce bias.  If the bandwidth is too narrow, we overfit our data.  The goal is to be somewhere in the middle and to minimise the MSE.
+
+* [Lecture on Bias-Variance Tradeoff, from Caltech EdX course](https://www.youtube.com/watch?v=zrEyxfl2-a8)
+
+```{r}
+Bihar5 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "gaussian", bw = 1, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("bandwidth = 1")
+
+Bihar6 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "gaussian", bw = 5, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("bandwidth = 5")
+
+Bihar7 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "gaussian", bw = 10, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("bandwidth = 10")
+
+Bihar8 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "gaussian", bw = 20, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("bandwidth = 20")
+
+plot_grid(Bihar5, Bihar6, Bihar7, Bihar8, labels="female height in Bihar", hjust = -1, vjust = 1)
+```
+
+The kernel choice doesn't affect the shape of the curve as much as the bandwith.  The following four charts all have the same bandwidth, but different kernels. As previously noted, gaussian is unbounded meaning each point has some weight or contribution to the curve, where as the others are bounded meaning there is a limit as to which points contribute i.e. it has a finite interval.  Rectangular and triangular are the two more unusual shapes compared to the other kernels available.
+
+```{r}
+Bihar9 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "cosine", bw = 20, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("kernel = cosine")
+
+Bihar10 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "epanechnikov", bw = 20, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("kernel = epanechnikov")
+
+Bihar11 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "rectangular", bw = 20, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("kernel = rectangular")
+
+Bihar12 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
+  stat_density(kernel = "triangular", bw = 20, aes(height_cm), fill = NA, color = "darkblue") +
+  xlab("kernel = triangular")
+
+plot_grid(Bihar9, Bihar10, Bihar11, Bihar12, labels="Bandwidth 20, varying kernel", hjust = -1, vjust = 1)
+```
+
+
