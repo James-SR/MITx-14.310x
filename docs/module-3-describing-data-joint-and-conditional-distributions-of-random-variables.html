@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-10-14">
+<meta name="date" content="2018-10-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -242,6 +242,113 @@ bihar_adult_females_trunc &lt;-<span class="st"> </span>dplyr<span class="op">::
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height in centimeters, Bihar Females (truncated)&quot;</span>)</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Module3_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p>We could also adjust the bin width at this point if we wanted to. The width of the bins depends in part on the volume of data you have, for instance, if you have just 50 observations, picking bin widths of 1 cm might be too much - you can’t be sure your data is reliable, there may be quite a lot of noise. Conversely, if you have a million observations, 1 cm bin widths might be fine.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Bihar1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;binwidth = 5&quot;</span>)
+
+Bihar2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">10</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;binwidth = 10&quot;</span>)
+
+Bihar3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">20</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;binwidth = 20&quot;</span>)
+
+Bihar4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">50</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;binwidth = 50&quot;</span>)
+
+<span class="kw">plot_grid</span>(Bihar1, Bihar2, Bihar3, Bihar4, <span class="dt">labels=</span><span class="st">&quot;female height in Bihar&quot;</span>, <span class="dt">hjust =</span> <span class="op">-</span><span class="dv">1</span>, <span class="dt">vjust =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="Module3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we could save the results to an image or a file using </span>
+<span class="co"># ggsave(&quot;folder/bihargrid.pdf&quot;)</span></code></pre></div>
+<p>To give a better and smoother representation of the data, we can use a kernel to visualise the data. It can be thought of as a smoothed histogram.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="kw">aes</span>(height_cm))</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Module3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>In practice, it helps us to calculate our probability density function of the continous variable. As we previously saw, we cannot find the probability that a particular value of a continous variable is a particular value - it integrates to zero on a infinitley small scale. Intead, we can calculate the probability that it takes on some particular range of values. This is where the Kernel Density Estimation or KDE comes in.</p>
+<p>We can draw a KDE with default parameters - a Gaussian distribution and auto bin width and no weights - using the density function. The autobin width are based on Silverman’s rule, which the R help notes</p>
+<blockquote>
+<p>bw.nrd0 implements a rule-of-thumb for choosing the bandwidth of a Gaussian kernel density estimator. It defaults to 0.9 times the minimum of the standard deviation and the interquartile range divided by 1.34 times the sample size to the negative one-fifth power (= Silverman’s ‘rule of thumb’, Silverman (1986, page 48, eqn (3.31))) unless the quartiles coincide when a positive result will be guaranteed.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kde =<span class="st"> </span><span class="kw">density</span>(bihar_adult_females_trunc<span class="op">$</span>height_cm)
+<span class="kw">plot</span>(kde)</code></pre></div>
+<p><img src="Module3_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>If we were just calculating a density, then the mathmatical calulcation would be different than a KDE. KDE is like a weighted distribution, based on the individual points. A KDE has two paramers, K and h</p>
+<ul>
+<li>K = kernel aka the distribution</li>
+<li>h = smoothing parameter aka bin width</li>
+</ul>
+<p>There are a number of different kernels, the Guaussian belongs to the un-bounded which means each event in the study region contributes to the estimated density at a specific location. This determines the overall shape of the curve around each of our observations x.</p>
+<p>The smoothing parameter helps to determine at each particular point x, how much other observations around x contribute i.e. how much they are weighted. A higher bandwidth will result in a smoother curve, but may lead to the curve not fitting the underlying data well. The smoothing parameter also helps to determine the shape, by determining how far points contribute to the distribution’s peak - higher bandwidth results in points further away having an influence on the PDF and results in a flatter curve. A lower bandwidth conversely means that only points close to our particular observation x will play a part i.e. be weighted, so will result in a peaked curve around our particular x value.</p>
+<p><span class="math display">\[\hat{f} ^{Kernel} (x) = \left. {\frac{1}{Nb} \sum_{i=1}^{N} K (\frac{x - x_i}{b})} \right.\]</span> * <a href="https://www.youtube.com/watch?v=gPWsDh59zdo">Kernel Density Estimation video</a> * <a href="https://en.wikipedia.org/wiki/Kernel_(statistics)">List of Kernels in Statistics</a></p>
+<p>Two of the more common Kernels are the Epanechnikov and Normal distribution, with the former being bounded (see second link above).</p>
+<ul>
+<li>If the bandwidth is too wide, we will not fit the data well and introduce bias, the density plot will look flat and smooth</li>
+<li>If the bandwidth is too narrow, we overfit our data, the density plot will look very peaked and jagged</li>
+</ul>
+<p>The goal is to be somewhere in the middle and to minimise the MSE. MSE can therefore be thought of as a measure or a quantification of the amount of the bias/variance tradeoff.</p>
+<p>At the extremes, you will introduce some bias, as the kernel will stop at the boundary of the data, so it will tend to create a peak that is too high at the point - it it looking at only the data to the right at the left boundary and vice-versa. It is easier to see this in practice by looking at plots with higher (wide) bandwidths.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=zrEyxfl2-a8">Lecture on Bias-Variance Tradeoff, from Caltech EdX course</a></li>
+</ul>
+<p>Note - we can either use the stat_density function or geom_density - both are used in the following code as examples. I believe there are more options with stat_density.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Bihar5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="dt">bw =</span> <span class="dv">1</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;bandwidth = 1&quot;</span>)
+
+Bihar6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="dt">bw =</span> <span class="dv">5</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;bandwidth = 5&quot;</span>)
+
+Bihar7 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="dt">bw =</span> <span class="dv">10</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;bandwidth = 10&quot;</span>)
+
+Bihar8 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="dt">bw =</span> <span class="dv">20</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;bandwidth = 20&quot;</span>)
+
+<span class="kw">plot_grid</span>(Bihar5, Bihar6, Bihar7, Bihar8, <span class="dt">labels=</span><span class="st">&quot;female height in Bihar&quot;</span>, <span class="dt">hjust =</span> <span class="op">-</span><span class="dv">1</span>, <span class="dt">vjust =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Module3_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The kernel choice doesn’t affect the shape of the curve as much as the bandwith. The following four charts all have the same bandwidth, but different kernels. As previously noted, gaussian is unbounded meaning each point has some weight or contribution to the curve, where as the others are bounded meaning there is a limit as to which points contribute i.e. it has a finite interval. Rectangular and triangular are the two more unusual shapes compared to the other kernels available.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Bihar9 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;cosine&quot;</span>, <span class="dt">bw =</span> <span class="dv">20</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;kernel = cosine&quot;</span>)
+
+Bihar10 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;epanechnikov&quot;</span>, <span class="dt">bw =</span> <span class="dv">20</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;kernel = epanechnikov&quot;</span>)
+
+Bihar11 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;rectangular&quot;</span>, <span class="dt">bw =</span> <span class="dv">20</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;kernel = rectangular&quot;</span>)
+
+Bihar12 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">kernel =</span> <span class="st">&quot;triangular&quot;</span>, <span class="dt">bw =</span> <span class="dv">20</span>, <span class="kw">aes</span>(height_cm), <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;kernel = triangular&quot;</span>)
+
+<span class="kw">plot_grid</span>(Bihar9, Bihar10, Bihar11, Bihar12, <span class="dt">labels=</span><span class="st">&quot;Bandwidth 20, varying kernel&quot;</span>, <span class="dt">hjust =</span> <span class="op">-</span><span class="dv">1</span>, <span class="dt">vjust =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Module3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 </div>
 </div>

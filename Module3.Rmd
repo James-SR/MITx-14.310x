@@ -104,9 +104,18 @@ $$\hat{f} ^{Kernel} (x) = \left. {\frac{1}{Nb} \sum_{i=1}^{N} K (\frac{x - x_i}{
 * [Kernel Density Estimation video](https://www.youtube.com/watch?v=gPWsDh59zdo)
 * [List of Kernels in Statistics](https://en.wikipedia.org/wiki/Kernel_(statistics))
 
-Two of the more common Kernels are the Epanechnikov and Normal distribution, with the former being bounded (see second link above). If the bandwidth is too wide, we will not fit the data well and introduce bias.  If the bandwidth is too narrow, we overfit our data.  The goal is to be somewhere in the middle and to minimise the MSE.
+Two of the more common Kernels are the Epanechnikov and Normal distribution, with the former being bounded (see second link above). 
+
+* If the bandwidth is too wide, we will not fit the data well and introduce bias, the density plot will look flat and smooth
+* If the bandwidth is too narrow, we overfit our data, the density plot will look very peaked and jagged  
+
+The goal is to be somewhere in the middle and to minimise the MSE.  MSE can therefore be thought of as a measure or a quantification of the amount of the bias/variance tradeoff. 
+
+At the extremes, you will introduce some bias, as the kernel will stop at the boundary of the data, so it will tend to create a peak that is too high at the point - it it looking at only the data to the right at the left boundary and vice-versa.  It is easier to see this in practice by looking at plots with higher (wide) bandwidths.
 
 * [Lecture on Bias-Variance Tradeoff, from Caltech EdX course](https://www.youtube.com/watch?v=zrEyxfl2-a8)
+
+Note - we can either use the stat_density function or geom_density - both are used in the following code as examples.  I believe there are more options with stat_density.
 
 ```{r}
 Bihar5 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
@@ -116,7 +125,7 @@ Bihar5 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) +
 
 Bihar6 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
   geom_histogram(data = bihar_adult_females_trunc, aes(height_cm, ..density..), fill = "white", color = "darkred") +
-  stat_density(kernel = "gaussian", bw = 5, aes(height_cm), fill = NA, color = "darkblue") +
+  geom_density(kernel = "gaussian", bw = 5, aes(height_cm), fill = NA, color = "darkblue") +
   xlab("bandwidth = 5")
 
 Bihar7 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) + 

@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-10-14}
+    \date{2018-10-17}
 
 \usepackage{booktabs}
 
@@ -1786,7 +1786,7 @@ instance) using the selector gadget.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.79" "£ 3.04" "£ 5.51"
+## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.84" "£ 2.99" "£ 5.50"
 \end{verbatim}
 
 Note that the results are in ascending order - lowest priced overall -
@@ -1847,12 +1847,12 @@ follows.
 ## # A tibble: 6 x 3
 ##   booktitle                                      `data and time`     price
 ##   <chr>                                          <dttm>              <dbl>
-## 1 Le temps retrouve                              2018-10-14 06:14:39 2.59 
-## 2 Le temps retrouve                              2018-10-14 06:14:39 3.3  
-## 3 Le temps retrouve                              2018-10-14 06:14:39 0.76 
-## 4 Le temps retrouve                              2018-10-14 06:14:39 0.790
-## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-14 06:14:39 3.04 
-## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-14 06:14:39 5.51
+## 1 Le temps retrouve                              2018-10-17 19:50:27  2.59
+## 2 Le temps retrouve                              2018-10-17 19:50:27  3.3 
+## 3 Le temps retrouve                              2018-10-17 19:50:27  0.76
+## 4 Le temps retrouve                              2018-10-17 19:50:27  0.84
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-17 19:50:27  2.99
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-17 19:50:27  5.5
 \end{verbatim}
 
 If you collect your own data, sometimes in an academic environment you
@@ -2137,6 +2137,238 @@ video for a \href{https://youtu.be/kREoWbByNZs}{discussion on binning}.
 \end{verbatim}
 
 \includegraphics{Module3_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+We could also adjust the bin width at this point if we wanted to. The
+width of the bins depends in part on the volume of data you have, for
+instance, if you have just 50 observations, picking bin widths of 1 cm
+might be too much - you can't be sure your data is reliable, there may
+be quite a lot of noise. Conversely, if you have a million observations,
+1 cm bin widths might be fine.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Bihar1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{,}\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"binwidth = 5"}\NormalTok{)}
+
+\NormalTok{Bihar2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{,}\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{binwidth =} \DecValTok{10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"binwidth = 10"}\NormalTok{)}
+
+\NormalTok{Bihar3 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{,}\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{binwidth =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"binwidth = 20"}\NormalTok{)}
+
+\NormalTok{Bihar4 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{,}\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{binwidth =} \DecValTok{50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"binwidth = 50"}\NormalTok{)}
+
+\KeywordTok{plot_grid}\NormalTok{(Bihar1, Bihar2, Bihar3, Bihar4, }\DataTypeTok{labels=}\StringTok{"female height in Bihar"}\NormalTok{, }\DataTypeTok{hjust =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{vjust =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# we could save the results to an image or a file using }
+\CommentTok{# ggsave("folder/bihargrid.pdf")}
+\end{Highlighting}
+\end{Shaded}
+
+To give a better and smoother representation of the data, we can use a
+kernel to visualise the data. It can be thought of as a smoothed
+histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"gaussian"}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+In practice, it helps us to calculate our probability density function
+of the continous variable. As we previously saw, we cannot find the
+probability that a particular value of a continous variable is a
+particular value - it integrates to zero on a infinitley small scale.
+Intead, we can calculate the probability that it takes on some
+particular range of values. This is where the Kernel Density Estimation
+or KDE comes in.
+
+We can draw a KDE with default parameters - a Gaussian distribution and
+auto bin width and no weights - using the density function. The autobin
+width are based on Silverman's rule, which the R help notes
+
+\begin{quote}
+bw.nrd0 implements a rule-of-thumb for choosing the bandwidth of a
+Gaussian kernel density estimator. It defaults to 0.9 times the minimum
+of the standard deviation and the interquartile range divided by 1.34
+times the sample size to the negative one-fifth power (= Silverman's
+`rule of thumb', Silverman (1986, page 48, eqn (3.31))) unless the
+quartiles coincide when a positive result will be guaranteed.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kde =}\StringTok{ }\KeywordTok{density}\NormalTok{(bihar_adult_females_trunc}\OperatorTok{$}\NormalTok{height_cm)}
+\KeywordTok{plot}\NormalTok{(kde)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+If we were just calculating a density, then the mathmatical calulcation
+would be different than a KDE. KDE is like a weighted distribution,
+based on the individual points. A KDE has two paramers, K and h
+
+\begin{itemize}
+\tightlist
+\item
+  K = kernel aka the distribution
+\item
+  h = smoothing parameter aka bin width
+\end{itemize}
+
+There are a number of different kernels, the Guaussian belongs to the
+un-bounded which means each event in the study region contributes to the
+estimated density at a specific location. This determines the overall
+shape of the curve around each of our observations x.
+
+The smoothing parameter helps to determine at each particular point x,
+how much other observations around x contribute i.e.~how much they are
+weighted. A higher bandwidth will result in a smoother curve, but may
+lead to the curve not fitting the underlying data well. The smoothing
+parameter also helps to determine the shape, by determining how far
+points contribute to the distribution's peak - higher bandwidth results
+in points further away having an influence on the PDF and results in a
+flatter curve. A lower bandwidth conversely means that only points close
+to our particular observation x will play a part i.e.~be weighted, so
+will result in a peaked curve around our particular x value.
+
+\[\hat{f} ^{Kernel} (x) = \left. {\frac{1}{Nb} \sum_{i=1}^{N} K (\frac{x - x_i}{b})} \right.\]
+* \href{https://www.youtube.com/watch?v=gPWsDh59zdo}{Kernel Density
+Estimation video} *
+\href{https://en.wikipedia.org/wiki/Kernel_(statistics)}{List of Kernels
+in Statistics}
+
+Two of the more common Kernels are the Epanechnikov and Normal
+distribution, with the former being bounded (see second link above).
+
+\begin{itemize}
+\tightlist
+\item
+  If the bandwidth is too wide, we will not fit the data well and
+  introduce bias, the density plot will look flat and smooth
+\item
+  If the bandwidth is too narrow, we overfit our data, the density plot
+  will look very peaked and jagged
+\end{itemize}
+
+The goal is to be somewhere in the middle and to minimise the MSE. MSE
+can therefore be thought of as a measure or a quantification of the
+amount of the bias/variance tradeoff.
+
+At the extremes, you will introduce some bias, as the kernel will stop
+at the boundary of the data, so it will tend to create a peak that is
+too high at the point - it it looking at only the data to the right at
+the left boundary and vice-versa. It is easier to see this in practice
+by looking at plots with higher (wide) bandwidths.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.youtube.com/watch?v=zrEyxfl2-a8}{Lecture on
+  Bias-Variance Tradeoff, from Caltech EdX course}
+\end{itemize}
+
+Note - we can either use the stat\_density function or geom\_density -
+both are used in the following code as examples. I believe there are
+more options with stat\_density.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Bihar5 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"gaussian"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{1}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"bandwidth = 1"}\NormalTok{)}
+
+\NormalTok{Bihar6 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"gaussian"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{5}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"bandwidth = 5"}\NormalTok{)}
+
+\NormalTok{Bihar7 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"gaussian"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{10}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"bandwidth = 10"}\NormalTok{)}
+
+\NormalTok{Bihar8 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"gaussian"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{20}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"bandwidth = 20"}\NormalTok{)}
+
+\KeywordTok{plot_grid}\NormalTok{(Bihar5, Bihar6, Bihar7, Bihar8, }\DataTypeTok{labels=}\StringTok{"female height in Bihar"}\NormalTok{, }\DataTypeTok{hjust =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{vjust =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+The kernel choice doesn't affect the shape of the curve as much as the
+bandwith. The following four charts all have the same bandwidth, but
+different kernels. As previously noted, gaussian is unbounded meaning
+each point has some weight or contribution to the curve, where as the
+others are bounded meaning there is a limit as to which points
+contribute i.e.~it has a finite interval. Rectangular and triangular are
+the two more unusual shapes compared to the other kernels available.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Bihar9 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"cosine"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{20}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"kernel = cosine"}\NormalTok{)}
+
+\NormalTok{Bihar10 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"epanechnikov"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{20}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"kernel = epanechnikov"}\NormalTok{)}
+
+\NormalTok{Bihar11 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"rectangular"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{20}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"kernel = rectangular"}\NormalTok{)}
+
+\NormalTok{Bihar12 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm, ..density..), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_density}\NormalTok{(}\DataTypeTok{kernel =} \StringTok{"triangular"}\NormalTok{, }\DataTypeTok{bw =} \DecValTok{20}\NormalTok{, }\KeywordTok{aes}\NormalTok{(height_cm), }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"kernel = triangular"}\NormalTok{)}
+
+\KeywordTok{plot_grid}\NormalTok{(Bihar9, Bihar10, Bihar11, Bihar12, }\DataTypeTok{labels=}\StringTok{"Bandwidth 20, varying kernel"}\NormalTok{, }\DataTypeTok{hjust =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{vjust =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 \bibliography{book.bib}
 
