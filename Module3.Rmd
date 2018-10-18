@@ -72,6 +72,8 @@ plot_grid(Bihar1, Bihar2, Bihar3, Bihar4, labels="female height in Bihar", hjust
 # ggsave("folder/bihargrid.pdf")
 ```
 
+### Kernel Density Estimation
+
 To give a better and smoother representation of the data, we can use a kernel to visualise the data.  It can be thought of as a smoothed histogram.  
 
 ```{r}
@@ -166,5 +168,50 @@ Bihar12 <- ggplot(bihar_adult_females_trunc, aes(height_cm)) +
 
 plot_grid(Bihar9, Bihar10, Bihar11, Bihar12, labels="Bandwidth 20, varying kernel", hjust = -1, vjust = 1)
 ```
+### Comparing Distributions
 
+The density we have seen so far is roughly bell shaped, it is uni-modal.  The histogram almost looks like a binomial distribution, once the number of n for the binomial distribution became large enough.  When comparing different distributions on the same chart, if the number of observations is different, it can be moe useful to plot the distributions as densities/proportions.  For instance we can plot US adult height
 
+```{r}
+# load the US data 
+library(dslabs)
+data(heights)
+
+# keep the females,remove sex column and convert to cm
+US_adult_females <- dplyr::filter(heights, sex=='Female')
+US_adult_females <- US_adult_females[-c(1)]
+colnames(US_adult_females)[1] <- "height_cm"
+US_adult_females <- cm(US_adult_females)
+
+# take a look at our data
+head(US_adult_females, 10)
+
+# plot it
+ggplot(US_adult_females, aes(height_cm)) + 
+  geom_histogram()
+
+# lets tidy it up as before - there are some outliers close to 0 and 200 cm
+US_adult_females_trunc <- dplyr::filter(US_adult_females, height_cm > 120, height_cm < 200)
+
+# Plot again with colour and labels
+ggplot(US_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "red", color = "darkred") + 
+  xlab("Height in centimeters, US Females (truncated)")
+
+# Let's plot both US and Bihar data on the same plot and tidy the code a little.  Note we don't need to aes() second time as the col is now the same name, so is applied to both since it is stated in the first line
+
+# Density plot for both
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_density(color = "darkblue") +
+  geom_density(data = US_adult_females_trunc, color = "darkred") + 
+  xlab("Height in centimeters")
+
+# Histogram for both
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "red", color = "darkred") +
+  geom_histogram(data = US_adult_females_trunc, fill = "blue", color = "darkblue") + 
+  xlab("Height in centimeters")
+
+```
+
+We can clearly see in this instance the density plot is more appropriate, since the sample is much smaller (n=238) for the US data.
