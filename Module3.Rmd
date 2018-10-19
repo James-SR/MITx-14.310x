@@ -215,3 +215,35 @@ ggplot(bihar_adult_females_trunc, aes(height_cm)) +
 ```
 
 We can clearly see in this instance the density plot is more appropriate, since the sample is much smaller (n=238) for the US data.
+
+An alternative is to use the cumulative distribution function or CDF.
+
+```{r}
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  stat_ecdf(color = "darkred") +
+  stat_ecdf(data = US_adult_females_trunc, color = "darkblue") + 
+  xlab("Height in centimeters")
+```
+
+Note: we could restructure the data at this point in to a single dataframe, so a legend appears.  This is perhaps not the most elegant solution.
+
+```{r}
+# first we create a copy of our data with new column names, so they can be combined together and we can identify which is the releveant source
+USH <- US_adult_females_trunc 
+colnames(USH)[1] <- "US_Heights"
+BiharH <- bihar_adult_females_trunc[,5]
+colnames(BiharH)[1] <- "Bihar_Heights"
+
+# Next we gather the data i.e. go from wide to long then combine these in a single data frame by adding the rows
+USHG <- gather(USH)
+BiharHG <- gather(BiharH)
+combined <- rbind(USHG,BiharHG)
+
+# Now we can create our plot
+
+ggplot(combined) + 
+  stat_ecdf(aes(value, colour = key)) +
+  scale_colour_manual(values=c("darkblue", "darkred")) +
+  xlab("Height in centimeters")
+
+```
