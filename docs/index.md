@@ -1,7 +1,7 @@
 --- 
 title: "Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)"
 author: "James Solomon-Rounce"
-date: "2018-10-17"
+date: "2018-10-21"
 bibliography: book.bib
 description: Study notes taken from the courses for personal reference.
 documentclass: book

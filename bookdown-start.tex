@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-10-17}
+    \date{2018-10-21}
 
 \usepackage{booktabs}
 
@@ -1786,7 +1786,7 @@ instance) using the selector gadget.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.84" "£ 2.99" "£ 5.50"
+## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.78" "£ 3.01" "£ 5.52"
 \end{verbatim}
 
 Note that the results are in ascending order - lowest priced overall -
@@ -1847,12 +1847,12 @@ follows.
 ## # A tibble: 6 x 3
 ##   booktitle                                      `data and time`     price
 ##   <chr>                                          <dttm>              <dbl>
-## 1 Le temps retrouve                              2018-10-17 19:50:27  2.59
-## 2 Le temps retrouve                              2018-10-17 19:50:27  3.3 
-## 3 Le temps retrouve                              2018-10-17 19:50:27  0.76
-## 4 Le temps retrouve                              2018-10-17 19:50:27  0.84
-## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-17 19:50:27  2.99
-## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-17 19:50:27  5.5
+## 1 Le temps retrouve                              2018-10-21 20:08:23 2.59 
+## 2 Le temps retrouve                              2018-10-21 20:08:23 3.3  
+## 3 Le temps retrouve                              2018-10-21 20:08:23 0.76 
+## 4 Le temps retrouve                              2018-10-21 20:08:23 0.780
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-21 20:08:23 3.01 
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-21 20:08:23 5.52
 \end{verbatim}
 
 If you collect your own data, sometimes in an academic environment you
@@ -2176,6 +2176,8 @@ be quite a lot of noise. Conversely, if you have a million observations,
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{Kernel Density Estimation}\label{kernel-density-estimation}
+
 To give a better and smoother representation of the data, we can use a
 kernel to visualise the data. It can be thought of as a smoothed
 histogram.
@@ -2369,6 +2371,186 @@ the two more unusual shapes compared to the other kernels available.
 \end{verbatim}
 
 \includegraphics{Module3_files/figure-latex/unnamed-chunk-6-1.pdf}
+\#\#\# Comparing Distributions
+
+The density we have seen so far is roughly bell shaped, it is uni-modal.
+The histogram almost looks like a binomial distribution, once the number
+of n for the binomial distribution became large enough. When comparing
+different distributions on the same chart, if the number of observations
+is different, it can be moe useful to plot the distributions as
+densities/proportions. For instance we can plot US adult height
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load the US data }
+\KeywordTok{library}\NormalTok{(dslabs)}
+\KeywordTok{data}\NormalTok{(heights)}
+
+\CommentTok{# keep the females,remove sex column and convert to cm}
+\NormalTok{US_adult_females <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(heights, sex}\OperatorTok{==}\StringTok{'Female'}\NormalTok{)}
+\NormalTok{US_adult_females <-}\StringTok{ }\NormalTok{US_adult_females[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{)]}
+\KeywordTok{colnames}\NormalTok{(US_adult_females)[}\DecValTok{1}\NormalTok{] <-}\StringTok{ "height_cm"}
+\NormalTok{US_adult_females <-}\StringTok{ }\KeywordTok{cm}\NormalTok{(US_adult_females)}
+
+\CommentTok{# take a look at our data}
+\KeywordTok{head}\NormalTok{(US_adult_females, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    height_cm
+## 1     165.10
+## 2     167.64
+## 3     157.48
+## 4     167.64
+## 5     162.56
+## 6     152.40
+## 7     162.56
+## 8     170.18
+## 9     167.64
+## 10    170.18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot it}
+\KeywordTok{ggplot}\NormalTok{(US_adult_females, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# lets tidy it up as before - there are some outliers close to 0 and 200 cm}
+\NormalTok{US_adult_females_trunc <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(US_adult_females, height_cm }\OperatorTok{>}\StringTok{ }\DecValTok{120}\NormalTok{, height_cm }\OperatorTok{<}\StringTok{ }\DecValTok{200}\NormalTok{)}
+
+\CommentTok{# Plot again with colour and labels}
+\KeywordTok{ggplot}\NormalTok{(US_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Height in centimeters, US Females (truncated)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Let's plot both US and Bihar data on the same plot and tidy the code a little.  Note we don't need to aes() second time as the col is now the same name, so is applied to both since it is stated in the first line}
+
+\CommentTok{# Density plot for both}
+\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ US_adult_females_trunc, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Height in centimeters"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-7-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Histogram for both}
+\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ US_adult_females_trunc, }\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Height in centimeters"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-7-4.pdf}
+
+We can clearly see in this instance the density plot is more
+appropriate, since the sample is much smaller (n=238) for the US data.
+
+An alternative is to use the cumulative distribution function or CDF.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(bihar_adult_females_trunc, }\KeywordTok{aes}\NormalTok{(height_cm)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{stat_ecdf}\NormalTok{(}\DataTypeTok{color =} \StringTok{"darkred"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_ecdf}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ US_adult_females_trunc, }\DataTypeTok{color =} \StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Height in centimeters"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Note: we could restructure the data at this point in to a single
+dataframe, so a legend appears. This is perhaps not the most elegant
+solution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# first we create a copy of our data with new column names, so they can be combined together and we can identify which is the releveant source}
+\NormalTok{USH <-}\StringTok{ }\NormalTok{US_adult_females_trunc }
+\KeywordTok{colnames}\NormalTok{(USH)[}\DecValTok{1}\NormalTok{] <-}\StringTok{ "US_Heights"}
+\NormalTok{BiharH <-}\StringTok{ }\NormalTok{bihar_adult_females_trunc[,}\DecValTok{5}\NormalTok{]}
+\KeywordTok{colnames}\NormalTok{(BiharH)[}\DecValTok{1}\NormalTok{] <-}\StringTok{ "Bihar_Heights"}
+
+\CommentTok{# Next we gather the data i.e. go from wide to long then combine these in a single data frame by adding the rows}
+\NormalTok{USHG <-}\StringTok{ }\KeywordTok{gather}\NormalTok{(USH)}
+\NormalTok{BiharHG <-}\StringTok{ }\KeywordTok{gather}\NormalTok{(BiharH)}
+\NormalTok{combined <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(USHG,BiharHG)}
+
+\CommentTok{# Now we can create our plot}
+
+\KeywordTok{ggplot}\NormalTok{(combined) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{stat_ecdf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(value, }\DataTypeTok{colour =}\NormalTok{ key)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values=}\KeywordTok{c}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{, }\StringTok{"darkred"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Height in centimeters"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Cumulative Distribution"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Module3_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+So we can see from the Cumulative Distribution Function that the curve
+below (US) is taller since at any point, there are fewer people -
+represented by the CDF - under that point. It has \emph{First Order
+Stochastic Dominance or FOSD} - at any height in cm, there are fewer
+people under it in the US than India.
+
+It is first order as it is based on shared preferences of possible
+outcomes and associated probabilities, not risk. FOSD is often
+considered in Game Theory and possible outcomes and decisions -
+statistically it is more likely and therefore better than another
+possible outcome and we don't have to calculate utility. Risk aversion
+or apetite, this is considered under second order stochastic dominance
+or SOSD. We woulc consider or calculate utility in SOSD. Second order
+considerations come into play when thinking about outcomes that may have
+very similar or identical expected value e.g.~an identical mean.
+
+When comparing CDFs we look at First Order Stochastic Dominance
+i.e.~which curve has it, we also the distance between the two lines and
+whether the pattern is the same, as it is above, throughout the curve or
+whether the lines cross and perhaps the dominance changes in a different
+region.
+
+When comparing the US distribution of the heights vs the Indian one, the
+first-order stochastic dominance of the US distribution means that we
+are more likely to find larger height values in the US data.
+
+\begin{itemize}
+\tightlist
+\item
+  (What is stochastic
+  dominance){[}\url{https://www.youtube.com/watch?v=6iE_5y4r2FI}{]}
+\end{itemize}
 
 \bibliography{book.bib}
 

@@ -166,6 +166,8 @@ plot_grid(Bihar1, Bihar2, Bihar3, Bihar4, labels="female height in Bihar", hjust
 # ggsave("folder/bihargrid.pdf")
 ```
 
+### Kernel Density Estimation
+
 To give a better and smoother representation of the data, we can use a kernel to visualise the data.  It can be thought of as a smoothed histogram.  
 
 
@@ -290,5 +292,142 @@ plot_grid(Bihar9, Bihar10, Bihar11, Bihar12, labels="Bandwidth 20, varying kerne
 ```
 
 ![](Module3_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+### Comparing Distributions
 
+The density we have seen so far is roughly bell shaped, it is uni-modal.  The histogram almost looks like a binomial distribution, once the number of n for the binomial distribution became large enough.  When comparing different distributions on the same chart, if the number of observations is different, it can be moe useful to plot the distributions as densities/proportions.  For instance we can plot US adult height
+
+
+```r
+# load the US data 
+library(dslabs)
+data(heights)
+
+# keep the females,remove sex column and convert to cm
+US_adult_females <- dplyr::filter(heights, sex=='Female')
+US_adult_females <- US_adult_females[-c(1)]
+colnames(US_adult_females)[1] <- "height_cm"
+US_adult_females <- cm(US_adult_females)
+
+# take a look at our data
+head(US_adult_females, 10)
+```
+
+```
+##    height_cm
+## 1     165.10
+## 2     167.64
+## 3     157.48
+## 4     167.64
+## 5     162.56
+## 6     152.40
+## 7     162.56
+## 8     170.18
+## 9     167.64
+## 10    170.18
+```
+
+```r
+# plot it
+ggplot(US_adult_females, aes(height_cm)) + 
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](Module3_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
+
+```r
+# lets tidy it up as before - there are some outliers close to 0 and 200 cm
+US_adult_females_trunc <- dplyr::filter(US_adult_females, height_cm > 120, height_cm < 200)
+
+# Plot again with colour and labels
+ggplot(US_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "red", color = "darkred") + 
+  xlab("Height in centimeters, US Females (truncated)")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](Module3_files/figure-latex/unnamed-chunk-7-2.pdf)<!-- --> 
+
+```r
+# Let's plot both US and Bihar data on the same plot and tidy the code a little.  Note we don't need to aes() second time as the col is now the same name, so is applied to both since it is stated in the first line
+
+# Density plot for both
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_density(color = "darkblue") +
+  geom_density(data = US_adult_females_trunc, color = "darkred") + 
+  xlab("Height in centimeters")
+```
+
+![](Module3_files/figure-latex/unnamed-chunk-7-3.pdf)<!-- --> 
+
+```r
+# Histogram for both
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  geom_histogram(fill = "red", color = "darkred") +
+  geom_histogram(data = US_adult_females_trunc, fill = "blue", color = "darkblue") + 
+  xlab("Height in centimeters")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](Module3_files/figure-latex/unnamed-chunk-7-4.pdf)<!-- --> 
+
+We can clearly see in this instance the density plot is more appropriate, since the sample is much smaller (n=238) for the US data.
+
+An alternative is to use the cumulative distribution function or CDF.
+
+
+```r
+ggplot(bihar_adult_females_trunc, aes(height_cm)) + 
+  stat_ecdf(color = "darkred") +
+  stat_ecdf(data = US_adult_females_trunc, color = "darkblue") + 
+  xlab("Height in centimeters")
+```
+
+![](Module3_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+
+Note: we could restructure the data at this point in to a single dataframe, so a legend appears.  This is perhaps not the most elegant solution.
+
+
+```r
+# first we create a copy of our data with new column names, so they can be combined together and we can identify which is the releveant source
+USH <- US_adult_females_trunc 
+colnames(USH)[1] <- "US_Heights"
+BiharH <- bihar_adult_females_trunc[,5]
+colnames(BiharH)[1] <- "Bihar_Heights"
+
+# Next we gather the data i.e. go from wide to long then combine these in a single data frame by adding the rows
+USHG <- gather(USH)
+BiharHG <- gather(BiharH)
+combined <- rbind(USHG,BiharHG)
+
+# Now we can create our plot
+
+ggplot(combined) + 
+  stat_ecdf(aes(value, colour = key)) +
+  scale_colour_manual(values=c("darkblue", "darkred")) +
+  xlab("Height in centimeters") + 
+  ylab("Cumulative Distribution")
+```
+
+![](Module3_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+
+So we can see from the Cumulative Distribution Function that the curve below (US) is taller since at any point, there are fewer people - represented by the CDF - under that point.  It has *First Order Stochastic Dominance or FOSD* - at any height in cm, there are fewer people under it in the US than India.  
+
+It is first order as it is based on shared preferences of possible outcomes and associated probabilities, not risk.  FOSD is often considered in Game Theory and possible outcomes and decisions - statistically it is more likely and therefore better than another possible outcome and we don't have to calculate utility.  Risk aversion or apetite, this is considered under second order stochastic dominance or SOSD.  We woulc consider or calculate utility in SOSD.  Second order considerations come into play when thinking about outcomes that may have very similar or identical expected value e.g. an identical mean.
+
+When comparing CDFs we look at First Order Stochastic Dominance i.e. which curve has it, we also the distance between the two lines and whether the pattern is the same, as it is above, throughout the curve or whether the lines cross and perhaps the dominance changes in a different region.
+
+When comparing the US distribution of the heights vs the Indian one, the first-order stochastic dominance of the US distribution means that we are more likely to find larger height values in the US data.
+
+* (What is stochastic dominance)[https://www.youtube.com/watch?v=6iE_5y4r2FI]
 

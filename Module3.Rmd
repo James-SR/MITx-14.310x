@@ -244,6 +244,18 @@ combined <- rbind(USHG,BiharHG)
 ggplot(combined) + 
   stat_ecdf(aes(value, colour = key)) +
   scale_colour_manual(values=c("darkblue", "darkred")) +
-  xlab("Height in centimeters")
+  xlab("Height in centimeters") + 
+  ylab("Cumulative Distribution")
 
 ```
+
+So we can see from the Cumulative Distribution Function that the curve below (US) is taller since at any point, there are fewer people - represented by the CDF - under that point.  It has *First Order Stochastic Dominance or FOSD* - at any height in cm, there are fewer people under it in the US than India.  
+
+It is first order as it is based on shared preferences of possible outcomes and associated probabilities, not risk.  FOSD is often considered in Game Theory and possible outcomes and decisions - statistically it is more likely and therefore better than another possible outcome and we don't have to calculate utility.  Risk aversion or apetite, this is considered under second order stochastic dominance or SOSD.  We woulc consider or calculate utility in SOSD.  Second order considerations come into play when thinking about outcomes that may have very similar or identical expected value e.g. an identical mean.
+
+When comparing CDFs we look at First Order Stochastic Dominance i.e. which curve has it, we also the distance between the two lines and whether the pattern is the same, as it is above, throughout the curve or whether the lines cross and perhaps the dominance changes in a different region.
+
+When comparing the US distribution of the heights vs the Indian one, the first-order stochastic dominance of the US distribution means that we are more likely to find larger height values in the US data.
+
+* (What is stochastic dominance)[https://www.youtube.com/watch?v=6iE_5y4r2FI]
+

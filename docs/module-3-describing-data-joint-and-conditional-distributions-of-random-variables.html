@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-10-17">
+<meta name="date" content="2018-10-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -141,7 +141,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#homework"><i class="fa fa-check"></i><b>2.4</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><i class="fa fa-check"></i><b>3</b> Module 3: Describing Data, Joint and Conditional Distributions of Random Variables</a><ul>
-<li class="chapter" data-level="3.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#summarizing-and-describing-data"><i class="fa fa-check"></i><b>3.1</b> Summarizing and Describing Data</a></li>
+<li class="chapter" data-level="3.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#summarizing-and-describing-data"><i class="fa fa-check"></i><b>3.1</b> Summarizing and Describing Data</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#kernel-density-estimation"><i class="fa fa-check"></i><b>3.1.1</b> Kernel Density Estimation</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -263,6 +265,8 @@ Bihar4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult_
 <p><img src="Module3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we could save the results to an image or a file using </span>
 <span class="co"># ggsave(&quot;folder/bihargrid.pdf&quot;)</span></code></pre></div>
+<div id="kernel-density-estimation" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Kernel Density Estimation</h3>
 <p>To give a better and smoother representation of the data, we can use a kernel to visualise the data. It can be thought of as a smoothed histogram.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm, ..density..), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
@@ -348,8 +352,97 @@ Bihar12 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bihar_adult
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Module3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="Module3_files/figure-html/unnamed-chunk-6-1.png" width="672" /> ### Comparing Distributions</p>
+<p>The density we have seen so far is roughly bell shaped, it is uni-modal. The histogram almost looks like a binomial distribution, once the number of n for the binomial distribution became large enough. When comparing different distributions on the same chart, if the number of observations is different, it can be moe useful to plot the distributions as densities/proportions. For instance we can plot US adult height</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the US data </span>
+<span class="kw">library</span>(dslabs)
+<span class="kw">data</span>(heights)
 
+<span class="co"># keep the females,remove sex column and convert to cm</span>
+US_adult_females &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(heights, sex<span class="op">==</span><span class="st">&#39;Female&#39;</span>)
+US_adult_females &lt;-<span class="st"> </span>US_adult_females[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>)]
+<span class="kw">colnames</span>(US_adult_females)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;height_cm&quot;</span>
+US_adult_females &lt;-<span class="st"> </span><span class="kw">cm</span>(US_adult_females)
+
+<span class="co"># take a look at our data</span>
+<span class="kw">head</span>(US_adult_females, <span class="dv">10</span>)</code></pre></div>
+<pre><code>##    height_cm
+## 1     165.10
+## 2     167.64
+## 3     157.48
+## 4     167.64
+## 5     162.56
+## 6     152.40
+## 7     162.56
+## 8     170.18
+## 9     167.64
+## 10    170.18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot it</span>
+<span class="kw">ggplot</span>(US_adult_females, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Module3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lets tidy it up as before - there are some outliers close to 0 and 200 cm</span>
+US_adult_females_trunc &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(US_adult_females, height_cm <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>, height_cm <span class="op">&lt;</span><span class="st"> </span><span class="dv">200</span>)
+
+<span class="co"># Plot again with colour and labels</span>
+<span class="kw">ggplot</span>(US_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height in centimeters, US Females (truncated)&quot;</span>)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Module3_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let&#39;s plot both US and Bihar data on the same plot and tidy the code a little.  Note we don&#39;t need to aes() second time as the col is now the same name, so is applied to both since it is stated in the first line</span>
+
+<span class="co"># Density plot for both</span>
+<span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">data =</span> US_adult_females_trunc, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height in centimeters&quot;</span>)</code></pre></div>
+<p><img src="Module3_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Histogram for both</span>
+<span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> US_adult_females_trunc, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height in centimeters&quot;</span>)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Module3_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<p>We can clearly see in this instance the density plot is more appropriate, since the sample is much smaller (n=238) for the US data.</p>
+<p>An alternative is to use the cumulative distribution function or CDF.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bihar_adult_females_trunc, <span class="kw">aes</span>(height_cm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">data =</span> US_adult_females_trunc, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height in centimeters&quot;</span>)</code></pre></div>
+<p><img src="Module3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Note: we could restructure the data at this point in to a single dataframe, so a legend appears. This is perhaps not the most elegant solution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first we create a copy of our data with new column names, so they can be combined together and we can identify which is the releveant source</span>
+USH &lt;-<span class="st"> </span>US_adult_females_trunc 
+<span class="kw">colnames</span>(USH)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;US_Heights&quot;</span>
+BiharH &lt;-<span class="st"> </span>bihar_adult_females_trunc[,<span class="dv">5</span>]
+<span class="kw">colnames</span>(BiharH)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Bihar_Heights&quot;</span>
+
+<span class="co"># Next we gather the data i.e. go from wide to long then combine these in a single data frame by adding the rows</span>
+USHG &lt;-<span class="st"> </span><span class="kw">gather</span>(USH)
+BiharHG &lt;-<span class="st"> </span><span class="kw">gather</span>(BiharH)
+combined &lt;-<span class="st"> </span><span class="kw">rbind</span>(USHG,BiharHG)
+
+<span class="co"># Now we can create our plot</span>
+
+<span class="kw">ggplot</span>(combined) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(value, <span class="dt">colour =</span> key)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;darkred&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height in centimeters&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Cumulative Distribution&quot;</span>)</code></pre></div>
+<p><img src="Module3_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>So we can see from the Cumulative Distribution Function that the curve below (US) is taller since at any point, there are fewer people - represented by the CDF - under that point. It has <em>First Order Stochastic Dominance or FOSD</em> - at any height in cm, there are fewer people under it in the US than India.</p>
+<p>It is first order as it is based on shared preferences of possible outcomes and associated probabilities, not risk. FOSD is often considered in Game Theory and possible outcomes and decisions - statistically it is more likely and therefore better than another possible outcome and we don’t have to calculate utility. Risk aversion or apetite, this is considered under second order stochastic dominance or SOSD. We woulc consider or calculate utility in SOSD. Second order considerations come into play when thinking about outcomes that may have very similar or identical expected value e.g. an identical mean.</p>
+<p>When comparing CDFs we look at First Order Stochastic Dominance i.e. which curve has it, we also the distance between the two lines and whether the pattern is the same, as it is above, throughout the curve or whether the lines cross and perhaps the dominance changes in a different region.</p>
+<p>When comparing the US distribution of the heights vs the Indian one, the first-order stochastic dominance of the US distribution means that we are more likely to find larger height values in the US data.</p>
+<ul>
+<li>(What is stochastic dominance)[<a href="https://www.youtube.com/watch?v=6iE_5y4r2FI" class="uri">https://www.youtube.com/watch?v=6iE_5y4r2FI</a>]</li>
+</ul>
+
+</div>
 </div>
 </div>
             </section>
