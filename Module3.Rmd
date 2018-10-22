@@ -12,6 +12,7 @@
 Module Content:
 
 * [Summarizing and Describing Data Slides](./files/M3/SummarizingandDescribingDataSlides.pdf)
+* [Joint, Marginal and Conditional Probabilities] (./files/M3/JointMarginalandConditionalProbabilities.pdf)
 
 
 
@@ -257,5 +258,45 @@ When comparing CDFs we look at First Order Stochastic Dominance i.e. which curve
 
 When comparing the US distribution of the heights vs the Indian one, the first-order stochastic dominance of the US distribution means that we are more likely to find larger height values in the US data.
 
-* (What is stochastic dominance)[https://www.youtube.com/watch?v=6iE_5y4r2FI]
+* [What is stochastic dominance](https://www.youtube.com/watch?v=6iE_5y4r2FI)
 
+## Joint, Marginal and Conditional Probabilities
+
+We previously ended the Math lecture from M1 on joint probabilities, we can look at another example.  This time suppose we have a function $F_{xy}(x,y)$ where the function is $cx^2y \; for \; x^2 <= y <= 1 $ and is 0 otherwise and we want to calculate the probability for the joint PDF.  
+
+Note: c is the normalizing constant and ensures that our probability function as given becomes a PDF with a total probability of one i.e. it integrates to one.
+
+First, we draw the support of this distribution i.e. where on the xy-plane there is positive probability.  This is the element which is non-zero given above.
+
+```{r support 2D, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/jointsupport2D.png")
+```
+
+We can also show this as three dimensional.
+
+```{r support 3D, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/jointsupport3D.png")
+```
+
+Next, we integrate over this support area
+
+$$∫_{-1}^{1}∫_{x2}^{1}cx^2ydydx = \frac{4}{21} c$$
+
+We can use the PRACMA package to calculate the value as follows.
+
+```{r}
+library(pracma)
+f <- function(x,y) x^2*y
+xmin <- -1; xmax <- 1
+ymin <- function(x) x^2; ymax <-1
+integral <- integral2(f, xmin,xmax,ymin,ymax)$Q 
+integral
+```
+
+Which is the value of integral without c, but since we need c⋅integral without c = 1 we can find c simply by 1/ integral
+
+```{r}
+1 / integral
+```
+
+So c = 21 / 4 (which is 5.25).
