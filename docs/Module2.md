@@ -734,7 +734,7 @@ head(pricetext)
 ```
 
 ```
-## [1] "£ 2.59" "£ 3.30" "£ 0.76" "£ 0.78" "£ 3.01" "£ 5.52"
+## [1] "£ 2.59" "£ 3.30" "£ 0.77" "£ 0.77" "£ 3.04" "£ 5.53"
 ```
 Note that the results are in ascending order - lowest priced overall - first.  The reason that some later ones are lower price is that it does not include shipping in the results, that is a seperate item in the html.  We should therefore consider extracting the shipping item also, then combining the two data tables together to give a total price.
 
@@ -786,12 +786,12 @@ head(combined)
 ## # A tibble: 6 x 3
 ##   booktitle                                      `data and time`     price
 ##   <chr>                                          <dttm>              <dbl>
-## 1 Le temps retrouve                              2018-10-21 20:08:23 2.59 
-## 2 Le temps retrouve                              2018-10-21 20:08:23 3.3  
-## 3 Le temps retrouve                              2018-10-21 20:08:23 0.76 
-## 4 Le temps retrouve                              2018-10-21 20:08:23 0.780
-## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-21 20:08:23 3.01 
-## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-21 20:08:23 5.52
+## 1 Le temps retrouve                              2018-10-25 04:37:19  2.59
+## 2 Le temps retrouve                              2018-10-25 04:37:19  3.3 
+## 3 Le temps retrouve                              2018-10-25 04:37:19  0.77
+## 4 Le temps retrouve                              2018-10-25 04:37:19  0.77
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-25 04:37:19  3.04
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-25 04:37:19  5.53
 ```
 
 If you collect your own data, sometimes in an academic environment you may need to complete a process to authenticate the data collection method.  This would be an Institutional Review Board or IRB at MIT who would check your data collection method is ethical.  Sometimes these are called more generically Human Research Board or just an ethics committee.  They may be national guidance governing ethical considerations and research involving humans.  In the UK there are the ESRC Framework for Research Ethics for instance.

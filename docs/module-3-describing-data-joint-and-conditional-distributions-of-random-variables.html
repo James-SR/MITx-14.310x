@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-10-21">
+<meta name="date" content="2018-10-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -144,6 +144,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#summarizing-and-describing-data"><i class="fa fa-check"></i><b>3.1</b> Summarizing and Describing Data</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#kernel-density-estimation"><i class="fa fa-check"></i><b>3.1.1</b> Kernel Density Estimation</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#joint-marginal-and-conditional-probabilities"><i class="fa fa-check"></i><b>3.2</b> Joint, Marginal and Conditional Probabilities</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#marginal-or-individual-distributions"><i class="fa fa-check"></i><b>3.2.1</b> Marginal or Individual Distributions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#independence-of-random-variables"><i class="fa fa-check"></i><b>3.2.2</b> Independence of Random Variables</a></li>
+<li class="chapter" data-level="3.2.3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#conditional-distributions"><i class="fa fa-check"></i><b>3.2.3</b> Conditional Distributions</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -178,6 +183,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Module Content:</p>
 <ul>
 <li><a href="./files/M3/SummarizingandDescribingDataSlides.pdf">Summarizing and Describing Data Slides</a></li>
+<li><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#joint-marginal-and-conditional-probabilities">Joint, Marginal and Conditional Probabilities</a> (./files/M3/JointMarginalandConditionalProbabilities.pdf)</li>
 </ul>
 <div id="summarizing-and-describing-data" class="section level2">
 <h2><span class="header-section-number">3.1</span> Summarizing and Describing Data</h2>
@@ -439,8 +445,92 @@ combined &lt;-<span class="st"> </span><span class="kw">rbind</span>(USHG,BiharH
 <p>When comparing CDFs we look at First Order Stochastic Dominance i.e. which curve has it, we also the distance between the two lines and whether the pattern is the same, as it is above, throughout the curve or whether the lines cross and perhaps the dominance changes in a different region.</p>
 <p>When comparing the US distribution of the heights vs the Indian one, the first-order stochastic dominance of the US distribution means that we are more likely to find larger height values in the US data.</p>
 <ul>
-<li>(What is stochastic dominance)[<a href="https://www.youtube.com/watch?v=6iE_5y4r2FI" class="uri">https://www.youtube.com/watch?v=6iE_5y4r2FI</a>]</li>
+<li><a href="https://www.youtube.com/watch?v=6iE_5y4r2FI">What is stochastic dominance</a></li>
 </ul>
+</div>
+</div>
+<div id="joint-marginal-and-conditional-probabilities" class="section level2">
+<h2><span class="header-section-number">3.2</span> Joint, Marginal and Conditional Probabilities</h2>
+<p>We previously ended the Math lecture from M1 on joint probabilities, we can look at another example. This time suppose we have a function <span class="math inline">\(F_{xy}(x,y)\)</span> where the function is $cx^2y ; for ; x^2 &lt;= y &lt;= 1 $ and is 0 otherwise and we want to calculate the probability for the joint PDF.</p>
+<p>Note: c is the normalizing constant and ensures that our probability function as given becomes a PDF with a total probability of one i.e. it integrates to one.</p>
+<p>First, we draw the support of this distribution i.e. where on the xy-plane there is positive probability. This is the element which is non-zero given above.</p>
+<p><img src="images/jointsupport2D.png" width="100%" /></p>
+<p>We can also show this as three dimensional.</p>
+<p><img src="images/jointsupport3D.png" width="100%" /></p>
+<p>Next, we integrate over this support area</p>
+<p><span class="math display">\[∫_{-1}^{1}∫_{x^2}^{1}cx^2ydydx = \frac{4}{21} c\]</span></p>
+<p>We can use the PRACMA package to calculate the value as follows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pracma)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;pracma&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(x,y) x<span class="op">^</span><span class="dv">2</span><span class="op">*</span>y
+xmin &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">1</span>; xmax &lt;-<span class="st"> </span><span class="dv">1</span>
+ymin &lt;-<span class="st"> </span><span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>; ymax &lt;-<span class="dv">1</span>
+integral &lt;-<span class="st"> </span><span class="kw">integral2</span>(f, xmin,xmax,ymin,ymax)
+integral<span class="op">$</span>Q </code></pre></div>
+<pre><code>## [1] 0.1904762</code></pre>
+<p>Which is the value of integral without c, but since we need c⋅integral without c = 1 we can find c simply by 1/ integral</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>integral<span class="op">$</span>Q </code></pre></div>
+<pre><code>## [1] 5.25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fractions</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>integral<span class="op">$</span>Q )</code></pre></div>
+<pre><code>## [1] 21/4</code></pre>
+<p>So c = 21 / 4 (which is 5.25). We can now use this value of c in our joint PDF formula</p>
+<p><span class="math display">\[F_{xy}(x,y) = 5.25 x^2y \; for \; x^2 &lt;= y &lt;= 1 \; and \; 0 \; otherwise\]</span></p>
+<p>Using this formula we can calculate proabilities of certain region, such as the probability that x &gt; y. To do so, we use the double integration over the region described by the probability statement e.g. x &gt; y. As before, we can draw the support region, then integrate over the area between the boundaries of the area (the lines) and the support. Using multivariable calculus, we set the limits of the integration then perform the integration. By substituting in our value of c we have:</p>
+<p><span class="math display">\[∫_{1}^{0}∫_{x^2}^{x}5.25x^2ydydx = \frac{3}{20}\]</span> We can now calculate this as before</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(x,y,c) c <span class="op">*</span><span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>y
+c &lt;-<span class="st"> </span><span class="fl">5.25</span>
+xmin &lt;-<span class="st"> </span><span class="dv">1</span>; xmax &lt;-<span class="st"> </span><span class="dv">0</span>
+ymin &lt;-<span class="st"> </span><span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>; ymax &lt;-<span class="cf">function</span> (x) x
+I&lt;-<span class="st"> </span><span class="kw">integral2</span>(f, xmin,xmax,ymin,ymax, <span class="dt">c =</span> c) 
+I<span class="op">$</span>Q </code></pre></div>
+<pre><code>## [1] -0.15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>I<span class="op">$</span>Q</code></pre></div>
+<pre><code>## [1] -6.666667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fractions</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>I<span class="op">$</span>Q) <span class="co"># as a fraction</span></code></pre></div>
+<pre><code>## [1] -20/3</code></pre>
+<div id="marginal-or-individual-distributions" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Marginal or Individual Distributions</h3>
+<p>So far, we have looked at how to calculate regions of the xy plane, by integrating the PDF<span class="math inline">\(F_{xy}\)</span> over the regions. We can also use this joint PDF to recover individual or <em>marginal</em> distributions.</p>
+<p>For discreet random variables for a particular value of x, we sum up the joint distribution over all the values for Y, to give the marginal distribution of x at that points. For continous variables we do the equivalent integration.</p>
+<p>Discreet:</p>
+<p><span class="math display">\[ f_X(x) = \sum_y f_{xy}(x,y) \]</span></p>
+<p>Continous:</p>
+<p><span class="math display">\[f_X(x) = \int_{y} f_{xy}(x,y)dy\]</span></p>
+<p>This is best illistrated with an example. In tennis players tend to play at a similar level to the their opponent, if they are broadly at a similar level. So if one player is playing badly, so will the other. This suggests that the shape of joint PF of unforced errors in the game will be concentrated at points around which x and y have similar values, with less density (probability) around the points where one player has a lot more unforced errors than the other. The PF may look something like the one below.</p>
+<p><img src="images/jointPFtennis.png" width="100%" /></p>
+<p>To calculate the marginal/individual probabilities for one player, we just sum the probabilies - for each x, add up all the probabilities of y. We take a straight line at x and sum all the probabilities along that line/vector.</p>
+<p>In our example, if we want to find the marginal PDF of a continous variable x, we simply integrate out y. Bearing in mind our conditions as before $cx^2y ; for ; x^2 &lt;= y &lt;= 1 $ and is 0 otherwise:</p>
+<p><span class="math display">\[f_X(x) = \int_{x^2}^{1} 21/4 \; x^2ydy\]</span></p>
+<p>If we wanted to find the marginal PDF of a y (a continous variable), we integrate out x in a similar fashion, again using the conditions as before.</p>
+<p><span class="math display">\[f_y(y) = \int_{\sqrt{-y}}^{\sqrt{y}} 21/4 \; x^2ydx\]</span> More detail and charts are available in the slides at the top of this chapter.</p>
+</div>
+<div id="independence-of-random-variables" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Independence of Random Variables</h3>
+<p>We have seen how to recover the marginal distributions from a joint distribution. Can we also construct the joint distribution from the marginal distribution? No we cannot, unless we know the relationship between the random variables. Joint distributions contain three pieces of information: how one variable is distributed, how a second variable is distributed, and the relationship between the two variables. Having the marginal distributions gives the first two pieces of information, but it does not give us information about how the two variables are related.</p>
+<p>Independent random variables is often an assumption for some models and is a particular type of relationship between two variables.</p>
+<p>X and Y are independent if the joint PDF is equal to the product of the marginal PDFs e.g. <span class="math inline">\(fxy(x,y)=fx(x)fy(y)\)</span></p>
+<p>In our last example where the value of y takes on values depending on the value of x $cx^2y ; for ; x^2 &lt;= y &lt;= 1 $ so they are supported, so no they are not indepdent.</p>
+<p>In the earlier of tennis unforced errors, our indepdendence definition is that x and y are independent if the probability that x is in some region and y is in some region is equal to the product of the probabilities for all regions a and b. There are regions where there is no probability (zero probability) in the joint probability function, yet the product of the two marginal distributions is non-zero. So this definition is not met.</p>
+<p>For discrete random variables, if you have a table representing their joint probability function, the two variables are independent if and only if (iff) the rows of the table are proportional to one another, if and only if (iff) the columns of the table are proportional to one another - see below. The columns are simply ratios of the other columns.</p>
+<p>If in the tennis example the unforced errors were indepdent, this is what the table of joint distributions would look like.</p>
+<p><img src="images/indepdentrvs.png" width="100%" /></p>
+</div>
+<div id="conditional-distributions" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Conditional Distributions</h3>
+<p>The conditional distribution allows us to “update” the distribution of a random variable, if we need to, given some information for instance y | x or number of unforced errors for y given x. Mathematically it is the joint PDF divided by marginal PDF:</p>
+<p><span class="math display">\[FY|x (y|x) = fxy(x,y) / fx(x) \\ where \; P(Y=y |X=x) \; for X,Y discreet\]</span> In effect, it will behave like a marginal probability once we have conditioned (stated) on the x variable.</p>
+<p>Note that we we condition (state) on one variable, the marginal probabilities at that point (slice) do not integrate to 1. So using the tennis example beofre, if one player has made 2 unforced errors (y = 2) so we are interested in the PDF of x at that point, we need to inflate the PDF by the probability that y = 2 or P(y = 2) which is 5/32 or 0.156 and we divide each of the individual probability to effectively gross-up the probabilities to 1.</p>
+<p>For a continous conditional PDF, we normalise the marginal probability for one variable to effectively gross that up also.</p>
 
 </div>
 </div>

@@ -12,6 +12,7 @@
 Module Content:
 
 * [Summarizing and Describing Data Slides](./files/M3/SummarizingandDescribingDataSlides.pdf)
+* [Joint, Marginal and Conditional Probabilities] (./files/M3/JointMarginalandConditionalProbabilities.pdf)
 
 
 
@@ -429,5 +430,187 @@ When comparing CDFs we look at First Order Stochastic Dominance i.e. which curve
 
 When comparing the US distribution of the heights vs the Indian one, the first-order stochastic dominance of the US distribution means that we are more likely to find larger height values in the US data.
 
-* (What is stochastic dominance)[https://www.youtube.com/watch?v=6iE_5y4r2FI]
+* [What is stochastic dominance](https://www.youtube.com/watch?v=6iE_5y4r2FI)
 
+## Joint, Marginal and Conditional Probabilities
+
+We previously ended the Math lecture from M1 on joint probabilities, we can look at another example.  This time suppose we have a function $F_{xy}(x,y)$ where the function is $cx^2y \; for \; x^2 <= y <= 1 $ and is 0 otherwise and we want to calculate the probability for the joint PDF.  
+
+Note: c is the normalizing constant and ensures that our probability function as given becomes a PDF with a total probability of one i.e. it integrates to one.
+
+First, we draw the support of this distribution i.e. where on the xy-plane there is positive probability.  This is the element which is non-zero given above.
+
+
+\includegraphics[width=1\linewidth]{images/jointsupport2D} 
+
+We can also show this as three dimensional.
+
+
+\includegraphics[width=1\linewidth]{images/jointsupport3D} 
+
+Next, we integrate over this support area
+
+$$∫_{-1}^{1}∫_{x^2}^{1}cx^2ydydx = \frac{4}{21} c$$
+
+We can use the PRACMA package to calculate the value as follows.
+
+
+```r
+library(pracma)
+```
+
+```
+## 
+## Attaching package: 'pracma'
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     cross
+```
+
+```r
+f <- function(x,y) x^2*y
+xmin <- -1; xmax <- 1
+ymin <- function(x) x^2; ymax <-1
+integral <- integral2(f, xmin,xmax,ymin,ymax)
+integral$Q 
+```
+
+```
+## [1] 0.1904762
+```
+
+Which is the value of integral without c, but since we need c⋅integral without c = 1 we can find c simply by 1/ integral
+
+
+```r
+library(MASS)
+```
+
+```
+## 
+## Attaching package: 'MASS'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+```
+
+```r
+1 / integral$Q 
+```
+
+```
+## [1] 5.25
+```
+
+```r
+fractions(1 / integral$Q )
+```
+
+```
+## [1] 21/4
+```
+
+So c = 21 / 4 (which is 5.25).  We can now use this value of c in our joint PDF formula
+
+$$F_{xy}(x,y) = 5.25 x^2y \; for \; x^2 <= y <= 1 \; and \; 0 \; otherwise$$
+
+Using this formula we can calculate proabilities of certain region, such as the probability that x > y.  To do so, we use the double integration over the region described by the probability statement e.g. x > y.  As before, we can draw the support region, then integrate over the area between the boundaries of the area (the lines) and the support.  Using multivariable calculus, we set the limits of the integration then perform the integration.  By substituting in our value of c we have:
+
+$$∫_{1}^{0}∫_{x^2}^{x}5.25x^2ydydx = \frac{3}{20}$$
+We can now calculate this as before
+
+```r
+f <- function(x,y,c) c * x^2 * y
+c <- 5.25
+xmin <- 1; xmax <- 0
+ymin <- function(x) x^2; ymax <-function (x) x
+I<- integral2(f, xmin,xmax,ymin,ymax, c = c) 
+I$Q 
+```
+
+```
+## [1] -0.15
+```
+
+```r
+1 / I$Q
+```
+
+```
+## [1] -6.666667
+```
+
+```r
+fractions(1 / I$Q) # as a fraction
+```
+
+```
+## [1] -20/3
+```
+
+### Marginal or Individual Distributions
+
+So far, we have looked at how to calculate regions of the xy plane, by integrating the PDF$F_{xy}$ over the regions. We can also use this joint PDF to recover individual or *marginal* distributions.
+
+For discreet random variables for a particular value of x, we sum up the joint distribution over all the values for Y, to give the marginal distribution of x at that points.  For continous variables we do the equivalent integration.
+
+Discreet:
+
+$$ f_X(x) = \sum_y f_{xy}(x,y) $$
+
+Continous:
+
+$$f_X(x) = \int_{y} f_{xy}(x,y)dy$$
+
+This is best illistrated with an example.  In tennis players tend to play at a similar level to the their opponent, if they are broadly at a similar level.  So if one player is playing badly, so will the other.  This suggests that the shape of joint PF of unforced errors in the game will be concentrated at points around which x and y have similar values, with less density (probability) around the points where one player has a lot more unforced errors than the other.  The PF may look something like the one below.
+
+
+\includegraphics[width=1\linewidth]{images/jointPFtennis} 
+
+To calculate the marginal/individual probabilities for one player, we just sum the probabilies - for each x, add up all the probabilities of y.  We take a straight line at x and sum all the probabilities along that line/vector.
+
+In our example, if we want to find the marginal PDF of a continous variable x, we simply integrate out y.  Bearing in mind our conditions as before $cx^2y \; for \; x^2 <= y <= 1 $ and is 0 otherwise:
+
+$$f_X(x) = \int_{x^2}^{1} 21/4 \; x^2ydy$$
+
+If we wanted to find the marginal PDF of a y (a continous variable), we integrate out x in a similar fashion, again using the conditions as before.
+
+$$f_y(y) = \int_{\sqrt{-y}}^{\sqrt{y}} 21/4 \; x^2ydx$$
+More detail and charts are available in the slides at the top of this chapter.
+
+### Independence of Random Variables
+
+We have seen how to recover the marginal distributions from a joint distribution.  Can we also construct the joint distribution from the marginal distribution?  No we cannot, unless we know the relationship between the random variables.  Joint distributions contain three pieces of information: how one variable is distributed, how a second variable is distributed, and the relationship between the two variables. Having the marginal distributions gives the first two pieces of information, but it does not give us information about how the two variables are related.
+
+Independent random variables is often an assumption for some models and is a particular type of relationship between two variables.  
+
+X and Y are independent if the joint PDF is equal to the product of the marginal PDFs e.g. $fxy(x,y)=fx(x)fy(y)$
+
+In our last example where the value of y takes on values depending on the value of x $cx^2y \; for \; x^2 <= y <= 1 $ so they are supported, so no they are not indepdent.  
+
+In the earlier of tennis unforced errors, our indepdendence definition is that x and y are independent if the probability that x is in some region and y is in some region is equal to the product of the probabilities for all regions a and b.  There are regions where there is no probability (zero probability) in the joint probability function, yet the product of the two marginal distributions is non-zero. So this definition is not met.
+
+For discrete random variables, if you have a table representing their joint probability function, the two variables are independent if and only
+if (iff) the rows of the table are proportional to one another, if and only if (iff) the columns of the table are proportional to one another - see below.  The columns are simply ratios of the other columns.  
+
+If in the tennis example the unforced errors were indepdent, this is what the table of joint distributions would look like.
+
+
+\includegraphics[width=1\linewidth]{images/indepdentrvs} 
+
+### Conditional Distributions
+
+The conditional distribution allows us to "update" the distribution of a random variable, if we need to, given some information for instance y | x or number of unforced errors for y given x.  Mathematically it is the joint PDF divided by marginal PDF:
+
+$$FY|x (y|x) = fxy(x,y) / fx(x) \\ where \; P(Y=y |X=x) \; for X,Y discreet$$
+In effect, it will behave like a marginal probability once we have conditioned (stated) on the x variable.
+
+Note that we we condition (state) on one variable, the marginal probabilities at that point (slice) do not integrate to 1.  So using the tennis example beofre, if one player has made 2 unforced errors (y = 2) so we are interested in the PDF of x at that point, we need to inflate the PDF by the probability that y = 2 or P(y = 2) which is 5/32 or 0.156 and we divide each of the individual probability to effectively gross-up the probabilities to 1. 
+
+For a continous conditional PDF, we normalise the marginal probability for one variable to effectively gross that up also.

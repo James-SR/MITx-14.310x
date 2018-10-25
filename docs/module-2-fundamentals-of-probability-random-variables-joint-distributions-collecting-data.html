@@ -25,7 +25,7 @@
 <meta name="author" content="James Solomon-Rounce">
 
 
-<meta name="date" content="2018-10-21">
+<meta name="date" content="2018-10-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -143,6 +143,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><i class="fa fa-check"></i><b>3</b> Module 3: Describing Data, Joint and Conditional Distributions of Random Variables</a><ul>
 <li class="chapter" data-level="3.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#summarizing-and-describing-data"><i class="fa fa-check"></i><b>3.1</b> Summarizing and Describing Data</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#kernel-density-estimation"><i class="fa fa-check"></i><b>3.1.1</b> Kernel Density Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#joint-marginal-and-conditional-probabilities"><i class="fa fa-check"></i><b>3.2</b> Joint, Marginal and Conditional Probabilities</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#marginal-or-individual-distributions"><i class="fa fa-check"></i><b>3.2.1</b> Marginal or Individual Distributions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#independence-of-random-variables"><i class="fa fa-check"></i><b>3.2.2</b> Independence of Random Variables</a></li>
+<li class="chapter" data-level="3.2.3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#conditional-distributions"><i class="fa fa-check"></i><b>3.2.3</b> Conditional Distributions</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -685,7 +690,7 @@ pricehtml &lt;-<span class="st"> </span><span class="kw">html_nodes</span>(larec
 pricetext &lt;-<span class="st"> </span><span class="kw">html_text</span>(pricehtml)
 
 <span class="kw">head</span>(pricetext)</code></pre></div>
-<pre><code>## [1] &quot;£ 2.59&quot; &quot;£ 3.30&quot; &quot;£ 0.76&quot; &quot;£ 0.78&quot; &quot;£ 3.01&quot; &quot;£ 5.52&quot;</code></pre>
+<pre><code>## [1] &quot;£ 2.59&quot; &quot;£ 3.30&quot; &quot;£ 0.77&quot; &quot;£ 0.77&quot; &quot;£ 3.04&quot; &quot;£ 5.53&quot;</code></pre>
 <p>Note that the results are in ascending order - lowest priced overall - first. The reason that some later ones are lower price is that it does not include shipping in the results, that is a seperate item in the html. We should therefore consider extracting the shipping item also, then combining the two data tables together to give a total price.</p>
 <p>We can also write slightly cleaner code using the pipe operator as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
@@ -717,12 +722,12 @@ combined &lt;-<span class="st"> </span><span class="kw">data_frame</span>(bookti
 <pre><code>## # A tibble: 6 x 3
 ##   booktitle                                      `data and time`     price
 ##   &lt;chr&gt;                                          &lt;dttm&gt;              &lt;dbl&gt;
-## 1 Le temps retrouve                              2018-10-21 20:08:04 2.59 
-## 2 Le temps retrouve                              2018-10-21 20:08:04 3.3  
-## 3 Le temps retrouve                              2018-10-21 20:08:04 0.76 
-## 4 Le temps retrouve                              2018-10-21 20:08:04 0.780
-## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-21 20:08:04 3.01 
-## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-21 20:08:04 5.52</code></pre>
+## 1 Le temps retrouve                              2018-10-25 04:37:00  2.59
+## 2 Le temps retrouve                              2018-10-25 04:37:00  3.3 
+## 3 Le temps retrouve                              2018-10-25 04:37:00  0.77
+## 4 Le temps retrouve                              2018-10-25 04:37:00  0.77
+## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-25 04:37:00  3.04
+## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-25 04:37:00  5.53</code></pre>
 <p>If you collect your own data, sometimes in an academic environment you may need to complete a process to authenticate the data collection method. This would be an Institutional Review Board or IRB at MIT who would check your data collection method is ethical. Sometimes these are called more generically Human Research Board or just an ethics committee. They may be national guidance governing ethical considerations and research involving humans. In the UK there are the ESRC Framework for Research Ethics for instance.</p>
 </div>
 <div id="human-research-subject-definitions" class="section level3">

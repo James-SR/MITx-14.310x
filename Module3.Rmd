@@ -350,3 +350,35 @@ If we wanted to find the marginal PDF of a y (a continous variable), we integrat
 
 $$f_y(y) = \int_{\sqrt{-y}}^{\sqrt{y}} 21/4 \; x^2ydx$$
 More detail and charts are available in the slides at the top of this chapter.
+
+### Independence of Random Variables
+
+We have seen how to recover the marginal distributions from a joint distribution.  Can we also construct the joint distribution from the marginal distribution?  No we cannot, unless we know the relationship between the random variables.  Joint distributions contain three pieces of information: how one variable is distributed, how a second variable is distributed, and the relationship between the two variables. Having the marginal distributions gives the first two pieces of information, but it does not give us information about how the two variables are related.
+
+Independent random variables is often an assumption for some models and is a particular type of relationship between two variables.  
+
+X and Y are independent if the joint PDF is equal to the product of the marginal PDFs e.g. $fxy(x,y)=fx(x)fy(y)$
+
+In our last example where the value of y takes on values depending on the value of x $cx^2y \; for \; x^2 <= y <= 1 $ so they are supported, so no they are not indepdent.  
+
+In the earlier of tennis unforced errors, our indepdendence definition is that x and y are independent if the probability that x is in some region and y is in some region is equal to the product of the probabilities for all regions a and b.  There are regions where there is no probability (zero probability) in the joint probability function, yet the product of the two marginal distributions is non-zero. So this definition is not met.
+
+For discrete random variables, if you have a table representing their joint probability function, the two variables are independent if and only
+if (iff) the rows of the table are proportional to one another, if and only if (iff) the columns of the table are proportional to one another - see below.  The columns are simply ratios of the other columns.  
+
+If in the tennis example the unforced errors were indepdent, this is what the table of joint distributions would look like.
+
+```{r Independent Discreet Random Variables, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/indepdentrvs.png")
+```
+
+### Conditional Distributions
+
+The conditional distribution allows us to "update" the distribution of a random variable, if we need to, given some information for instance y | x or number of unforced errors for y given x.  Mathematically it is the joint PDF divided by marginal PDF:
+
+$$FY|x (y|x) = fxy(x,y) / fx(x) \\ where \; P(Y=y |X=x) \; for X,Y discreet$$
+In effect, it will behave like a marginal probability once we have conditioned (stated) on the x variable.
+
+Note that we we condition (state) on one variable, the marginal probabilities at that point (slice) do not integrate to 1.  So using the tennis example beofre, if one player has made 2 unforced errors (y = 2) so we are interested in the PDF of x at that point, we need to inflate the PDF by the probability that y = 2 or P(y = 2) which is 5/32 or 0.156 and we divide each of the individual probability to effectively gross-up the probabilities to 1. 
+
+For a continous conditional PDF, we normalise the marginal probability for one variable to effectively gross that up also.
