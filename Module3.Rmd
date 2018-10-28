@@ -382,3 +382,99 @@ In effect, it will behave like a marginal probability once we have conditioned (
 Note that we we condition (state) on one variable, the marginal probabilities at that point (slice) do not integrate to 1.  So using the tennis example beofre, if one player has made 2 unforced errors (y = 2) so we are interested in the PDF of x at that point, we need to inflate the PDF by the probability that y = 2 or P(y = 2) which is 5/32 or 0.156 and we divide each of the individual probability to effectively gross-up the probabilities to 1. 
 
 For a continous conditional PDF, we normalise the marginal probability for one variable to effectively gross that up also.
+
+## Homework
+
+This is a sample of some of the homework answers.
+
+### Part 1
+
+We use the gender stats from the [world bank](https://datacatalog.worldbank.org/dataset/gender-statistics).  In this case we are just interested in analyzing the data for one indicator that is the Adolescent Fertility Rate, in the data the indicator code for this variable is called SP.ADO.TFRT . This indicator measures the annual number of births to women 15 to 19 years of age per 1,000 women in that age group. It represents the risk of childbearing among adolescent women 15 to 19 years of age. It is also referred to as the age-specific fertility rate for women aged 15-19. Once you have completed this problem set you’ll have more information of how this rate has evolved over time and how it varies across different groups of countries.
+
+```{r}
+rm(list = ls()) # Removes all existing R objects
+library(utils)
+library(tidyverse)
+
+gender_data <- as_tibble(read.csv("./files/M3/Gender_StatsData.csv"))
+
+head(gender_data, n = 20)
+str(gender_data)
+summary(gender_data)
+```
+
+Now if we only want adolescent fertility rate for each county-year we do the following.
+
+```{r}
+teenager_fr <- filter(gender_data, Indicator.Code == "SP.ADO.TFRT")
+```
+
+Nest we remove the object from memory since we no longer need it.
+
+```{r}
+rm(gender_data)
+```
+
+Then to calculate the sample mean of the Adolescent FR in 1975
+
+```{r}
+mean(teenager_fr$X1975, na.rm = TRUE)
+```
+
+Then for the mean and sd of the Adolescent FR in 1960
+
+```{r}
+round(mean(teenager_fr$X1960, na.rm = TRUE),2)
+round(sd(teenager_fr$X1960, na.rm = TRUE),2)
+```
+
+And the same again in 2000
+
+```{r}
+round(mean(teenager_fr$X2000, na.rm = TRUE),2)
+round(sd(teenager_fr$X2000, na.rm = TRUE),2)
+```
+
+
+### Part 2
+
+Question 3 - what is the value of c in this case
+
+$$∫_{0}^{1}∫_{0}^{1}c(x+y^2)dydx$$
+
+We can use the PRACMA package to calculate the value as follows.
+
+```{r}
+library(pracma)
+f <- function(x,y) x + (y^2)
+xmin <- 0; xmax <- 1
+ymin <- 0; ymax <-1
+integral <- integral2(f, xmin,xmax,ymin,ymax)
+integral$Q 
+```
+
+Which is the value of integral without c, but since we need c⋅integral without c = 1 we can find c simply by 1/ integral
+
+```{r}
+library(MASS)
+1 / integral$Q 
+fractions(1 / integral$Q )
+```
+
+Question 4 - Plot the bivariate PDF
+
+```{r}
+library(plot3D)
+
+# Create the x and y vectors
+
+M <- mesh(seq(0,1, length = 100), seq(0,1, length = 100))
+x <- M$x
+y <- M$y
+z <- 6/5*(M$x + M$y^2)
+
+# Plot the pdf
+persp3D(x, y, z, xlab = 'X variable', ylab = 'Y variable', xlim = c(0,1), main = 'Plotting joint PDF')
+```
+
+The plot is correct - the pdf can take values larger than one. Both X and Y are continuous random variables, the important thing is that they jointly integrate to one, which can be met by having a value of the constant c that ensures this.
