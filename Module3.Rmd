@@ -435,6 +435,53 @@ round(mean(teenager_fr$X2000, na.rm = TRUE),2)
 round(sd(teenager_fr$X2000, na.rm = TRUE),2)
 ```
 
+Question 9
+
+```{r}
+byincomelevel <- dplyr::filter(teenager_fr, Country.Code %in% c("LIC","MIC","HIC"))
+colnames(byincomelevel)[1] <- "Country.Name"
+byincomelevel
+```
+
+Now we want to gather the data ready for plotting - note gather uses key,value setup.  In this instance, our first var is the new variable (key) we wish to setup using the transposed data.
+
+```{r}
+plotdata_bygroupyear <- gather(byincomelevel, Year, FertilityRate, X1960:X2015) %>%
+  select(Year, Country.Name, Country.Code, FertilityRate)
+head(plotdata_byyear)
+```
+
+If we prefer to look at the data at the year level, and have the fertility rates for each income-group as separate variables, we need to re-arrange the data using the spread command.  To do so, wE list the variables we want to rotate out i.e. those that will become new  columns/var and the data.
+
+```{r}
+plotdata_byyear <- select(plotdata_byyear, Country.Code, Year, FertilityRate) %>%
+  spread(Country.Code, FertilityRate)
+head(plotdata_byyear)
+```
+
+Now we can plot our data, first we remove the x label from the start of the year variables to allow us to convert the chr string to a numeric field, which in turn will make the axis easier to read
+
+```{r}
+# Remove the x and convert to numeric
+plotdata_bygroupyear <- mutate(plotdata_bygroupyear, Year=as.numeric(str_replace(Year,"X","")))
+
+# Plot the resulting data
+ggplot(plotdata_bygroupyear, aes(Year, FertilityRate, group = Country.Code, colour = Country.Code)) +
+  geom_line() + 
+  labs(title='Fertility Rate by Country-Income-Level over Time')
+```
+
+```{r}
+histdata_twoyears <- teenager_fr %>%
+  dplyr::slice(46:263) %>%
+  dplyr::select(Country.Code, X1960, X2000) %>%
+  gather("Year", "FertilityRate", 2:3)
+
+ggplot(histdata_twoyears, aes(x = FertilityRate)) + 
+  geom_histogram(data = histdata_twoyears, Year=="X1960", colour = "darkred", fill = "red", alpha = 0.2) +
+  geom_histogram(data = histdata_twoyears, Year=="X2000", colour = "darkblue", fill = "blue", alpha = 0.2) 
+```
+
 
 ### Part 2
 
