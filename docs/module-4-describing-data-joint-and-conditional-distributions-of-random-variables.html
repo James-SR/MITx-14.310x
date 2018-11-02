@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)</title>
+  <meta name="description" content="Study notes taken from the courses for personal reference.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://github.com/James-SR/MITx-14.310x/" />
+  
+  <meta property="og:description" content="Study notes taken from the courses for personal reference." />
+  <meta name="github-repo" content="James-SR/MITx-14.310x" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)" />
+  
+  <meta name="twitter:description" content="Study notes taken from the courses for personal reference." />
+  
+
+<meta name="author" content="James Solomon-Rounce">
+
+
+<meta name="date" content="2018-10-25">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html"><i class="fa fa-check"></i><b>1</b> Module 1: Introduction to the Course</a><ul>
+<li class="chapter" data-level="1.1" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.2" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section"><i class="fa fa-check"></i><b>1.2</b> [1] 0.3162278 2.8284271 1.4628739</a></li>
+<li class="chapter" data-level="1.3" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-1"><i class="fa fa-check"></i><b>1.3</b> [1] 3.478505 3.181981 2.146460</a></li>
+<li class="chapter" data-level="1.4" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#warning-in-c1-2-3-4-c0-10-100-longer-object-length-is-not-a"><i class="fa fa-check"></i><b>1.4</b> Warning in c(1, 2, 3, 4) + c(0, 10, 100): longer object length is not a</a></li>
+<li class="chapter" data-level="1.5" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#multiple-of-shorter-object-length"><i class="fa fa-check"></i><b>1.5</b> multiple of shorter object length</a></li>
+<li class="chapter" data-level="1.6" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-2"><i class="fa fa-check"></i><b>1.6</b> [1] 1 12 103 4</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#module-1-homework"><i class="fa fa-check"></i><b>1.6.1</b> Module 1 Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#attaching-packages-tidyverse-1.2.1"><i class="fa fa-check"></i><b>1.7</b> – Attaching packages —————— tidyverse 1.2.1 –</a></li>
+<li class="chapter" data-level="1.8" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#v-ggplot2-3.0.0-v-purrr-0.2.5"><i class="fa fa-check"></i><b>1.8</b> v ggplot2 3.0.0 v purrr 0.2.5</a></li>
+<li class="chapter" data-level="1.9" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#v-tibble-1.4.2-v-dplyr-0.7.6"><i class="fa fa-check"></i><b>1.9</b> v tibble 1.4.2 v dplyr 0.7.6</a></li>
+<li class="chapter" data-level="1.10" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#v-tidyr-0.8.1-v-stringr-1.3.1"><i class="fa fa-check"></i><b>1.10</b> v tidyr 0.8.1 v stringr 1.3.1</a></li>
+<li class="chapter" data-level="1.11" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#v-readr-1.1.1-v-forcats-0.3.0"><i class="fa fa-check"></i><b>1.11</b> v readr 1.1.1 v forcats 0.3.0</a></li>
+<li class="chapter" data-level="1.12" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#conflicts-tidyverse_conflicts"><i class="fa fa-check"></i><b>1.12</b> – Conflicts ——————— tidyverse_conflicts() –</a></li>
+<li class="chapter" data-level="1.13" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#x-dplyrfilter-masks-statsfilter"><i class="fa fa-check"></i><b>1.13</b> x dplyr::filter() masks stats::filter()</a></li>
+<li class="chapter" data-level="1.14" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#x-dplyrlag-masks-statslag"><i class="fa fa-check"></i><b>1.14</b> x dplyr::lag() masks stats::lag()</a></li>
+<li class="chapter" data-level="1.15" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#parsed-with-column-specification"><i class="fa fa-check"></i><b>1.15</b> Parsed with column specification:</a></li>
+<li class="chapter" data-level="1.16" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#cols"><i class="fa fa-check"></i><b>1.16</b> cols(</a></li>
+<li class="chapter" data-level="1.17" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#default-col_integer"><i class="fa fa-check"></i><b>1.17</b> .default = col_integer(),</a></li>
+<li class="chapter" data-level="1.18" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-col_character"><i class="fa fa-check"></i><b>1.18</b> journal = col_character(),</a></li>
+<li class="chapter" data-level="1.19" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#title-col_character"><i class="fa fa-check"></i><b>1.19</b> title = col_character(),</a></li>
+<li class="chapter" data-level="1.20" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#au1-col_character"><i class="fa fa-check"></i><b>1.20</b> au1 = col_character(),</a></li>
+<li class="chapter" data-level="1.21" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#au2-col_character"><i class="fa fa-check"></i><b>1.21</b> au2 = col_character(),</a></li>
+<li class="chapter" data-level="1.22" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#au3-col_character"><i class="fa fa-check"></i><b>1.22</b> au3 = col_character(),</a></li>
+<li class="chapter" data-level="1.23" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#past5-col_double"><i class="fa fa-check"></i><b>1.23</b> past5 = col_double(),</a></li>
+<li class="chapter" data-level="1.24" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aflpn90-col_double"><i class="fa fa-check"></i><b>1.24</b> aflpn90 = col_double(),</a></li>
+<li class="chapter" data-level="1.25" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aulpn90-col_double"><i class="fa fa-check"></i><b>1.25</b> aulpn90 = col_double(),</a></li>
+<li class="chapter" data-level="1.26" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aulpn80-col_double"><i class="fa fa-check"></i><b>1.26</b> aulpn80 = col_double(),</a></li>
+<li class="chapter" data-level="1.27" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aulpn70-col_double"><i class="fa fa-check"></i><b>1.27</b> aulpn70 = col_double(),</a></li>
+<li class="chapter" data-level="1.28" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#lcites-col_double"><i class="fa fa-check"></i><b>1.28</b> lcites = col_double()</a></li>
+<li class="chapter" data-level="1.29" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-3"><i class="fa fa-check"></i><b>1.29</b> )</a></li>
+<li class="chapter" data-level="1.30" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#see-spec-for-full-column-specifications."><i class="fa fa-check"></i><b>1.30</b> See spec(…) for full column specifications.</a></li>
+<li class="chapter" data-level="1.31" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#a-tibble-6-x-22"><i class="fa fa-check"></i><b>1.31</b> # A tibble: 6 x 22</a></li>
+<li class="chapter" data-level="1.32" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-year-cites-title-au1-au2-au3-female1-female2-female3-page"><i class="fa fa-check"></i><b>1.32</b> journal year cites title au1 au2 au3 female1 female2 female3 page</a></li>
+<li class="chapter" data-level="1.33" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-4"><i class="fa fa-check"></i><b>1.33</b> <chr> <int> <int> <chr> <chr> <chr> <chr> <int> <int> <int> <int></a></li>
+<li class="chapter" data-level="1.34" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1993-31-jeux-kanb-keen-0-0-na-16"><i class="fa fa-check"></i><b>1.34</b> 1 Americ~ 1993 31 Jeux~ Kanb~ Keen~ <NA> 0 0 NA 16</a></li>
+<li class="chapter" data-level="1.35" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1993-4-chan-jame-0-na-na-22"><i class="fa fa-check"></i><b>1.35</b> 2 Americ~ 1993 4 Chan~ Jame~ <NA> <NA> 0 NA NA 22</a></li>
+<li class="chapter" data-level="1.36" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1993-28-fact-bert-0-na-na-15"><i class="fa fa-check"></i><b>1.36</b> 3 Americ~ 1993 28 Fact~ Bert~ <NA> <NA> 0 NA NA 15</a></li>
+<li class="chapter" data-level="1.37" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1993-10-stra-garf-oh--1-0-na-19"><i class="fa fa-check"></i><b>1.37</b> 4 Americ~ 1993 10 Stra~ Garf~ Oh,-~ <NA> 1 0 NA 19</a></li>
+<li class="chapter" data-level="1.38" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1993-5-will-coat-lour-0-0-na-21"><i class="fa fa-check"></i><b>1.38</b> 5 Americ~ 1993 5 Will~ Coat~ Lour~ <NA> 0 0 NA 21</a></li>
+<li class="chapter" data-level="1.39" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1993-21-merg-kim-sing-0-0-na-21"><i class="fa fa-check"></i><b>1.39</b> 6 Americ~ 1993 21 Merg~ Kim,~ Sing~ <NA> 0 0 NA 21</a></li>
+<li class="chapter" data-level="1.40" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#with-11-more-variables-order-nauthor-past5"><i class="fa fa-check"></i><b>1.40</b> # … with 11 more variables: order <int>, nauthor <int>, past5 <dbl>,</a></li>
+<li class="chapter" data-level="1.41" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aflpn90-spage-field-subfld-aulpn90"><i class="fa fa-check"></i><b>1.41</b> # aflpn90 <dbl>, spage <int>, field <int>, subfld <int>, aulpn90 <dbl>,</a></li>
+<li class="chapter" data-level="1.42" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aulpn80-aulpn70-lcites"><i class="fa fa-check"></i><b>1.42</b> # aulpn80 <dbl>, aulpn70 <dbl>, lcites <dbl></a></li>
+<li class="chapter" data-level="1.43" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#a-tibble-4182-x-22"><i class="fa fa-check"></i><b>1.43</b> # A tibble: 4,182 x 22</a></li>
+<li class="chapter" data-level="1.44" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-year-cites-title-au1-au2-au3-female1-female2-female3"><i class="fa fa-check"></i><b>1.44</b> journal year cites title au1 au2 au3 female1 female2 female3</a></li>
+<li class="chapter" data-level="1.45" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-5"><i class="fa fa-check"></i><b>1.45</b> <chr> <int> <int> <chr> <chr> <chr> <chr> <int> <int> <int></a></li>
+<li class="chapter" data-level="1.46" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1980-2251-a-he-whit-0-na-na"><i class="fa fa-check"></i><b>1.46</b> 1 Econom~ 1980 2251 A He~ Whit~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.47" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1979-2227-pros-kahn-tver-0-0-na"><i class="fa fa-check"></i><b>1.47</b> 2 Econom~ 1979 2227 Pros~ Kahn~ Tver~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.48" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1987-2164-co-i-engl-gran-0-0-na"><i class="fa fa-check"></i><b>1.48</b> 3 Econom~ 1987 2164 Co-i~ Engl~ Gran~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.49" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1979-1602-samp-heck-0-na-na"><i class="fa fa-check"></i><b>1.49</b> 4 Econom~ 1979 1602 Samp~ Heck~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.50" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1978-1217-spec-haus-0-na-na"><i class="fa fa-check"></i><b>1.50</b> 5 Econom~ 1978 1217 Spec~ Haus~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.51" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1982-1077-auto-engl-0-na-na"><i class="fa fa-check"></i><b>1.51</b> 6 Econom~ 1982 1077 Auto~ Engl~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.52" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1981-1031-like-dick-full-0-0-na"><i class="fa fa-check"></i><b>1.52</b> 7 Econom~ 1981 1031 Like~ Dick~ Full~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.53" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1982-983-larg-hans-0-na-na"><i class="fa fa-check"></i><b>1.53</b> 8 Econom~ 1982 983 Larg~ Hans~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.54" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1980-864-macr-sims-0-na-na"><i class="fa fa-check"></i><b>1.54</b> 9 Econom~ 1980 864 Macr~ Sims~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.55" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1982-563-time-kydl-pres-0-0-na"><i class="fa fa-check"></i><b>1.55</b> 10 Econom~ 1982 563 Time~ Kydl~ Pres~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.56" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#with-4172-more-rows-and-12-more-variables-page"><i class="fa fa-check"></i><b>1.56</b> # … with 4,172 more rows, and 12 more variables: page <int>,</a></li>
+<li class="chapter" data-level="1.57" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#order-nauthor-past5-aflpn90-spage"><i class="fa fa-check"></i><b>1.57</b> # order <int>, nauthor <int>, past5 <dbl>, aflpn90 <dbl>, spage <int>,</a></li>
+<li class="chapter" data-level="1.58" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#field-subfld-aulpn90-aulpn80"><i class="fa fa-check"></i><b>1.58</b> # field <int>, subfld <int>, aulpn90 <dbl>, aulpn80 <dbl>,</a></li>
+<li class="chapter" data-level="1.59" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#aulpn70-lcites"><i class="fa fa-check"></i><b>1.59</b> # aulpn70 <dbl>, lcites <dbl></a></li>
+<li class="chapter" data-level="1.60" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#a-tibble-205-x-22"><i class="fa fa-check"></i><b>1.60</b> # A tibble: 205 x 22</a></li>
+<li class="chapter" data-level="1.61" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-year-cites-title-au1-au2-au3-female1-female2-female3-1"><i class="fa fa-check"></i><b>1.61</b> journal year cites title au1 au2 au3 female1 female2 female3</a></li>
+<li class="chapter" data-level="1.62" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-6"><i class="fa fa-check"></i><b>1.62</b> <chr> <int> <int> <chr> <chr> <chr> <chr> <int> <int> <int></a></li>
+<li class="chapter" data-level="1.63" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#americ-1994-117-is-i-pers-tabe-0-0-na"><i class="fa fa-check"></i><b>1.63</b> 1 Americ~ 1994 117 Is I~ Pers~ Tabe~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.64" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1971-149-furt-nerl-0-na-na"><i class="fa fa-check"></i><b>1.64</b> 2 Econom~ 1971 149 Furt~ Nerl~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.65" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1971-170-the-madd-na-na-na"><i class="fa fa-check"></i><b>1.65</b> 3 Econom~ 1971 170 The ~ Madd~ <NA> <NA> NA NA NA</a></li>
+<li class="chapter" data-level="1.66" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1971-155-inve-luca-pres-0-0-na"><i class="fa fa-check"></i><b>1.66</b> 4 Econom~ 1971 155 Inve~ Luca~ Pres~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.67" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1971-139-some-crag-0-na-na"><i class="fa fa-check"></i><b>1.67</b> 5 Econom~ 1971 139 Some~ Crag~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.68" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1971-108-iden-roth-0-na-na"><i class="fa fa-check"></i><b>1.68</b> 6 Econom~ 1971 108 Iden~ Roth~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.69" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1972-164-meth-fair-jaff-0-0-na"><i class="fa fa-check"></i><b>1.69</b> 7 Econom~ 1972 164 Meth~ Fair~ Jaff~ <NA> 0 0 NA</a></li>
+<li class="chapter" data-level="1.70" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1972-150-exis-radn-0-na-na"><i class="fa fa-check"></i><b>1.70</b> 8 Econom~ 1972 150 Exis~ Radn~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.71" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1973-361-mani-gibb-0-na-na"><i class="fa fa-check"></i><b>1.71</b> 9 Econom~ 1973 361 Mani~ Gibb~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.72" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econom-1973-107-on-a-kram-0-na-na"><i class="fa fa-check"></i><b>1.72</b> 10 Econom~ 1973 107 On a~ Kram~ <NA> <NA> 0 NA NA</a></li>
+<li class="chapter" data-level="1.73" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#with-195-more-rows-and-12-more-variables-page-order"><i class="fa fa-check"></i><b>1.73</b> # … with 195 more rows, and 12 more variables: page <int>, order <int>,</a></li>
+<li class="chapter" data-level="1.74" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#nauthor-past5-aflpn90-spage-field"><i class="fa fa-check"></i><b>1.74</b> # nauthor <int>, past5 <dbl>, aflpn90 <dbl>, spage <int>, field <int>,</a></li>
+<li class="chapter" data-level="1.75" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#subfld-aulpn90-aulpn80-aulpn70"><i class="fa fa-check"></i><b>1.75</b> # subfld <int>, aulpn90 <dbl>, aulpn80 <dbl>, aulpn70 <dbl>,</a></li>
+<li class="chapter" data-level="1.76" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#lcites"><i class="fa fa-check"></i><b>1.76</b> # lcites <dbl></a></li>
+<li class="chapter" data-level="1.77" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#a-tibble-7-x-2"><i class="fa fa-check"></i><b>1.77</b> # A tibble: 7 x 2</a></li>
+<li class="chapter" data-level="1.78" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-sumcites"><i class="fa fa-check"></i><b>1.78</b> journal <code>sum(cites)</code></a></li>
+<li class="chapter" data-level="1.79" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-7"><i class="fa fa-check"></i><b>1.79</b> <chr> <int></a></li>
+<li class="chapter" data-level="1.80" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#american-economic-review-3738"><i class="fa fa-check"></i><b>1.80</b> 1 American-Economic-Review 3738</a></li>
+<li class="chapter" data-level="1.81" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econometrica-75789"><i class="fa fa-check"></i><b>1.81</b> 2 Econometrica 75789</a></li>
+<li class="chapter" data-level="1.82" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-of-political-economy-3398"><i class="fa fa-check"></i><b>1.82</b> 3 Journal-of-Political-Economy 3398</a></li>
+<li class="chapter" data-level="1.83" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#quarterly-journal-of-economics-8844"><i class="fa fa-check"></i><b>1.83</b> 4 Quarterly-Journal-of-Economics 8844</a></li>
+<li class="chapter" data-level="1.84" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#review-of-economic-studies-21937"><i class="fa fa-check"></i><b>1.84</b> 5 Review-of-Economic-Studies 21937</a></li>
+<li class="chapter" data-level="1.85" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#review-of-economics-and-statistics-8473"><i class="fa fa-check"></i><b>1.85</b> 6 Review-of-Economics-and-Statistics 8473</a></li>
+<li class="chapter" data-level="1.86" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-8"><i class="fa fa-check"></i><b>1.86</b> 7 <NA> 14</a></li>
+<li class="chapter" data-level="1.87" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#a-tibble-7-x-2-1"><i class="fa fa-check"></i><b>1.87</b> # A tibble: 7 x 2</a></li>
+<li class="chapter" data-level="1.88" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-sumofcites"><i class="fa fa-check"></i><b>1.88</b> journal SumOfCites</a></li>
+<li class="chapter" data-level="1.89" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-9"><i class="fa fa-check"></i><b>1.89</b> <chr> <int></a></li>
+<li class="chapter" data-level="1.90" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#american-economic-review-3738-1"><i class="fa fa-check"></i><b>1.90</b> 1 American-Economic-Review 3738</a></li>
+<li class="chapter" data-level="1.91" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#econometrica-75789-1"><i class="fa fa-check"></i><b>1.91</b> 2 Econometrica 75789</a></li>
+<li class="chapter" data-level="1.92" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#journal-of-political-economy-3398-1"><i class="fa fa-check"></i><b>1.92</b> 3 Journal-of-Political-Economy 3398</a></li>
+<li class="chapter" data-level="1.93" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#quarterly-journal-of-economics-8844-1"><i class="fa fa-check"></i><b>1.93</b> 4 Quarterly-Journal-of-Economics 8844</a></li>
+<li class="chapter" data-level="1.94" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#review-of-economic-studies-21937-1"><i class="fa fa-check"></i><b>1.94</b> 5 Review-of-Economic-Studies 21937</a></li>
+<li class="chapter" data-level="1.95" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#review-of-economics-and-statistics-8473-1"><i class="fa fa-check"></i><b>1.95</b> 6 Review-of-Economics-and-Statistics 8473</a></li>
+<li class="chapter" data-level="1.96" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-10"><i class="fa fa-check"></i><b>1.96</b> 7 <NA> 14</a></li>
+<li class="chapter" data-level="1.97" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#a-tibble-1-x-1"><i class="fa fa-check"></i><b>1.97</b> # A tibble: 1 x 1</a></li>
+<li class="chapter" data-level="1.98" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#n_distinctau1"><i class="fa fa-check"></i><b>1.98</b> <code>n_distinct(au1)</code></a></li>
+<li class="chapter" data-level="1.99" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-11"><i class="fa fa-check"></i><b>1.99</b> <int></a></li>
+<li class="chapter" data-level="1.100" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-12"><i class="fa fa-check"></i><b>1.100</b> 1 2332</a></li>
+<li class="chapter" data-level="1.101" data-path="module-1-introduction-to-the-course.html"><a href="module-1-introduction-to-the-course.html#section-13"><i class="fa fa-check"></i><b>1.101</b> [1] 2332</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><i class="fa fa-check"></i><b>2</b> Module 2: Fundamentals of Probability, Random Variables, Joint Distributions + Collecting Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#fundamentals-of-probability"><i class="fa fa-check"></i><b>2.1</b> Fundamentals of Probability</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#set-theory"><i class="fa fa-check"></i><b>2.1.1</b> Set Theory</a></li>
+<li class="chapter" data-level="2.1.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#defining-probability"><i class="fa fa-check"></i><b>2.1.2</b> Defining Probability</a></li>
+<li class="chapter" data-level="2.1.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#an-example"><i class="fa fa-check"></i><b>2.1.3</b> An example</a></li>
+<li class="chapter" data-level="2.1.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#another-example"><i class="fa fa-check"></i><b>2.1.4</b> Another example</a></li>
+<li class="chapter" data-level="2.1.5" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#ordered-and-unordered-arrangements"><i class="fa fa-check"></i><b>2.1.5</b> Ordered and Unordered Arrangements</a></li>
+<li class="chapter" data-level="2.1.6" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#office-arrangements-and-pizza-toppings"><i class="fa fa-check"></i><b>2.1.6</b> Office Arrangements and Pizza Toppings</a></li>
+<li class="chapter" data-level="2.1.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#independence-and-basketball-example"><i class="fa fa-check"></i><b>2.1.7</b> Independence and Basketball Example</a></li>
+<li class="chapter" data-level="2.1.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability"><i class="fa fa-check"></i><b>2.1.8</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.1.9" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#conditional-probability-in-american-presidential-politics"><i class="fa fa-check"></i><b>2.1.9</b> Conditional Probability in American Presidential Politics</a></li>
+<li class="chapter" data-level="2.1.10" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#bayes-theorem"><i class="fa fa-check"></i><b>2.1.10</b> Bayes’ Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#random-variables-distributions-and-joint-distributions"><i class="fa fa-check"></i><b>2.2</b> Random Variables, Distributions and Joint Distributions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-functions-of-random-variables"><i class="fa fa-check"></i><b>2.2.1</b> Probability Functions of Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-of-0-veggie-toppings-is-0.061"><i class="fa fa-check"></i><b>2.3</b> [1] “Probability of 0 veggie toppings is: 0.061”</a></li>
+<li class="chapter" data-level="2.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-of-1-veggie-toppings-is-0.364"><i class="fa fa-check"></i><b>2.4</b> [1] “Probability of 1 veggie toppings is: 0.364”</a></li>
+<li class="chapter" data-level="2.5" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-of-2-veggie-toppings-is-0.455"><i class="fa fa-check"></i><b>2.5</b> [1] “Probability of 2 veggie toppings is: 0.455”</a></li>
+<li class="chapter" data-level="2.6" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#probability-of-3-veggie-toppings-is-0.121"><i class="fa fa-check"></i><b>2.6</b> [1] “Probability of 3 veggie toppings is: 0.121”</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#the-hypergeometric-distribution"><i class="fa fa-check"></i><b>2.6.1</b> The Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="2.6.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#steph-curry-shooting-example"><i class="fa fa-check"></i><b>2.6.2</b> Steph Curry Shooting example</a></li>
+<li class="chapter" data-level="2.6.3" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#properties-of-the-probability-distribution"><i class="fa fa-check"></i><b>2.6.3</b> Properties of the Probability Distribution</a></li>
+<li class="chapter" data-level="2.6.4" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#discrete-versus-continuous-random-variables"><i class="fa fa-check"></i><b>2.6.4</b> Discrete versus Continuous Random Variables</a></li>
+<li class="chapter" data-level="2.6.5" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#a-note-on-terminology-and-the-uniform-distribution"><i class="fa fa-check"></i><b>2.6.5</b> A Note on Terminology and the Uniform Distribution</a></li>
+<li class="chapter" data-level="2.6.6" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#the-cumulative-distribution-function"><i class="fa fa-check"></i><b>2.6.6</b> The Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="2.6.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#joint-distributions"><i class="fa fa-check"></i><b>2.6.7</b> Joint Distributions</a></li>
+<li class="chapter" data-level="2.6.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#joint-distribution-example"><i class="fa fa-check"></i><b>2.6.8</b> Joint Distribution Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#gathering-and-collecting-data"><i class="fa fa-check"></i><b>2.7</b> Gathering and Collecting Data</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#a-google-maps-api-example"><i class="fa fa-check"></i><b>2.7.1</b> A Google Maps API example</a></li>
+<li class="chapter" data-level="2.7.2" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#web-scraping"><i class="fa fa-check"></i><b>2.7.2</b> Web Scraping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#loading-required-package-xml2"><i class="fa fa-check"></i><b>2.8</b> Loading required package: xml2</a></li>
+<li class="chapter" data-level="2.9" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#college-applied-selected-target-gpa"><i class="fa fa-check"></i><b>2.9</b> COLLEGE APPLIED SELECTED Target GPA</a></li>
+<li class="chapter" data-level="2.10" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#agriculture-food-environmental-sciences-4842-2150-907-4.00"><i class="fa fa-check"></i><b>2.10</b> 1 Agriculture, Food &amp; Environmental Sciences 4,842 2,150 907 4.00</a></li>
+<li class="chapter" data-level="2.11" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#architecture-environmental-design-2453-929-404-4.02"><i class="fa fa-check"></i><b>2.11</b> 2 Architecture &amp; Environmental Design 2,453 929 404 4.02</a></li>
+<li class="chapter" data-level="2.12" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#business-7105-2271-655-4.12"><i class="fa fa-check"></i><b>2.12</b> 3 Business 7,105 2,271 655 4.12</a></li>
+<li class="chapter" data-level="2.13" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#engineering-19071-4337-1123-4.21"><i class="fa fa-check"></i><b>2.13</b> 4 Engineering 19,071 4,337 1,123 4.21</a></li>
+<li class="chapter" data-level="2.14" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#liberal-arts-9265-3025-756-4.04"><i class="fa fa-check"></i><b>2.14</b> 5 Liberal Arts 9,265 3,025 756 4.04</a></li>
+<li class="chapter" data-level="2.15" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#science-mathematics-11923-3753-641-4.18"><i class="fa fa-check"></i><b>2.15</b> 6 Science &amp; Mathematics 11,923 3,753 641 4.18</a></li>
+<li class="chapter" data-level="2.16" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#total-54659-16465-4486-4.12"><i class="fa fa-check"></i><b>2.16</b> 7 TOTAL 54,659 16,465 4,486 4.12</a></li>
+<li class="chapter" data-level="2.17" data-path="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html"><a href="module-2-fundamentals-of-probability-random-variables-joint-distributions-collecting-data.html#act-sat-1-28-1325-2-29-1364-3-30-1410-4-32-1481-5-29-1355-6-31-1420-7-30-1407-college-applied-selected-target-gpa-1-agriculture-food-environmental-sciences-1008-283-172-3.28-2-architecture-environmental-design-408-86-56-3.24-3-business-2323-247-118-3.56-4-engineering-2978-395-203-3.47-5-liberal-arts-2771-443-185-3.41-6-science-mathematics-1434-260-117-3.41-7-total-10922-1714-893-3.41-college-undergrad-postbacgrad-total-1-agriculture-food-environmental-sciences-4079-78-4157-2-architecture-environmental-design-1827-46-1873-3-business-3051-45-3096-4-engineering-5996-292-6288-5-liberal-arts-3309-92-3401-6-science-mathematics-2786-317-3103-7-others-44-17-61-8-total-21092-887-21979-1-2.59-3.30-0.77-0.77-3.04-5.53-attaching-package-dplyr-the-following-objects-are-masked-from-packagestats-filter-lag-the-following-objects-are-masked-from-packagebase-intersect-setdiff-setequal-union-a-tibble-6-x-3-booktitle-data-and-time-price-1-le-temps-retrouve-2018-10-25-043719-2.59-2-le-temps-retrouve-2018-10-25-043719-3.3-3-le-temps-retrouve-2018-10-25-043719-0.77-4-le-temps-retrouve-2018-10-25-043719-0.77-5-a-la-recherche-du-temps-perdu-le-temps-retr-2018-10-25-043719-3.04-6-a-la-recherche-du-temps-perdu-le-temps-retr-2018-10-25-043719-5.53-human-research-subject-definitions-homework-1-0.2522196-1-0.7383926-1-0.7514955"><i class="fa fa-check"></i><b>2.17</b> ACT* SAT* ## 1 28 1325 ## 2 29 1364 ## 3 30 1410 ## 4 32 1481 ## 5 29 1355 ## 6 31 1420 ## 7 30 1407 ## COLLEGE APPLIED SELECTED Target GPA ## 1 Agriculture, Food &amp; Environmental Sciences 1,008 283 172 3.28 ## 2 Architecture &amp; Environmental Design 408 86 56 3.24 ## 3 Business 2,323 247 118 3.56 ## 4 Engineering 2,978 395 203 3.47 ## 5 Liberal Arts 2,771 443 185 3.41 ## 6 Science &amp; Mathematics 1,434 260 117 3.41 ## 7 TOTAL 10,922 1,714 893 3.41 ## COLLEGE UNDERGRAD POSTBAC/GRAD TOTAL ## 1 Agriculture, Food &amp; Environmental Sciences 4,079 78 4,157 ## 2 Architecture &amp; Environmental Design 1,827 46 1,873 ## 3 Business 3,051 45 3,096 ## 4 Engineering 5,996 292 6,288 ## 5 Liberal Arts 3,309 92 3,401 ## 6 Science &amp; Mathematics 2,786 317 3,103 ## 7 Others 44 17 61 ## 8 TOTAL 21,092 887 21,979 ## [1] “£ 2.59” “£ 3.30” “£ 0.77” “£ 0.77” “£ 3.04” “£ 5.53” ## ## Attaching package: ‘dplyr’ ## The following objects are masked from ‘package:stats’: ## ## filter, lag ## The following objects are masked from ‘package:base’: ## ## intersect, setdiff, setequal, union ## # A tibble: 6 x 3 ## booktitle <code>data and time</code> price ## <chr> <dttm> <dbl> ## 1 Le temps retrouve 2018-10-25 04:37:19 2.59 ## 2 Le temps retrouve 2018-10-25 04:37:19 3.3 ## 3 Le temps retrouve 2018-10-25 04:37:19 0.77 ## 4 Le temps retrouve 2018-10-25 04:37:19 0.77 ## 5 À la recherche du temps perdu : Le temps retr~ 2018-10-25 04:37:19 3.04 ## 6 À la recherche du temps perdu : Le temps retr~ 2018-10-25 04:37:19 5.53 ### Human Research Subject Definitions ## Homework ## [1] 0.2522196 ## [1] 0.7383926 ## [1] 0.7514955</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><i class="fa fa-check"></i><b>3</b> Module 3: Describing Data, Joint and Conditional Distributions of Random Variables</a><ul>
+<li class="chapter" data-level="3.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#summarizing-and-describing-data"><i class="fa fa-check"></i><b>3.1</b> Summarizing and Describing Data</a></li>
+<li class="chapter" data-level="3.2" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#loading-required-package-cowplot"><i class="fa fa-check"></i><b>3.2</b> Loading required package: cowplot</a></li>
+<li class="chapter" data-level="3.3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-14"><i class="fa fa-check"></i><b>3.3</b> </a></li>
+<li class="chapter" data-level="3.4" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#attaching-package-cowplot"><i class="fa fa-check"></i><b>3.4</b> Attaching package: ‘cowplot’</a></li>
+<li class="chapter" data-level="3.5" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#the-following-object-is-masked-from-packageggplot2"><i class="fa fa-check"></i><b>3.5</b> The following object is masked from ‘package:ggplot2’:</a></li>
+<li class="chapter" data-level="3.6" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-15"><i class="fa fa-check"></i><b>3.6</b> </a></li>
+<li class="chapter" data-level="3.7" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#ggsave"><i class="fa fa-check"></i><b>3.7</b> ggsave</a></li>
+<li class="chapter" data-level="3.8" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#attaching-packages-tidyverse-1.2.1-1"><i class="fa fa-check"></i><b>3.8</b> – Attaching packages —————— tidyverse 1.2.1 –</a></li>
+<li class="chapter" data-level="3.9" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#v-tibble-1.4.2-v-purrr-0.2.5"><i class="fa fa-check"></i><b>3.9</b> v tibble 1.4.2 v purrr 0.2.5</a></li>
+<li class="chapter" data-level="3.10" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#v-tidyr-0.8.1-v-dplyr-0.7.6"><i class="fa fa-check"></i><b>3.10</b> v tidyr 0.8.1 v dplyr 0.7.6</a></li>
+<li class="chapter" data-level="3.11" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#v-readr-1.1.1-v-stringr-1.3.1"><i class="fa fa-check"></i><b>3.11</b> v readr 1.1.1 v stringr 1.3.1</a></li>
+<li class="chapter" data-level="3.12" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#v-tibble-1.4.2-v-forcats-0.3.0"><i class="fa fa-check"></i><b>3.12</b> v tibble 1.4.2 v forcats 0.3.0</a></li>
+<li class="chapter" data-level="3.13" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#conflicts-tidyverse_conflicts-1"><i class="fa fa-check"></i><b>3.13</b> – Conflicts ——————— tidyverse_conflicts() –</a></li>
+<li class="chapter" data-level="3.14" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#x-dplyrfilter-masks-statsfilter-1"><i class="fa fa-check"></i><b>3.14</b> x dplyr::filter() masks stats::filter()</a></li>
+<li class="chapter" data-level="3.15" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#x-cowplotggsave-masks-ggplot2ggsave"><i class="fa fa-check"></i><b>3.15</b> x cowplot::ggsave() masks ggplot2::ggsave()</a></li>
+<li class="chapter" data-level="3.16" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#x-dplyrlag-masks-statslag-1"><i class="fa fa-check"></i><b>3.16</b> x dplyr::lag() masks stats::lag()</a></li>
+<li class="chapter" data-level="3.17" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#parsed-with-column-specification-1"><i class="fa fa-check"></i><b>3.17</b> Parsed with column specification:</a></li>
+<li class="chapter" data-level="3.18" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#cols-1"><i class="fa fa-check"></i><b>3.18</b> cols(</a></li>
+<li class="chapter" data-level="3.19" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#personid-col_integer"><i class="fa fa-check"></i><b>3.19</b> personid = col_integer(),</a></li>
+<li class="chapter" data-level="3.20" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#female-col_integer"><i class="fa fa-check"></i><b>3.20</b> female = col_integer(),</a></li>
+<li class="chapter" data-level="3.21" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#adult-col_integer"><i class="fa fa-check"></i><b>3.21</b> adult = col_integer(),</a></li>
+<li class="chapter" data-level="3.22" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#age-col_double"><i class="fa fa-check"></i><b>3.22</b> age = col_double(),</a></li>
+<li class="chapter" data-level="3.23" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#height_cm-col_double"><i class="fa fa-check"></i><b>3.23</b> height_cm = col_double(),</a></li>
+<li class="chapter" data-level="3.24" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#weight_kg-col_double"><i class="fa fa-check"></i><b>3.24</b> weight_kg = col_double()</a></li>
+<li class="chapter" data-level="3.25" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-16"><i class="fa fa-check"></i><b>3.25</b> )</a></li>
+<li class="chapter" data-level="3.26" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#a-tibble-10-x-6"><i class="fa fa-check"></i><b>3.26</b> # A tibble: 10 x 6</a></li>
+<li class="chapter" data-level="3.27" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#personid-female-adult-age-height_cm-weight_kg"><i class="fa fa-check"></i><b>3.27</b> personid female adult age height_cm weight_kg</a></li>
+<li class="chapter" data-level="3.28" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-17"><i class="fa fa-check"></i><b>3.28</b> <int> <int> <int> <dbl> <dbl> <dbl></a></li>
+<li class="chapter" data-level="3.29" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-18"><i class="fa fa-check"></i><b>3.29</b> 1 11010103 1 1 28 150. 37.7</a></li>
+<li class="chapter" data-level="3.30" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-19"><i class="fa fa-check"></i><b>3.30</b> 2 11010202 1 1 30 140. 57.3</a></li>
+<li class="chapter" data-level="3.31" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-20"><i class="fa fa-check"></i><b>3.31</b> 3 11010207 1 1 35 148. 38.9</a></li>
+<li class="chapter" data-level="3.32" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-21"><i class="fa fa-check"></i><b>3.32</b> 4 11010302 1 1 48 145. 35.7</a></li>
+<li class="chapter" data-level="3.33" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#na-na"><i class="fa fa-check"></i><b>3.33</b> 5 11010303 1 1 22 NA NA</a></li>
+<li class="chapter" data-level="3.34" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#na-na-1"><i class="fa fa-check"></i><b>3.34</b> 6 11010306 1 1 18 NA NA</a></li>
+<li class="chapter" data-level="3.35" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-22"><i class="fa fa-check"></i><b>3.35</b> 7 11010308 1 1 28 145. 42.4</a></li>
+<li class="chapter" data-level="3.36" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-23"><i class="fa fa-check"></i><b>3.36</b> 8 11010402 1 1 58 156. 51.1</a></li>
+<li class="chapter" data-level="3.37" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-24"><i class="fa fa-check"></i><b>3.37</b> 9 11010404 1 1 36 156. 50.7</a></li>
+<li class="chapter" data-level="3.38" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-25"><i class="fa fa-check"></i><b>3.38</b> 10 11010407 1 1 55 156. 47.2</a></li>
+<li class="chapter" data-level="3.39" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth."><i class="fa fa-check"></i><b>3.39</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.40" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#warning-removed-1432-rows-containing-non-finite-values-stat_bin."><i class="fa fa-check"></i><b>3.40</b> Warning: Removed 1432 rows containing non-finite values (stat_bin).</a></li>
+<li class="chapter" data-level="3.41" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-1"><i class="fa fa-check"></i><b>3.41</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a><ul>
+<li class="chapter" data-level="3.41.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#kernel-density-estimation"><i class="fa fa-check"></i><b>3.41.1</b> Kernel Density Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.42" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-2"><i class="fa fa-check"></i><b>3.42</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.43" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-3"><i class="fa fa-check"></i><b>3.43</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.44" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-4"><i class="fa fa-check"></i><b>3.44</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.45" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-5"><i class="fa fa-check"></i><b>3.45</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.46" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-6"><i class="fa fa-check"></i><b>3.46</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.47" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-7"><i class="fa fa-check"></i><b>3.47</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.48" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-8"><i class="fa fa-check"></i><b>3.48</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.49" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-9"><i class="fa fa-check"></i><b>3.49</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.50" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-10"><i class="fa fa-check"></i><b>3.50</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a><ul>
+<li class="chapter" data-level="3.50.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#comparing-distributions"><i class="fa fa-check"></i><b>3.50.1</b> Comparing Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.51" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#height_cm"><i class="fa fa-check"></i><b>3.51</b> height_cm</a></li>
+<li class="chapter" data-level="3.52" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-26"><i class="fa fa-check"></i><b>3.52</b> 1 165.10</a></li>
+<li class="chapter" data-level="3.53" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-27"><i class="fa fa-check"></i><b>3.53</b> 2 167.64</a></li>
+<li class="chapter" data-level="3.54" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-28"><i class="fa fa-check"></i><b>3.54</b> 3 157.48</a></li>
+<li class="chapter" data-level="3.55" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-29"><i class="fa fa-check"></i><b>3.55</b> 4 167.64</a></li>
+<li class="chapter" data-level="3.56" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-30"><i class="fa fa-check"></i><b>3.56</b> 5 162.56</a></li>
+<li class="chapter" data-level="3.57" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-31"><i class="fa fa-check"></i><b>3.57</b> 6 152.40</a></li>
+<li class="chapter" data-level="3.58" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-32"><i class="fa fa-check"></i><b>3.58</b> 7 162.56</a></li>
+<li class="chapter" data-level="3.59" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-33"><i class="fa fa-check"></i><b>3.59</b> 8 170.18</a></li>
+<li class="chapter" data-level="3.60" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-34"><i class="fa fa-check"></i><b>3.60</b> 9 167.64</a></li>
+<li class="chapter" data-level="3.61" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-35"><i class="fa fa-check"></i><b>3.61</b> 10 170.18</a></li>
+<li class="chapter" data-level="3.62" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-11"><i class="fa fa-check"></i><b>3.62</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.63" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-12"><i class="fa fa-check"></i><b>3.63</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.64" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-13"><i class="fa fa-check"></i><b>3.64</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.65" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#stat_bin-using-bins-30.-pick-better-value-with-binwidth.-14"><i class="fa fa-check"></i><b>3.65</b> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</a></li>
+<li class="chapter" data-level="3.66" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#joint-marginal-and-conditional-probabilities"><i class="fa fa-check"></i><b>3.66</b> Joint, Marginal and Conditional Probabilities</a></li>
+<li class="chapter" data-level="3.67" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-36"><i class="fa fa-check"></i><b>3.67</b> </a></li>
+<li class="chapter" data-level="3.68" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#attaching-package-pracma"><i class="fa fa-check"></i><b>3.68</b> Attaching package: ‘pracma’</a></li>
+<li class="chapter" data-level="3.69" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#the-following-object-is-masked-from-packagepurrr"><i class="fa fa-check"></i><b>3.69</b> The following object is masked from ‘package:purrr’:</a></li>
+<li class="chapter" data-level="3.70" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-37"><i class="fa fa-check"></i><b>3.70</b> </a></li>
+<li class="chapter" data-level="3.71" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#cross"><i class="fa fa-check"></i><b>3.71</b> cross</a></li>
+<li class="chapter" data-level="3.72" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-38"><i class="fa fa-check"></i><b>3.72</b> [1] 0.1904762</a></li>
+<li class="chapter" data-level="3.73" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-39"><i class="fa fa-check"></i><b>3.73</b> </a></li>
+<li class="chapter" data-level="3.74" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#attaching-package-mass"><i class="fa fa-check"></i><b>3.74</b> Attaching package: ‘MASS’</a></li>
+<li class="chapter" data-level="3.75" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#the-following-object-is-masked-from-packagedplyr"><i class="fa fa-check"></i><b>3.75</b> The following object is masked from ‘package:dplyr’:</a></li>
+<li class="chapter" data-level="3.76" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-40"><i class="fa fa-check"></i><b>3.76</b> </a></li>
+<li class="chapter" data-level="3.77" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#select"><i class="fa fa-check"></i><b>3.77</b> select</a></li>
+<li class="chapter" data-level="3.78" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-41"><i class="fa fa-check"></i><b>3.78</b> [1] 5.25</a></li>
+<li class="chapter" data-level="3.79" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-42"><i class="fa fa-check"></i><b>3.79</b> [1] 21/4</a></li>
+<li class="chapter" data-level="3.80" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-43"><i class="fa fa-check"></i><b>3.80</b> [1] -0.15</a></li>
+<li class="chapter" data-level="3.81" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-44"><i class="fa fa-check"></i><b>3.81</b> [1] -6.666667</a></li>
+<li class="chapter" data-level="3.82" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#section-45"><i class="fa fa-check"></i><b>3.82</b> [1] -20/3</a><ul>
+<li class="chapter" data-level="3.82.1" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#marginal-or-individual-distributions"><i class="fa fa-check"></i><b>3.82.1</b> Marginal or Individual Distributions</a></li>
+<li class="chapter" data-level="3.82.2" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#independence-of-random-variables"><i class="fa fa-check"></i><b>3.82.2</b> Independence of Random Variables</a></li>
+<li class="chapter" data-level="3.82.3" data-path="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#conditional-distributions"><i class="fa fa-check"></i><b>3.82.3</b> Conditional Distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="module-4-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-4-describing-data-joint-and-conditional-distributions-of-random-variables.html"><i class="fa fa-check"></i><b>4</b> Module 4: Describing Data, Joint and Conditional Distributions of Random Variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="module-4-describing-data-joint-and-conditional-distributions-of-random-variables.html"><a href="module-4-describing-data-joint-and-conditional-distributions-of-random-variables.html#functions-of-random-variables"><i class="fa fa-check"></i><b>4.1</b> Functions of Random Variables</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Course notes from MITx 14.310x Data Analysis for Social Scientists (EdX)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="module-4-describing-data-joint-and-conditional-distributions-of-random-variables" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Module 4: Describing Data, Joint and Conditional Distributions of Random Variables</h1>
+<hr />
+<p><strong>Module Sections:</strong></p>
+<ul>
+<li>Functions of Random Variables</li>
+<li>Moments of a Distribution</li>
+<li>Expectation, Variance, and an Introduction to Regression</li>
+<li>Module 4: Homework</li>
+</ul>
+<p>Module Content:</p>
+<ul>
+<li><a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html#joint-marginal-and-conditional-probabilities">Joint, Marginal and Conditional Probabilities</a> (./files/M3/JointMarginalandConditionalProbabilities.pdf) &lt;- last few slides start this module</li>
+<li><a href="./files/M4/FunctionsOfRandomVariables.pdf">Functions of Random Variables</a></li>
+</ul>
+<div id="functions-of-random-variables" class="section level2">
+<h2><span class="header-section-number">4.1</span> Functions of Random Variables</h2>
+<p>Before discussing statistics, we need to understand probability and how random variables behave.</p>
+<p>Suppose we have some random variable x, we want to know how a new random variable Y = h(X) (some function of x) is distributed. If we have a distribution <span class="math inline">\(Y = |2x| + 3\)</span> where X has a PDF <span class="math inline">\(f_x(x) = 1 - |x| \; for -1 &lt;= x &lt;= 1\)</span>. We can think about what each element does to the random variable as we move from x to y as shown below e.g. we start with x, then move to 2x, then to the absolute value of X then in the final image we add 3 three which moves the distribution along to the right.</p>
+<p><img src="images/RVFunction.png" width="100%" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-3-describing-data-joint-and-conditional-distributions-of-random-variables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

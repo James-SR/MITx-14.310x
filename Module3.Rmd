@@ -15,7 +15,6 @@ Module Content:
 * [Joint, Marginal and Conditional Probabilities] (./files/M3/JointMarginalandConditionalProbabilities.pdf)
 
 
-
 ## Summarizing and Describing Data
 
 The goal of visualisation is either EDA for yourself or for conveying a message to other people.  The course uses ggplot in both instances, this module focuses more on EDA for yourself. 
@@ -474,12 +473,12 @@ ggplot(plotdata_bygroupyear, aes(Year, FertilityRate, group = Country.Code, colo
 ```{r}
 histdata_twoyears <- teenager_fr %>%
   dplyr::slice(46:263) %>%
-  dplyr::select(Country.Code, X1960, X2000) %>%
-  gather("Year", "FertilityRate", 2:3)
+  dplyr::select(X1960, X2000) %>%
+  gather("Year", "FertilityRate")
 
-ggplot(histdata_twoyears, aes(x = FertilityRate)) + 
-  geom_histogram(data = histdata_twoyears, Year=="X1960", colour = "darkred", fill = "red", alpha = 0.2) +
-  geom_histogram(data = histdata_twoyears, Year=="X2000", colour = "darkblue", fill = "blue", alpha = 0.2) 
+ggplot(histdata_twoyears, aes(x = FertilityRate, group = Year, colour = Year, fill = Year)) + 
+  geom_histogram(aes(y = ..density..), alpha = 0.1) +
+  geom_density(alpha = 0.1, bw = 5) 
 ```
 
 

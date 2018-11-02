@@ -2,6 +2,6 @@ book_filename: "bookdown-start"
 chapter_name: "Chapter "
 repo: https://github.com/James-SR/MITx-14.310x
 output_dir: docs
-rmd_files: ["index.Rmd", "Module1.Rmd", "Module2.Rmd","Module3.Rmd"]
+rmd_files: ["index.Rmd", "Module1.Rmd", "Module2.Rmd","Module3.Rmd", "Module4.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes
