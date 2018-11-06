@@ -32,4 +32,23 @@ One way we can find h is by first finding the CDF of y, which we find by integra
 
 * For a continous variable the important thing is that we "integrate over the appropriate region" then we take the derivate to find the PDF
 
-IF we wanted to find the CDF, this is obtained by integrating the PDF, so to obtain the density from the CDF you would need to differentiate the CDF.
+If we wanted to find the CDF, this is obtained by integrating the PDF, so to obtain the density from the CDF you would need to differentiate the CDF.
+
+In the course we will look at 4 types of examples:
+
+1. Linear transformation of a single random variable
+2. Probability integral transformation
+3. Convolution
+4. Order statistics
+
+We often want to transform one variable in to another, for instance by using a linear transformation.  An example would be converting feet in to meters.  OR there may be some underlying theory which relates one variable to another.  As before, if we want to understand how Y is distributed we "integrate over the appropriate region". We typically want to take the region which excludes the situation where the variable is 0 since this would give us a "degenerate" RV which is actually a point mass (at 0).  For $Y = aX + b$ Y is distributed $ FY(y) = P(Y <= y) = P(aX+b <= y)$.  a could be positive or negative so we end up with two statements - a negative and positive one.   To find out Y, we integrate over the region of the statement of x we are interested in.
+
+```{r Linear Transform, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/linearRV.png")
+```
+
+In the second case wehre a > 0, we can re-write it as shown so that it becomes 1 minus the value when a < 0.  To get the PDF we then take the derivative:
+
+```{r Linear Derivative, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/linearRVder.png")
+```
