@@ -41,6 +41,8 @@ In the course we will look at 4 types of examples:
 3. Convolution
 4. Order statistics
 
+### Linear Transformation
+
 We often want to transform one variable in to another, for instance by using a linear transformation.  An example would be converting feet in to meters.  OR there may be some underlying theory which relates one variable to another.  As before, if we want to understand how Y is distributed we "integrate over the appropriate region". We typically want to take the region which excludes the situation where the variable is 0 since this would give us a "degenerate" RV which is actually a point mass (at 0).  For $Y = aX + b$ Y is distributed $ FY(y) = P(Y <= y) = P(aX+b <= y)$.  a could be positive or negative so we end up with two statements - a negative and positive one.   To find out Y, we integrate over the region of the statement of x we are interested in.
 
 ```{r Linear Transform, echo = FALSE, out.width = "100%"}
@@ -52,3 +54,25 @@ In the second case wehre a > 0, we can re-write it as shown so that it becomes 1
 ```{r Linear Derivative, echo = FALSE, out.width = "100%"}
 knitr::include_graphics("images/linearRVder.png")
 ```
+
+### Probability integral transformation
+
+Here we use the CDF which describes the distribution of a random variable to transform a random variable - PDF fx(x) and CDF Fx(x) where Y = Fx(X) (big X).  The CDF is a function, so we can use it. Whatever the support of X,Y lives on [0,1]. This is because the Y is a CDF. The result is that a continous RV transformed by it's own CDF will always have a uniform distribution i.e. U[0,1].
+
+But - why would we use this?  When writing code, we might want to take random draws from some distribution.  For example, when looking at sumulating random draws from a uniform distribution to look at the proportion of a school population initially infected with a virus and another set of simulations from a beta distribution to model the humidity, which perhaps might influence the spread of the virus.  Some software languages and or packages may not include all these distributions, but most likely you can use a uniform distribution, so instead we use the uniform but look up the CDF of a distribution we are interestred e.g. beta distro from a book, then compute the inverse CDFs, and then use those functions to transform the random draws as from a uniform 0,1 into random draws from say the beta distro.  
+
+### Convolution in the Context of Probability
+
+Convolution refers to the sum of independent random variables, we previoulsy saw one in the case of the pills in the headache example - the sum of the pills effective lives was of interest.  Another example might be stocks in a portfolio. 
+
+So if we have two independent items - PDF of X is Fx and PDF of Y is Fy and Z is their sum, we can find thed PDF of Z.  IF we know they are independent, we can get the joint PDF by multiplying the margainl PDFs e.g. Fxy(x,y) = Fx(x)Fy(y).  The slides contain step by step examples with double integration.
+
+Note that independence is not a requirement for you to be able to find the PDF of the sum of random variables. However, independence does make it very easy to find the joint PDF of random variables, because if you know they are independent, then the joint density is just given by the product of their marginal densities.
+
+### Order Statistics
+
+Order statistics are very useful in Economic modelling, specifically auctions.  If we have a list of some random variables X1 ... Xn which are i.i.d. A group of random variables is called a random sample.  Yn = max{X1, ... ,Xn} this is called the nth order statistic.  Often in statistics we will talk about a set of i.i.d.s and this is part of our first assumption.  
+
+Sometimes these different terms are used interchangeably - random variables, random samples, i.i.d.s and are soemtiems termed together.  
+
+We are often interested in how the nth order statistic is distributed. 
